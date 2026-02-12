@@ -7,7 +7,7 @@ const ParticleNetwork = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     // Increased amount to 0.6 to delay animation until more of the section is visible
-    const isInView = useInView(containerRef, { amount: 0.8, once: false });
+    const isInView = useInView(containerRef, { amount: 0.65, once: false });
 
     // Ref to track view state without re-triggering the main effect
     const isViewRef = useRef(false);
@@ -22,7 +22,7 @@ const ParticleNetwork = () => {
         fontSize: 160,
         fontFamily: 'Arial Black, sans-serif',
         particleSize: 1.5,
-        ease: 0.03, // Slower assembly
+        ease: 0.04, // Slower assembly
         friction: 0.9,
         repulsion: 5,
         colors: ['#00F0FF'] // Single color: Electric Cyan
