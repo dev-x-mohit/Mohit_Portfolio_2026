@@ -83,7 +83,7 @@ const ResumePulse = () => {
     });
 
     return (
-        <section ref={containerRef} className="relative w-full py-32 px-6 bg-background text-foreground overflow-hidden transition-colors duration-300">
+        <section id="experience" ref={containerRef} className="relative w-full py-32 px-6 bg-background text-foreground overflow-hidden transition-colors duration-300">
             <div className="max-w-4xl mx-auto relative z-10 flex flex-col items-center">
 
                 <motion.div

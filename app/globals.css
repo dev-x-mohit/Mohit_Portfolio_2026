@@ -10,7 +10,9 @@
   --primary-bg: #ffffff;
   --secondary-bg: #f5f5f5;
   --accent-action: #00bcd4;
+  --accent-action-rgb: 0, 188, 212;
   --accent-highlight: #6200ea;
+  --accent-highlight-rgb: 98, 0, 234;
   --text-primary: #171717;
   --text-secondary: #525252;
 }
@@ -45,9 +47,9 @@
   --secondary-bg: #16161A;
   /* Glass Slate */
   --accent-action: #00F0FF;
-  /* Electric Cyan */
+  --accent-action-rgb: 0, 240, 255;
   --accent-highlight: #7000FF;
-  /* Neon Purple */
+  --accent-highlight-rgb: 112, 0, 255;
   --text-primary: #F9F9F9;
   /* Pure Snow */
   --text-secondary: #888888;
@@ -76,4 +78,17 @@ body {
 
 .animate-bounce-right {
   animation: bounce-right 1s infinite;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }

@@ -303,7 +303,7 @@ const Projects = () => {
     }, [activeIndex]);
 
     return (
-        <section ref={sectionRef} className="h-screen w-full relative overflow-hidden bg-background projects-section">
+        <section id="projects" ref={sectionRef} className="h-screen w-full relative overflow-hidden bg-background projects-section">
             <div className="absolute inset-0 z-10 pointer-events-none" />
 
             {/* Floating Geometric Shapes & SVGs - Positioned in "Empty Space" (Top/Bottom/Corners) */}

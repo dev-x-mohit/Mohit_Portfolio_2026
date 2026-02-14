@@ -6,7 +6,7 @@ import { Smartphone, Laptop, Code2, Globe, Layers, ArrowRight } from 'lucide-rea
 
 const Hero = () => {
     return (
-        <section className="relative min-h-screen w-full bg-background text-foreground flex flex-col items-center justify-center overflow-hidden px-6 py-20 transition-colors duration-300">
+        <section id="home" className="relative min-h-screen w-full bg-background text-foreground flex flex-col items-center justify-center overflow-hidden px-6 py-20 transition-colors duration-300">
 
             {/* Background Ambience */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">

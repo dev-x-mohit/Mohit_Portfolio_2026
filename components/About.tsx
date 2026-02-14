@@ -6,7 +6,7 @@ import { Mail, Linkedin, MapPin } from 'lucide-react';
 
 const About = () => {
     return (
-        <section className="relative w-full py-20 px-6 bg-background text-foreground overflow-hidden transition-colors duration-300">
+        <section id="about" className="relative w-full py-20 px-6 bg-background text-foreground overflow-hidden transition-colors duration-300">
             <div className="max-w-7xl mx-auto relative z-10">
 
                 {/* Header / Intro */}
