@@ -72,13 +72,28 @@ const ParticleField = () => {
 };
 
 const NeuralCanvas = () => {
+    const [bgColor, setBgColor] = React.useState('#030712');
+
+    React.useEffect(() => {
+        const updateColors = () => {
+            const style = getComputedStyle(document.documentElement);
+            const bg = style.getPropertyValue('--background').trim();
+            if (bg) setBgColor(bg);
+        };
+
+        updateColors();
+        const observer = new MutationObserver(updateColors);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <div className="fixed inset-0 z-[-1] bg-[var(--background)] pointer-events-none transition-colors duration-700">
+        <div className="fixed inset-0 z-[-1] bg-background pointer-events-none transition-colors duration-700">
             <Canvas camera={{ position: [0, 0, 8], fov: 75 }}>
                 <ambientLight intensity={0.5} />
                 <pointLight position={[10, 10, 10]} intensity={1} />
                 <ParticleField />
-                <fog attach="fog" args={['#030712', 5, 20]} />
+                <fog attach="fog" args={[bgColor, 5, 20]} />
             </Canvas>
         </div>
     );

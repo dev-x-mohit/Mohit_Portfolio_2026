@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Linkedin, MapPin } from 'lucide-react';
 
+
 const About = () => {
     return (
         <section id="about" className="relative w-full py-20 px-6 bg-background text-foreground overflow-hidden transition-colors duration-300">
@@ -33,7 +34,7 @@ const About = () => {
                             mohitlakhara78500@gmail.com
                         </a>
                         <a href="https://www.linkedin.com/in/mohitlakharaind" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
-                            <Linkedin size={16} className="text-[#0077B5]" />
+                            <Linkedin size={16} className="text-accent-highlight" />
                             LinkedIn
                         </a>
                     </div>

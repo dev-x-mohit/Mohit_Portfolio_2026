@@ -81,11 +81,11 @@ const MagneticIcon = ({ icon: Icon, label, mouseX, mouseY }: { icon: LucideIcon,
         <motion.div
             ref={ref}
             style={{ x: springX, y: springY }}
-            className="group relative p-6 rounded-3xl bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center gap-4 hover:bg-white/5 hover:border-[var(--accent-action)]/50 transition-colors"
+            className="group relative p-6 rounded-3xl bg-secondary-bg/30 border border-border/10 flex flex-col items-center justify-center gap-4 hover:bg-secondary-bg/50 hover:border-accent-action/50 transition-colors"
         >
-            <Icon size={32} className="text-gray-400 group-hover:text-[var(--accent-action)] transition-colors" />
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 group-hover:text-white transition-colors">{label}</span>
-            <div className="absolute inset-0 bg-[var(--accent-action)]/5 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+            <Icon size={32} className="text-text-secondary group-hover:text-accent-action transition-colors" />
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary group-hover:text-foreground transition-colors">{label}</span>
+            <div className="absolute inset-0 bg-accent-action/5 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
         </motion.div>
     );
 };
@@ -107,7 +107,7 @@ const CreativeArsenal = () => {
                     <motion.span
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        className="text-xs font-bold uppercase tracking-[0.5em] text-[var(--accent-action)] block mb-4"
+                        className="text-xs font-bold uppercase tracking-[0.5em] text-accent-action block mb-4"
                     >
                         Modern Tech Stack
                     </motion.span>
@@ -116,7 +116,7 @@ const CreativeArsenal = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         className="text-5xl md:text-7xl font-black italic tracking-tighter"
                     >
-                        Creative <span className="text-[var(--accent-action)]">Arsenal</span>
+                        Creative <span className="text-accent-action">Arsenal</span>
                     </motion.h2>
                 </div>
 
@@ -134,10 +134,10 @@ const CreativeArsenal = () => {
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        className="col-span-2 md:col-span-2 lg:col-span-3 p-8 rounded-[2.5rem] bg-gradient-to-br from-[var(--accent-action)]/10 to-transparent border border-[var(--accent-action)]/20 flex flex-col justify-center"
+                        className="col-span-2 md:col-span-2 lg:col-span-3 p-8 rounded-[2.5rem] bg-gradient-to-br from-accent-action/10 to-transparent border border-accent-action/20 flex flex-col justify-center"
                     >
-                        <h3 className="text-xs font-black uppercase tracking-[0.5em] text-[var(--accent-action)] mb-4">The Philosophy</h3>
-                        <p className="text-xl md:text-2xl font-light leading-relaxed text-gray-300 italic">
+                        <h3 className="text-xs font-black uppercase tracking-[0.5em] text-accent-action mb-4">The Philosophy</h3>
+                        <p className="text-xl md:text-2xl font-light leading-relaxed text-text-secondary italic">
                             &quot;The intersection of logic and aesthetics is where true innovation happens. My arsenal is built for speed, scalability, and impact.&quot;
                         </p>
                     </motion.div>

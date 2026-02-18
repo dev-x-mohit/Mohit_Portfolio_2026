@@ -1,131 +1,303 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Smartphone, Laptop, Code2, Globe, Layers, ArrowRight } from 'lucide-react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, shaderMaterial, Stars } from '@react-three/drei';
+import { ArrowRight, Download, MousePointer2 } from 'lucide-react';
+import * as THREE from 'three';
+
+// --- Custom Warp Shader Material ---
+
+// --- Custom Warp Shader Material ---
+
+const WarpMaterial = {
+    uniforms: {
+        uTime: { value: 0 },
+        uColorMain: { value: new THREE.Color("#00ffff") }, // Default, will be updated
+        uColorAccent: { value: new THREE.Color("#a855f7") }, // Default, will be updated
+        uIntensity: { value: 0.3 },
+        uMouse: { value: new THREE.Vector2(0, 0) },
+        uScroll: { value: 0 },
+    },
+    vertexShader: `
+    uniform float uTime;
+    uniform float uIntensity;
+    uniform vec2 uMouse;
+    uniform float uScroll;
+    varying vec2 vUv;
+    varying float vDisplacement;
+    varying vec3 vPosition;
+
+    // Simplex noise function
+    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
+    vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+    float snoise(vec3 v) {
+      const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;
+      const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);
+      vec3 i  = floor(v + dot(v, C.yyy) );
+      vec3 x0 = v - i + dot(i, C.xxx) ;
+      vec3 g = step(x0.yzx, x0.xyz);
+      vec3 l = 1.0 - g;
+      vec3 i1 = min( g.xyz, l.zxy );
+      vec3 i2 = max( g.xyz, l.zxy );
+      vec3 x1 = x0 - i1 + C.xxx;
+      vec3 x2 = x0 - i2 + C.yyy;
+      vec3 x3 = x0 - D.yyy;
+      i = mod289(i);
+      vec4 p = permute( permute( permute(
+                 i.z + vec4(0.0, i1.z, i2.z, 1.0 ))
+               + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))
+               + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));
+      float n_ = 0.142857142857;
+      vec3  ns = n_ * D.wyz - D.xzx;
+      vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+      vec4 x_ = floor(j * ns.z);
+      vec4 y_ = floor(j - 7.0 * x_ );
+      vec4 x = x_ *ns.x + ns.yyyy;
+      vec4 y = y_ *ns.x + ns.yyyy;
+      vec4 h = 1.0 - abs(x) - abs(y);
+      vec4 b0 = vec4( x.xy, y.xy );
+      vec4 b1 = vec4( x.zw, y.zw );
+      vec4 s0 = floor(b0)*2.0 + 1.0;
+      vec4 s1 = floor(b1)*2.0 + 1.0;
+      vec4 sh = -step(h, vec4(0.0));
+      vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;
+      vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;
+      vec3 p0 = vec3(a0.xy,h.x);
+      vec3 p1 = vec3(a0.zw,h.y);
+      vec3 p2 = vec3(a1.xy,h.z);
+      vec3 p3 = vec3(a1.zw,h.w);
+      vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+      p0 *= norm.x;
+      p1 *= norm.y;
+      p2 *= norm.z;
+      p3 *= norm.w;
+      vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+      m = m * m;
+      return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),
+                                    dot(p2,x2), dot(p3,x3) ) );
+    }
+
+    void main() {
+      vUv = uv;
+      vPosition = position;
+      
+      // Interaction influences
+      // Distort noise field based on mouse
+      vec3 noisePos = position * 1.5 + uTime * 0.5;
+      noisePos.xy += uMouse * 2.5;
+      
+      float noiseVal = snoise(noisePos);
+      
+      // Scroll increases intensity
+      float scrollFactor = uScroll * 0.002;
+      float finalIntensity = uIntensity + scrollFactor;
+      
+      vDisplacement = noiseVal;
+      
+      vec3 newPosition = position + normal * (noiseVal * finalIntensity);
+      
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
+    }
+  `,
+    fragmentShader: `
+    uniform vec3 uColorMain;
+    uniform vec3 uColorAccent;
+    varying float vDisplacement;
+    varying vec2 vUv;
+    varying vec3 vPosition;
+
+    void main() {
+      // Color mixing based on displacement
+      float mixFactor = smoothstep(-1.0, 1.0, vDisplacement);
+      vec3 color = mix(uColorMain, uColorAccent, mixFactor);
+      
+      // Fresnel-like rim effect for depth
+      float rim = 1.0 - abs(dot(normalize(vPosition), vec3(0.0, 0.0, 1.0)));
+      color += rim * 0.5;
+
+      gl_FragColor = vec4(color, 0.8);
+    }
+  `
+};
+
+const WarpSphere = () => {
+    const materialRef = useRef<THREE.ShaderMaterial>(null);
+    const meshRef = useRef<THREE.Mesh>(null);
+
+    // Update colors from CSS variables
+    useEffect(() => {
+        const updateColors = () => {
+            if (materialRef.current) {
+                const computedStyle = getComputedStyle(document.documentElement);
+                const accentAction = computedStyle.getPropertyValue('--accent-action').trim();
+                const accentHighlight = computedStyle.getPropertyValue('--accent-highlight').trim();
+
+                // Fallback if variables are missing, but prefers the CSS vars
+                materialRef.current.uniforms.uColorMain.value.set(accentHighlight || "#00ffff");
+                materialRef.current.uniforms.uColorAccent.value.set(accentAction || "#a855f7");
+            }
+        };
+
+        // Initial update
+        updateColors();
+
+        // Observer for theme changes (class attribute on html/body)
+        const observer = new MutationObserver(updateColors);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
+
+        return () => observer.disconnect();
+    }, []);
+
+    useFrame((state, delta) => {
+        if (materialRef.current) {
+            // Time
+            materialRef.current.uniforms.uTime.value += delta;
+
+            // Mouse (Lerp for smoothness)
+            const targetMouse = new THREE.Vector2(state.pointer.x, state.pointer.y);
+            materialRef.current.uniforms.uMouse.value.lerp(targetMouse, 0.1);
+
+            // Scroll
+            materialRef.current.uniforms.uScroll.value = window.scrollY;
+        }
+        if (meshRef.current) {
+            // Mouse interaction on rotation
+            const rotateX = state.pointer.y * 0.5; // Look up/down
+            const rotateY = state.pointer.x * 0.5; // Look left/right
+
+            meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, rotateX, 0.05);
+            meshRef.current.rotation.y += delta * 0.1 + (state.pointer.x * delta * 0.5);
+        }
+    });
+
+    return (
+        <mesh ref={meshRef} scale={[2.2, 2.2, 2.2]}>
+            <icosahedronGeometry args={[1, 64]} />
+            {/* @ts-ignore */}
+            <shaderMaterial
+                ref={materialRef}
+                args={[WarpMaterial]}
+                wireframe={true}
+                transparent={true}
+                side={THREE.DoubleSide}
+            />
+        </mesh>
+    );
+};
+
+const Scene = () => {
+    return (
+        <>
+            <WarpSphere />
+            <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={1} />
+            <ambientLight intensity={0.5} />
+            <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.2} />
+        </>
+    );
+};
+
+// --- Main Hero Component ---
 
 const Hero = () => {
-    return (
-        <section id="home" className="relative min-h-screen w-full bg-background text-foreground flex flex-col items-center justify-center overflow-hidden px-6 py-20 transition-colors duration-300">
+    const [mounted, setMounted] = useState(false);
 
-            {/* Background Ambience */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vh] bg-accent-highlight/5 opacity-[0.4] dark:opacity-[0.05] blur-[120px] rounded-full" />
-                <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vh] bg-accent-action/5 opacity-[0.4] dark:opacity-[0.05] blur-[120px] rounded-full" />
-                {/* Grid Pattern */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    return (
+        <section id="home" className="relative h-screen w-full bg-background text-foreground flex items-center justify-center overflow-hidden px-6 pt-20 transition-colors duration-300">
+
+            {/* 3D Background Layer */}
+            <div className="absolute inset-0 z-0">
+                {mounted && (
+                    <Canvas camera={{ position: [0, 0, 5], fov: 60 }} gl={{ antialias: true, alpha: true }}>
+                        <Scene />
+                    </Canvas>
+                )}
             </div>
 
-            <div className="relative z-10 max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Cinematic Vignette & Gradient */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--background)_120%)] z-0 pointer-events-none" />
+            <div className="absolute inset-0 bg-background/30 z-0 pointer-events-none backdrop-blur-[1px]" />
 
-                {/* Text Content */}
+            {/* Centered Content */}
+            <div className="relative z-10 w-full max-w-5xl flex flex-col items-center text-center gap-8">
+
                 <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="flex flex-col gap-6 text-center lg:text-left"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 0.2 }}
+                    className="flex flex-col items-center gap-4"
                 >
-                    <div className="inline-flex items-center gap-2 self-center lg:self-start px-3 py-1 rounded-full bg-secondary-bg border border-border text-text-secondary text-sm font-medium">
-                        <span className="w-2 h-2 rounded-full bg-accent-action animate-pulse" />
-                        Available for projects
+                    <div className="px-4 py-1.5 rounded-full border border-border/10 bg-foreground/5 backdrop-blur-md text-xs font-mono tracking-[0.3em] text-accent-highlight uppercase">
+                        Portfolio v4.0 // System Active
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] font-display">
-                        Building Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-action to-accent-highlight">Universes</span>.
+                    <h1 className="text-6xl sm:text-8xl md:text-9xl font-display font-bold tracking-tighter leading-[0.9] text-foreground">
+                        ARCHITECTING<br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-action via-foreground to-accent-highlight animate-gradient-x bg-[length:200%_auto]">
+                            REALITY
+                        </span>
                     </h1>
-
-                    <p className="text-lg text-text-secondary max-w-xl mx-auto lg:mx-0 leading-relaxed font-sans">
-                        I craft high-performance web applications and immersive mobile experiences. Bridging the gap between design and functional code.
-                    </p>
-
-                    <div className="flex flex-col sm:flex-row gap-4 mt-4 justify-center lg:justify-start">
-                        <button className="px-8 py-3.5 rounded-xl bg-foreground text-background font-semibold hover:opacity-90 transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
-                            View Projects <ArrowRight size={18} />
-                        </button>
-                        <button className="px-8 py-3.5 rounded-xl bg-secondary-bg text-foreground border border-border font-semibold hover:border-text-secondary/50 transition-all active:scale-95 cursor-pointer">
-                            Contact Me
-                        </button>
-                    </div>
-
-                    <div className="flex items-center gap-8 mt-8 justify-center lg:justify-start text-text-secondary">
-                        {/* Tech Stack Icons (Lucide) */}
-                        <div className="flex gap-4">
-                            {/* Just abstract icons representing stack */}
-                            <Code2 size={24} className="hover:text-accent-action transition-colors" />
-                            <Layers size={24} className="hover:text-accent-highlight transition-colors" />
-                            <Globe size={24} className="hover:text-accent-action transition-colors" />
-                        </div>
-                        <div className="h-px w-12 bg-border" />
-                        <span className="text-sm font-mono">Web & Mobile</span>
-                    </div>
                 </motion.div>
 
-
-                {/* Visual Content (Dual Device Mockup) */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.2 }}
-                    className="relative h-[500px] w-full flex items-center justify-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 0.8 }}
+                    className="flex items-center gap-4 text-sm md:text-lg font-light tracking-widest uppercase text-text-secondary"
                 >
-                    {/* Floating Elements Background */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-[300px] h-[300px] bg-gradient-to-tr from-accent-action/20 to-accent-highlight/20 rounded-full blur-[80px] animate-pulse" />
+                    <span className="hidden md:block w-12 h-px bg-border/20" />
+                    <span>Crafting Immersive Dimensions</span>
+                    <span className="hidden md:block w-12 h-px bg-border/20" />
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 1.2 }}
+                    className="flex flex-col sm:flex-row gap-6 mt-6"
+                >
+                    <button
+                        onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="group relative px-8 py-4 bg-foreground text-background font-bold tracking-wider hover:scale-105 transition-transform overflow-hidden"
+                    >
+                        <span className="relative z-10 flex items-center gap-2">
+                            VIEW WORK <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </span>
+                        <div className="absolute inset-0 bg-accent-action translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
+                    </button>
+
+                    <button
+                        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="group relative px-8 py-4 bg-transparent border border-border/20 text-foreground font-bold tracking-wider hover:bg-foreground/5 transition-colors"
+                    >
+                        <span className="flex items-center gap-2">
+                            GET IN TOUCH
+                        </span>
+                    </button>
+                </motion.div>
+
+                {/* Bottom Tech Indicators */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 1.5 }}
+                    className="absolute bottom-10 left-0 right-0 top-[60vh] md:top-[70vh] flex justify-between px-10 pointer-events-none"
+                >
+                    <div className="hidden md:flex flex-col items-start gap-1 text-[10px] uppercase tracking-widest text-text-secondary font-mono">
+                        <span>Input</span>
+                        <span>Mouse / Scroll</span>
                     </div>
-
-                    {/* Laptop Mockup (Abstract CSS representation) */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-[60%] -translate-y-[60%] w-[360px] md:w-[480px] aspect-[16/10] bg-secondary-bg rounded-xl border border-border shadow-2xl z-10 transform rotate-[-6deg] hover:rotate-0 transition-transform duration-700 ease-out p-1">
-                        <div className="w-full h-full bg-background rounded-lg overflow-hidden relative">
-                            {/* Header Bar */}
-                            <div className="h-6 bg-secondary-bg w-full flex items-center px-3 gap-1.5">
-                                <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
-                                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
-                                <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
-                            </div>
-                            {/* Screen Content - Code Mockup */}
-                            <div className="p-4 font-mono text-xs text-text-secondary">
-                                <p className="text-accent-highlight">import <span className="text-accent-action">React</span> from 'react';</p>
-                                <p className="mt-2"><span className="text-accent-highlight">const</span> <span className="text-foreground">App</span> = () =&gt; (</p>
-                                <p className="pl-4 text-foreground">&lt;div className="future"&gt;</p>
-                                <p className="pl-8 text-accent-action">Building.NextGen();</p>
-                                <p className="pl-4 text-foreground">&lt;/div&gt;</p>
-                                <p>);</p>
-                            </div>
-                            {/* Floating Badge */}
-                            <div className="absolute bottom-4 right-4 bg-accent-highlight/10 text-accent-highlight px-2 py-1 rounded text-[10px] font-bold border border-accent-highlight/20">
-                                WEB DEV
-                            </div>
-                        </div>
+                    <div className="hidden md:flex flex-col items-end gap-1 text-[10px] uppercase tracking-widest text-text-secondary font-mono">
+                        <span>Simulation</span>
+                        <span>Active</span>
                     </div>
-
-                    {/* Phone Mockup (Abstract CSS representation) */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-[20%] -translate-y-[40%] w-[140px] md:w-[160px] aspect-[9/19] bg-secondary-bg rounded-[2rem] border-4 border-border shadow-2xl z-20 transform rotate-[12deg] hover:rotate-0 transition-transform duration-700 ease-out overflow-hidden">
-                        <div className="w-full h-full bg-background rounded-[1.5rem] relative">
-                            {/* Notch */}
-                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-4 bg-secondary-bg rounded-b-lg z-30" />
-
-                            {/* Screen Content - App UI */}
-                            <div className="p-3 pt-8 flex flex-col gap-3 h-full">
-                                <div className="w-full h-24 bg-accent-action/10 rounded-lg animate-pulse" />
-                                <div className="flex gap-2">
-                                    <div className="w-10 h-10 bg-accent-highlight/10 rounded-full" />
-                                    <div className="flex-1 space-y-2">
-                                        <div className="w-3/4 h-2 bg-secondary-bg rounded" />
-                                        <div className="w-1/2 h-2 bg-secondary-bg rounded" />
-                                    </div>
-                                </div>
-                                <div className="mt-auto mb-4 bg-background p-2 rounded-lg border border-border text-[8px] text-text-secondary font-mono text-center">
-                                    React Native
-                                </div>
-                            </div>
-
-                            {/* Floating Badge */}
-                            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-accent-action/10 text-accent-action px-2 py-1 rounded text-[10px] font-bold border border-accent-action/20 whitespace-nowrap">
-                                APP DEV
-                            </div>
-                        </div>
-                    </div>
-
                 </motion.div>
 
             </div>

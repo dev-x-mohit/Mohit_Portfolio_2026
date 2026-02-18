@@ -1,139 +1,25 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, AnimatePresence, useTransform } from 'framer-motion';
-import { Mail, Github, Linkedin, Send, Copy, Check, Globe, Sparkles, Orbit } from 'lucide-react';
-
-const StarField = () => {
-    return (
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
-            {Array.from({ length: 120 }).map((_, i) => (
-                <motion.div
-                    key={i}
-                    initial={{
-                        x: Math.random() * 2000 - 1000,
-                        y: Math.random() * 2000 - 1000,
-                        scale: Math.random() * 1.5,
-                        opacity: Math.random()
-                    }}
-                    animate={{
-                        opacity: [0.2, 0.8, 0.2],
-                    }}
-                    transition={{
-                        duration: 2 + Math.random() * 4,
-                        repeat: Infinity,
-                        ease: "linear"
-                    }}
-                    className="absolute w-0.5 h-0.5 bg-foreground rounded-full opacity-20"
-                    style={{
-                        left: '50%',
-                        top: '50%',
-                    }}
-                />
-            ))}
-        </div>
-    );
-};
-
-const SocialDockItem = ({ icon: Icon, href, label, index }: { icon: any, href: string, label: string, index: number }) => {
-    return (
-        <motion.a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 * index }}
-            whileHover={{
-                scale: 1.2,
-                y: -10,
-                backgroundColor: 'var(--accent-action)',
-                color: 'var(--background)'
-            }}
-            className="relative p-5 bg-foreground/5 backdrop-blur-xl border border-foreground/10 rounded-2xl transition-all group shadow-lg"
-        >
-            <Icon size={24} className="group-hover:scale-110 transition-transform" />
-
-            {/* Tooltip */}
-            <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-foreground text-background text-[10px] font-black rounded uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
-                {label}
-            </div>
-        </motion.a>
-    );
-};
-
-const SingularityCore = ({ springX, springY }: { springX: any, springY: any }) => {
-    return (
-        <motion.div
-            style={{
-                x: useTransform(springX, (v: any) => (v as number) * 0.03),
-                y: useTransform(springY, (v: any) => (v as number) * 0.03)
-            }}
-            className="relative w-96 h-96 flex items-center justify-center"
-        >
-            {/* Photon Sphere (Enhanced Glow) */}
-            <div className="absolute inset-0 bg-accent-highlight/20 rounded-full blur-[120px] animate-pulse" />
-            <div className="absolute inset-10 bg-accent-action/10 rounded-full blur-[60px]" />
-
-            {/* Accretion Disk (Rotating rings) */}
-            {[1, 2, 3].map((i) => (
-                <motion.div
-                    key={i}
-                    animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
-                    transition={{ duration: 15 + i * 5, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-[-20%] border border-accent-action/20 rounded-[45%] opacity-20"
-                    style={{
-                        borderTopColor: 'var(--accent-action)',
-                        borderBottomColor: 'var(--accent-highlight)',
-                        filter: `blur(${i}px)`,
-                        transform: `rotateX(60deg) rotateY(${i * 10}deg)`
-                    }}
-                />
-            ))}
-
-            {/* Event Horizon (The Void) */}
-            <div className="absolute inset-20 bg-background rounded-full border border-foreground/5 shadow-[inset_0_0_80px_rgba(255,255,255,0.05)] overflow-hidden">
-                {/* Lensing / Distortion layer */}
-                <div className="absolute inset-0 backdrop-blur-md opacity-50" />
-                <div className="w-full h-full rounded-full bg-[radial-gradient(circle_at_center,transparent_0%,var(--background)_85%)]" />
-            </div>
-
-            {/* Particle Stream (Spinning data) */}
-            <div className="absolute inset-0 animate-spin-slow pointer-events-none">
-                {Array.from({ length: 12 }).map((_, i) => (
-                    <div
-                        key={i}
-                        className="absolute w-1 h-1 bg-accent-action rounded-full opacity-40"
-                        style={{
-                            left: '50%',
-                            top: '50%',
-                            transform: `rotate(${i * 30}deg) translateY(-180px)`
-                        }}
-                    />
-                ))}
-            </div>
-        </motion.div>
-    );
-};
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Github, Linkedin, Twitter, Mail, Copy, Check, Globe } from 'lucide-react';
+import ContactForm from './ContactForm';
 
 const ContactCTA = () => {
+    const [showForm, setShowForm] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
     const [copied, setCopied] = useState(false);
-    const [isInside, setIsInside] = useState(false);
     const email = "mohit.dev.contact@gmail.com";
+
+    // Canvas & Particle System
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const particlesRef = useRef<any[]>([]);
+    const animationRef = useRef<number>(0);
+    const textCoordinatesRef = useRef<{ x: number, y: number }[]>([]);
 
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const springX = useSpring(mouseX, { damping: 50, stiffness: 200 });
-    const springY = useSpring(mouseY, { damping: 50, stiffness: 200 });
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        if (!containerRef.current) return;
-        const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-        mouseX.set(e.clientX - left - width / 2);
-        mouseY.set(e.clientY - top - height / 2);
-    };
+    // Theme colors
+    const particleColorRef = useRef('rgba(255, 255, 255, 1)');
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(email);
@@ -142,132 +28,371 @@ const ContactCTA = () => {
     };
 
     const socials = [
-        { icon: Github, label: 'SYS_SOURCE', href: 'https://github.com/mohitlakhara-ind' },
-        { icon: Linkedin, label: 'NEURAL_NET', href: 'https://linkedin.com/in/mohitlakhara' },
-        { icon: Globe, label: 'CENTRAL_HUB', href: 'https://linktr.ee/mohitlakhara' },
-        { icon: Mail, label: 'DIRECT_LINK', href: `mailto:${email}` },
+        { icon: Github, label: 'GitHub', href: 'https://github.com/mohitlakhara-ind' },
+        { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/mohitlakhara' },
+        { icon: Twitter, label: 'Twitter', href: 'https://twitter.com/mohitlakhara_' },
+        { icon: Globe, label: 'Website', href: 'https://linktr.ee/mohitlakhara' },
     ];
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const container = containerRef.current;
+        if (!canvas || !container) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        // Use container dimensions, NOT window dimensions
+        let width = container.offsetWidth;
+        let height = container.offsetHeight;
+
+        // Configuration
+        const particleCount = width < 768 ? 600 : 1200;
+        const textToForm = "CONNECT";
+        // Reduced mouse radius as requested (150 -> 40)
+        const mouseObj = { x: -1000, y: -1000, radius: 40 };
+
+        // Fetch theme color
+        const updateThemeColors = () => {
+            const style = getComputedStyle(document.documentElement);
+            // Switch to Accent Action (Primary Brand Color)
+            let color = style.getPropertyValue('--accent-action').trim();
+            // Fallback if empty
+            if (!color) color = '#6200ea';
+            particleColorRef.current = color;
+        };
+        updateThemeColors();
+
+        // PARTICLE CLASS
+        class Particle {
+            x: number;
+            y: number;
+            vx: number;
+            vy: number;
+            size: number;
+            baseX: number;
+            baseY: number;
+            density: number;
+            color: string;
+
+            targetX: number | null = null;
+            targetY: number | null = null;
+
+            constructor(x: number, y: number) {
+                this.x = x;
+                this.y = y;
+                this.baseX = x;
+                this.baseY = y;
+                // Increased speed for "faster and continue" feel
+                this.vx = (Math.random() - 0.5) * 2.5;
+                this.vy = (Math.random() - 0.5) * 2.5;
+                this.size = Math.random() * 2 + 1;
+                this.density = (Math.random() * 30) + 1;
+                this.color = particleColorRef.current;
+            }
+
+            draw(ctx: CanvasRenderingContext2D) {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            update(mouseX: number, mouseY: number, isHoveringButton: boolean, textCoords: { x: number, y: number }[], index: number) {
+
+                // 1. Mouse Interaction
+                let dx = mouseX - this.x;
+                let dy = mouseY - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < mouseObj.radius) {
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouseObj.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    this.x -= directionX;
+                    this.y -= directionY;
+                }
+
+                // 2. Behavior Logic
+                if (isHoveringButton && index < textCoords.length) {
+                    // MODE: FORM TEXT
+                    const target = textCoords[index];
+                    let tdx = target.x - this.x;
+                    let tdy = target.y - this.y;
+
+                    this.x += tdx * 0.08;
+                    this.y += tdy * 0.08;
+
+                } else {
+                    // MODE: FLOAT
+                    if (!isHoveringButton) {
+                        this.x += this.vx;
+                        this.y += this.vy;
+
+                        if (this.x > width || this.x < 0) this.vx *= -1;
+                        if (this.y > height || this.y < 0) this.vy *= -1;
+                    }
+                }
+            }
+
+            explode() {
+                const angle = Math.random() * Math.PI * 2;
+                const force = Math.random() * 50 + 20;
+                this.vx = Math.cos(angle) * force;
+                this.vy = Math.sin(angle) * force;
+            }
+        }
+
+        // TEXT SAMPLING
+        const sampleTextCoordinates = () => {
+            const tempCanvas = document.createElement('canvas');
+            const tCtx = tempCanvas.getContext('2d');
+            if (!tCtx) return [];
+
+            tempCanvas.width = width;
+            tempCanvas.height = height;
+
+            // Responsive Font Size
+            const fontSize = Math.min(width * 0.12, 120);
+
+            tCtx.fillStyle = 'white';
+            tCtx.font = `900 ${fontSize}px "Outfit", sans-serif`;
+            tCtx.textAlign = 'center';
+            tCtx.textBaseline = 'middle';
+            // Align text to TOP QUARTER of screen (25% down)
+            tCtx.fillText(textToForm, width / 2, height * 0.25);
+
+            const imageData = tCtx.getImageData(0, 0, width, height);
+            const data = imageData.data;
+            const coords = [];
+
+            const gap = width < 768 ? 6 : 5;
+            for (let y = 0; y < height; y += gap) {
+                for (let x = 0; x < width; x += gap) {
+                    const alpha = data[(y * 4 * width) + (x * 4) + 3];
+                    if (alpha > 128) {
+                        coords.push({ x, y });
+                    }
+                }
+            }
+            return coords;
+        };
+
+        // INIT
+        const init = () => {
+            particlesRef.current = [];
+            textCoordinatesRef.current = sampleTextCoordinates();
+
+            for (let i = 0; i < particleCount; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height;
+                particlesRef.current.push(new Particle(x, y));
+            }
+        };
+
+        // ANIMATE
+        const animate = () => {
+            // Use local width/height to avoid issues, or update them?
+            // The closure variables 'width' and 'height' are updated by handleResize.
+            if (!canvasRef.current || !ctx) return;
+
+            ctx.clearRect(0, 0, width, height);
+
+            particlesRef.current.forEach((particle, i) => {
+                particle.update(
+                    mouseObj.x,
+                    mouseObj.y,
+                    isHoveringRef.current,
+                    textCoordinatesRef.current,
+                    i
+                );
+                particle.draw(ctx);
+            });
+
+            animationRef.current = requestAnimationFrame(animate);
+        };
+
+        // Resize Logic
+        const handleResize = () => {
+            if (!containerRef.current || !canvasRef.current) return;
+            width = containerRef.current.offsetWidth;
+            height = containerRef.current.offsetHeight;
+            canvasRef.current.width = width;
+            canvasRef.current.height = height;
+            updateThemeColors();
+            init();
+        };
+
+        // Initialize dimensions immediately
+        handleResize();
+
+        // Start Loop
+        animate();
+
+        // Use ResizeObserver for container-aware resizing
+        const resizeObserver = new ResizeObserver(() => handleResize());
+        resizeObserver.observe(container);
+
+        const handleMouseMove = (e: MouseEvent) => {
+            if (canvasRef.current) {
+                const rect = canvasRef.current.getBoundingClientRect();
+                mouseObj.x = e.clientX - rect.left;
+                mouseObj.y = e.clientY - rect.top;
+            }
+        };
+
+        // MutationObserver for Theme
+        const observer = new MutationObserver(() => {
+            updateThemeColors();
+            init();
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            resizeObserver.disconnect();
+            window.removeEventListener('mousemove', handleMouseMove);
+            observer.disconnect();
+            cancelAnimationFrame(animationRef.current);
+        };
+    }, []);
+
+    const isHoveringRef = useRef(false);
+    useEffect(() => {
+        isHoveringRef.current = isHovering;
+    }, [isHovering]);
+
+
+    const handleCTAClick = () => {
+        particlesRef.current.forEach(p => p.explode());
+        setTimeout(() => {
+            setShowForm(true);
+        }, 800);
+    };
 
     return (
         <section
             id="contact"
-            className={`py-40 relative bg-background overflow-hidden select-none border-t border-foreground/5 transition-all ${isInside ? 'cursor-none' : ''}`}
-            onMouseEnter={() => setIsInside(true)}
-            onMouseLeave={() => setIsInside(false)}
+            ref={containerRef}
+            className="h-screen max-h-[100vh] relative bg-background overflow-hidden flex flex-col items-center justify-center py-0"
         >
-            <StarField />
+            <canvas
+                ref={canvasRef}
+                className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+                width={typeof window !== 'undefined' ? window.innerWidth : 1000}
+                height={typeof window !== 'undefined' ? window.innerHeight : 1000}
+            />
 
-            {/* The Singularity Center */}
-            <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-                <SingularityCore springX={springX} springY={springY} />
-            </div>
+            <AnimatePresence mode="wait">
 
-            <div className="container mx-auto px-6 relative z-10 min-h-[800px] flex flex-col items-center justify-between" ref={containerRef} onMouseMove={handleMouseMove}>
-
-                {/* Custom Prismatic Cursor */}
-                <motion.div
-                    style={{
-                        x: springX,
-                        y: springY,
-                        display: isInside ? 'flex' : 'none'
-                    }}
-                    className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 pointer-events-none z-50 items-center justify-center"
-                >
-                    <div className="absolute inset-0 border border-accent-action rounded-full animate-ping opacity-30" />
-                    <div className="w-1.5 h-1.5 bg-accent-action rounded-full shadow-[0_0_10px_var(--accent-action)]" />
-                </motion.div>
-
-                <div className="flex flex-col items-center justify-center pt-20 text-center relative flex-1">
+                {!showForm && (
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        style={{
-                            x: useTransform(springX, (v: any) => (v as number) * -0.015),
-                            y: useTransform(springY, (v: any) => (v as number) * -0.015),
-                        }}
-                        className="mb-20"
+                        key="cta"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0, filter: "blur(20px)" }}
+                        transition={{ duration: 0.8 }}
+                        className="relative z-10 w-full h-full flex flex-col items-center justify-end pb-32"
                     >
-                        <h2 className="text-7xl md:text-[12rem] font-black tracking-tighter text-foreground leading-[0.8] uppercase font-display italic">
-                            READY FOR<br />
-                            <span className="text-transparent px-4" style={{ WebkitTextStroke: '2px var(--foreground)' }}>COLLISION?</span>
-                        </h2>
-                        <div className="flex items-center justify-center gap-4 mt-12 mb-20">
-                            <div className="h-[2px] w-24 bg-gradient-to-r from-transparent via-accent-action/40 to-transparent" />
-                            <p className="font-mono text-[11px] text-text-secondary uppercase tracking-[1em] font-black">STABLE_INIT_PROTOCOL</p>
-                            <div className="h-[2px] w-24 bg-gradient-to-r from-transparent via-accent-highlight/40 to-transparent" />
-                        </div>
+                        {/* 
+                            Layout Strategy:
+                            - Text is rendered on Canvas at 25% height.
+                            - Button & Socials are placed here at the bottom of the flex container (justify-end).
+                            - This creates the requested "Void" in the middle.
+                        */}
 
-                        <button
-                            onClick={() => window.location.href = `mailto:${email}`}
-                            className="px-20 py-8 bg-foreground/5 backdrop-blur-md border border-foreground/10 rounded-[2.5rem] text-foreground font-black text-3xl uppercase tracking-[0.2em] transition-all duration-700 hover:tracking-[0.4em] hover:bg-foreground/10 hover:border-accent-action/50 relative overflow-hidden active:scale-95"
+                        <motion.button
+                            onMouseEnter={() => setIsHovering(true)}
+                            onMouseLeave={() => setIsHovering(false)}
+                            onClick={() => {
+                                particlesRef.current.forEach(p => p.explode());
+                                setTimeout(() => {
+                                    window.location.href = '/contact';
+                                }, 500);
+                            }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="group relative px-12 py-6 bg-foreground text-background font-bold text-xl rounded-full shadow-2xl hover:shadow-[0_0_40px_-10px_rgba(var(--foreground-rgb),0.5)] transition-all duration-500 overflow-hidden mb-12"
                         >
-                            <span className="relative z-10">INITIALIZE</span>
-                            <div className="absolute inset-0 bg-accent-action/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                            <div className="absolute top-0 left-0 w-full h-[3px] bg-accent-action scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700" />
-                        </button>
-                    </motion.div>
+                            <span className="relative z-10 flex items-center gap-3">
+                                Initialize Connection <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                            </span>
+                            <div className="absolute inset-0 bg-background/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </motion.button>
 
-                    {/* Email Node */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.8, duration: 0.8 }}
+                            className="flex flex-col md:flex-row items-center gap-6"
+                        >
+                            <motion.div
+                                whileHover={{ y: -2 }}
+                                onClick={copyToClipboard}
+                                className="cursor-pointer flex items-center gap-3 px-5 py-2.5 rounded-xl bg-secondary-bg/50 backdrop-blur-md border border-border/10 hover:border-foreground/50 transition-colors group shadow-lg"
+                            >
+                                <Mail size={16} className="text-text-secondary group-hover:text-foreground transition-colors" />
+                                <span className="font-mono text-sm text-text-secondary group-hover:text-foreground transition-colors">{email}</span>
+                                <div className="ml-2 p-1 rounded-md bg-white/5">
+                                    {copied ? <Check size={12} className="text-green-400" /> : <Copy size={12} className="text-text-secondary" />}
+                                </div>
+                            </motion.div>
+
+                            <div className="hidden md:block w-px h-8 bg-foreground/10"></div>
+
+                            <div className="flex items-center gap-4">
+                                {socials.map((social, i) => (
+                                    <motion.a
+                                        key={i}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ y: -5, scale: 1.1 }}
+                                        className="p-2.5 rounded-lg bg-secondary-bg/30 text-text-secondary hover:text-foreground hover:bg-secondary-bg/60 transition-all border border-transparent hover:border-foreground/20"
+                                        title={social.label}
+                                    >
+                                        <social.icon size={20} />
+                                    </motion.a>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+
+                {showForm && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        onClick={copyToClipboard}
-                        className="group relative cursor-pointer px-12 py-6 bg-foreground/[0.03] border border-foreground/5 rounded-[2.5rem] flex items-center gap-8 hover:bg-foreground/[0.05] hover:border-accent-action/40 transition-all backdrop-blur-2xl shadow-xl mb-32"
+                        key="form"
+                        initial={{ opacity: 0, scale: 0.5, y: 50 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                        className="relative z-20 w-full h-full flex items-center justify-center px-4"
                     >
-                        <span className="text-xl font-mono text-text-secondary group-hover:text-foreground transition-colors font-bold lowercase">{email}</span>
-                        <div className="w-12 h-12 rounded-2xl bg-foreground/10 flex items-center justify-center text-foreground group-hover:text-accent-action group-hover:scale-110 transition-all border border-foreground/10">
-                            {copied ? <Check size={28} className="text-green-400" /> : <Copy size={28} />}
+                        <div className="w-full max-w-md relative">
+                            <ContactForm />
+
+                            <motion.button
+                                onClick={() => setShowForm(false)}
+                                className="absolute -top-12 left-1/2 -translate-x-1/2 text-text-secondary hover:text-foreground text-sm font-mono tracking-widest uppercase opacity-50 hover:opacity-100 transition-opacity whitespace-nowrap"
+                            >
+                                [ Return to Void ]
+                            </motion.button>
                         </div>
-                        <AnimatePresence>
-                            {copied && (
-                                <motion.span
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[10px] font-mono text-green-400 uppercase tracking-[0.4em] font-black"
-                                >
-                                    TRANSMISSION_LOCKED
-                                </motion.span>
-                            )}
-                        </AnimatePresence>
                     </motion.div>
-                </div>
+                )}
 
-                {/* Simplified Bottom Dock */}
-                <div className="w-full flex justify-center gap-6 pb-12 relative">
-                    {socials.map((social, i) => (
-                        <SocialDockItem key={i} {...social} index={i} />
-                    ))}
-                </div>
+            </AnimatePresence>
+
+            <div className="absolute bottom-4 w-full text-center z-10 pointer-events-none">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-foreground/20 font-mono">
+                    System Neural Interface v2.0
+                </p>
             </div>
 
-            {/* Terminal Decoration */}
-            <div className="absolute bottom-10 left-0 w-full px-12 flex justify-between items-center opacity-30 font-mono text-[9px] uppercase tracking-[0.5em] text-text-secondary pointer-events-none">
-                <div className="flex items-center gap-6">
-                    <Orbit size={14} className="animate-spin-slow text-accent-action" />
-                    <span>Horizon: [SYNCED]</span>
-                </div>
-                <div className="hidden lg:flex gap-12 font-black">
-                    <span>STATUS: STABLE</span>
-                    <span>GRAVITY: 1G</span>
-                </div>
-                <div className="flex items-center gap-4">
-                    <Sparkles size={12} className="text-accent-highlight" />
-                    <span>M_L_PORT_2026</span>
-                </div>
-            </div>
-
-            <style jsx global>{`
-                @keyframes spin-slow {
-                    from { transform: rotate(0deg); }
-                    to { transform: rotate(360deg); }
-                }
-                .animate-spin-slow {
-                    animation: spin-slow 30s linear infinite;
-                }
-            `}</style>
         </section>
     );
 };

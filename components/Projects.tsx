@@ -418,17 +418,17 @@ const Projects = () => {
                             </div>
 
                             <div className="transform transition-transform duration-500 group-hover:translate-y-0">
-                                <h3 className="text-4xl md:text-5xl font-bold text-white mb-2">{project.title}</h3>
-                                <p className="text-xl text-white/80 font-light mb-6">{project.subtitle}</p>
+                                <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-2">{project.title}</h3>
+                                <p className="text-xl text-foreground/80 font-light mb-6">{project.subtitle}</p>
 
-                                <p className="text-base text-gray-300 max-w-lg mb-8 line-clamp-3 md:line-clamp-none">
+                                <p className="text-base text-text-secondary max-w-lg mb-8 line-clamp-3 md:line-clamp-none">
                                     {project.description}
                                 </p>
 
                                 {/* Tech Stack */}
-                                <div className="flex flex-wrap gap-2 mb-8 text-gray-400">
+                                <div className="flex flex-wrap gap-2 mb-8 text-text-secondary">
                                     {project.techStack.map(tech => (
-                                        <span key={tech} className="text-sm font-mono bg-white/5 px-2 py-1 rounded border border-white/10">
+                                        <span key={tech} className="text-sm font-mono bg-secondary-bg/50 px-2 py-1 rounded border border-border/10">
                                             {tech}
                                         </span>
                                     ))}
@@ -437,12 +437,12 @@ const Projects = () => {
                                 {/* Actions */}
                                 <div className="flex gap-4">
                                     {project.githubLink && (
-                                        <Link href={project.githubLink} target="_blank" className="p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 transition-colors text-white">
+                                        <Link href={project.githubLink} target="_blank" className="p-3 rounded-full bg-secondary-bg/50 hover:bg-secondary-bg backdrop-blur-md border border-border/10 transition-colors text-foreground">
                                             <Github size={20} />
                                         </Link>
                                     )}
                                     {project.liveLink && (
-                                        <Link href={project.liveLink} target="_blank" className="px-6 py-3 rounded-full bg-white text-black font-bold hover:bg-gray-200 transition-colors flex items-center gap-2">
+                                        <Link href={project.liveLink} target="_blank" className="px-6 py-3 rounded-full bg-foreground text-background font-bold hover:bg-foreground/80 transition-colors flex items-center gap-2">
                                             Visit Site <ExternalLink size={16} />
                                         </Link>
                                     )}
@@ -453,22 +453,24 @@ const Projects = () => {
                 ))}
 
                 {/* Final "View All" Card */}
-                <div className="finale-card w-[85vw] md:w-[40vw] h-[50vh] md:h-[60vh] flex-shrink-0 relative group cursor-pointer overflow-hidden rounded-3xl border border-accent-highlight/30 bg-black flex items-center justify-center">
+                <div className="finale-card w-[85vw] md:w-[40vw] h-[50vh] md:h-[60vh] flex-shrink-0 relative group cursor-pointer overflow-hidden rounded-3xl border border-accent-highlight/30 bg-card flex items-center justify-center">
 
                     {/* Animated Vortex Background (CSS/SVG) */}
                     <div className="absolute inset-0 opacity-50">
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[conic-gradient(from_0deg,transparent_0deg,var(--color-accent-action)_360deg)] animate-[spin_4s_linear_infinite] blur-[100px]" />
                     </div>
 
-                    <div className="relative z-10 text-center p-8 bg-background/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-accent-highlight/50 transition-colors duration-300">
+                    <div className="relative z-10 text-center p-8 bg-background/30 backdrop-blur-xl rounded-2xl border border-border/10 hover:border-accent-highlight/50 transition-colors duration-300">
                         <Layout className="w-16 h-16 mx-auto mb-6 text-accent-highlight" />
-                        <h3 className="text-3xl font-bold text-white mb-2">Explore the Archives</h3>
-                        <p className="text-gray-400 mb-6 max-w-xs mx-auto">
+                        <h3 className="text-3xl font-bold text-foreground mb-2">Explore the Archives</h3>
+                        <p className="text-text-secondary mb-6 max-w-xs mx-auto">
                             Dive deeper into 20+ more projects, experiments, and open-source contributions.
                         </p>
-                        <button className="px-8 py-3 rounded-full bg-accent-action text-white font-bold hover:bg-accent-action/80 transition-all flex items-center justify-center gap-2 mx-auto">
-                            View All Projects <ArrowRight size={18} />
-                        </button>
+                        <Link href="/projects">
+                            <button className="px-8 py-3 rounded-full bg-accent-action text-background font-bold hover:bg-accent-action/80 transition-all flex items-center justify-center gap-2 mx-auto">
+                                View All Projects <ArrowRight size={18} />
+                            </button>
+                        </Link>
                     </div>
 
                 </div>

@@ -74,8 +74,8 @@ const InterestCanvas = () => {
 
             <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
-                    <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-indigo-500 mb-4">Interests</h2>
-                    <p className="text-4xl font-bold">The Core Elements</p>
+                    <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-accent-action mb-4">Interests</h2>
+                    <p className="text-4xl font-bold text-foreground">The Core Elements</p>
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-6 max-w-5xl mx-auto">

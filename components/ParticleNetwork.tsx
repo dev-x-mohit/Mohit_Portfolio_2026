@@ -43,11 +43,23 @@ const ParticleNetwork = () => {
         let animationFrameId: number;
         let mouse = { x: null as number | null, y: null as number | null, radius: 100 };
 
-        // Handle Resize
-        const resize = () => {
+        // Theme colors
+        let particleColor = '#ffffff';
+        let glowColor = 'rgba(0, 240, 255, 0.15)';
+
+        // Handle Resize & Theme Update
+        const updateDimensionsAndTheme = () => {
             if (!canvas) return;
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+
+            // Fetch theme colors
+            const computedStyle = getComputedStyle(document.documentElement);
+            particleColor = computedStyle.getPropertyValue('--accent-highlight').trim() || '#00bcd4';
+
+            const accent = computedStyle.getPropertyValue('--accent-action-rgb').trim() || '0, 240, 255';
+            glowColor = `rgba(${accent}, 0.15)`;
+
             prepareText();
         };
 
@@ -93,7 +105,7 @@ const ParticleNetwork = () => {
             baseX: number;
             baseY: number;
             size: number;
-            color: string;
+            // color removed from instance
             alpha: number;
             targetPoint: { x: number; y: number } | null;
 
@@ -105,7 +117,7 @@ const ParticleNetwork = () => {
                 this.baseX = this.x;
                 this.baseY = this.y;
                 this.size = Math.random() * config.particleSize + 1;
-                this.color = config.colors[Math.floor(Math.random() * config.colors.length)];
+                // this.color removed, using dynamic global particleColor
                 this.alpha = Math.random() * 0.5 + 0.3;
                 this.targetPoint = null;
             }
@@ -160,7 +172,7 @@ const ParticleNetwork = () => {
                 if (!ctx) return;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
+                ctx.fillStyle = particleColor; // Dynamic
                 ctx.globalAlpha = this.alpha;
                 ctx.fill();
             }
@@ -184,7 +196,7 @@ const ParticleNetwork = () => {
             // Draw subtle cursor glow
             if (mouse.x !== null && mouse.y !== null) {
                 const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, mouse.radius * 1.5);
-                gradient.addColorStop(0, 'rgba(0, 240, 255, 0.15)');
+                gradient.addColorStop(0, glowColor); // Dynamic
                 gradient.addColorStop(1, 'rgba(0,0,0,0)');
                 ctx.fillStyle = gradient;
                 ctx.beginPath();
@@ -211,19 +223,27 @@ const ParticleNetwork = () => {
             mouse.y = null;
         };
 
-        window.addEventListener('resize', resize);
+        // Observer to detect theme changes
+        const observer = new MutationObserver(() => {
+            updateDimensionsAndTheme();
+        });
+
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
+
+        window.addEventListener('resize', updateDimensionsAndTheme);
         if (containerRef.current) {
             containerRef.current.addEventListener('mousemove', handleMouseMove);
             containerRef.current.addEventListener('mouseleave', handleMouseLeave);
         }
 
         // Init
-        resize();
+        updateDimensionsAndTheme();
         animate();
 
         return () => {
-            window.removeEventListener('resize', resize);
+            window.removeEventListener('resize', updateDimensionsAndTheme);
             cancelAnimationFrame(animationFrameId);
+            observer.disconnect();
             if (containerRef.current) {
                 containerRef.current.removeEventListener('mousemove', handleMouseMove);
                 containerRef.current.removeEventListener('mouseleave', handleMouseLeave);

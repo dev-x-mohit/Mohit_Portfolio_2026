@@ -59,14 +59,14 @@ const StoryFlow = () => {
     }, []);
 
     return (
-        <section ref={containerRef} className="relative overflow-hidden bg-black py-20 px-6 sm:px-12">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[var(--accent-action)] to-transparent opacity-20" />
+        <section ref={containerRef} className="relative overflow-hidden bg-background py-20 px-6 sm:px-12">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-action to-transparent opacity-20" />
 
             <div className="flex flex-col items-center justify-center mb-20 text-center">
                 <motion.span
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    className="text-xs font-bold uppercase tracking-[0.4em] text-[var(--accent-action)] mb-4"
+                    className="text-xs font-bold uppercase tracking-[0.4em] text-accent-action mb-4"
                 >
                     The Narrative
                 </motion.span>
@@ -76,7 +76,7 @@ const StoryFlow = () => {
                     transition={{ delay: 0.1 }}
                     className="text-4xl md:text-6xl font-bold font-display"
                 >
-                    Developer <span className="text-[var(--accent-action)] italic">Arc</span>
+                    Developer <span className="text-accent-action italic">Arc</span>
                 </motion.h2>
             </div>
 
@@ -86,18 +86,18 @@ const StoryFlow = () => {
                         <div key={index} className="story-chapter flex-shrink-0 w-full flex items-center justify-center px-4">
                             <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                                 <div className="space-y-6">
-                                    <div className="inline-block px-4 py-1 rounded-full border border-[var(--accent-action)]/30 bg-[var(--accent-action)]/10 text-[var(--accent-action)] text-sm font-bold">
+                                    <div className="inline-block px-4 py-1 rounded-full border border-accent-action/30 bg-accent-action/10 text-accent-action text-sm font-bold">
                                         {chapter.year}
                                     </div>
                                     <h3 className="text-4xl md:text-5xl font-bold leading-tight uppercase tracking-tighter">
                                         {chapter.title}
                                     </h3>
-                                    <p className="text-xl text-gray-400 font-light italic">
+                                    <p className="text-xl text-text-secondary font-light italic">
                                         {chapter.subtitle}
                                     </p>
                                 </div>
-                                <div className="p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl">
-                                    <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-sans">
+                                <div className="p-8 rounded-3xl border border-border/10 bg-secondary-bg/50 backdrop-blur-xl">
+                                    <p className="text-lg md:text-xl text-text-primary leading-relaxed font-sans">
                                         {chapter.description}
                                     </p>
                                 </div>
@@ -110,14 +110,14 @@ const StoryFlow = () => {
             <div className="flex justify-center mt-12">
                 <div className="flex gap-4">
                     {storyChapters.map((_, i) => (
-                        <div key={i} className="w-12 h-1 rounded-full bg-white/10 overflow-hidden">
-                            <div className="h-full bg-[var(--accent-action)] w-0" />
+                        <div key={i} className="w-12 h-1 rounded-full bg-border/20 overflow-hidden">
+                            <div className="h-full bg-accent-action w-0" />
                         </div>
                     ))}
                 </div>
             </div>
 
-            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border/10 to-transparent" />
         </section>
     );
 };

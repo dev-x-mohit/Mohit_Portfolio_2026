@@ -57,15 +57,15 @@ const EthosTunnel = () => {
     }, []);
 
     return (
-        <div ref={triggerRef} className="relative h-screen overflow-hidden bg-black select-none">
+        <div ref={triggerRef} className="relative h-screen overflow-hidden bg-background select-none">
             <div className="absolute inset-0 flex items-center justify-center perspective-[1000px] transform-style-3d">
                 {values.map((val, i) => (
                     <div
                         key={i}
-                        className="ethos-item absolute text-7xl md:text-[12rem] font-black tracking-tighter text-white/20 uppercase font-display italic whitespace-nowrap"
+                        className="ethos-item absolute text-7xl md:text-[12rem] font-black tracking-tighter text-foreground/10 uppercase font-display italic whitespace-nowrap"
                         style={{
-                            WebkitTextStroke: '2px rgba(255,255,255,0.3)',
-                            color: 'rgba(255,255,255,0.05)'
+                            WebkitTextStroke: '2px var(--color-text-primary)',
+                            opacity: 0.2
                         }}
                     >
                         {val}
@@ -74,14 +74,14 @@ const EthosTunnel = () => {
             </div>
 
             <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
-                <div className="text-xs font-bold uppercase tracking-[0.8em] text-[var(--accent-action)] mb-8 animate-pulse">
+                <div className="text-xs font-bold uppercase tracking-[0.8em] text-accent-action mb-8 animate-pulse">
                     Transmission Detected
                 </div>
-                <div className="h-px w-32 bg-gradient-to-r from-transparent via-[var(--accent-action)] to-transparent opacity-50" />
+                <div className="h-px w-32 bg-gradient-to-r from-transparent via-accent-action to-transparent opacity-50" />
             </div>
 
-            {/* Radial overlay to darken the edges */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_80%)] pointer-events-none" />
+            {/* Radial overlay to darken the edges - using background variable */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--background)_80%)] pointer-events-none" />
         </div>
     );
 };

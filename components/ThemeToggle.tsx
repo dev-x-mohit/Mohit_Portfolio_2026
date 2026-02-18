@@ -3,10 +3,13 @@
 import * as React from "react"
 import { Moon, Sun, Laptop } from "lucide-react"
 import { useTheme } from "@/hooks/use-theme"
+import { usePathname } from "next/navigation"
 
 export function ThemeToggle() {
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = React.useState(false)
+
+    const pathname = usePathname()
 
     React.useEffect(() => {
         setMounted(true)
@@ -14,6 +17,11 @@ export function ThemeToggle() {
 
     if (!mounted) {
         return null
+    }
+
+    // Hide on /projects route where ProjectIDE is active
+    if (pathname?.startsWith('/projects')) {
+        return null;
     }
 
     return (

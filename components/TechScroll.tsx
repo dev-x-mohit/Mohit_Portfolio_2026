@@ -167,8 +167,9 @@ const TechScroll = () => {
                                     // Unified math for both line and node
                                     const x1 = centerPos.centerX;
                                     const y1 = centerPos.centerY;
-                                    const x2 = x1 + Math.cos(angleRad) * radius;
-                                    const y2 = y1 + Math.sin(angleRad) * radius;
+                                    // Use fixed precision to avoid hydration mismatch
+                                    const x2 = parseFloat((x1 + Math.cos(angleRad) * radius).toFixed(2));
+                                    const y2 = parseFloat((y1 + Math.sin(angleRad) * radius).toFixed(2));
 
                                     return (
                                         <motion.line
@@ -224,8 +225,8 @@ const TechScroll = () => {
                                         const radius = skill.radius[screenSize];
 
                                         // Use EXACT same math as the SVG x2/y2
-                                        const x = centerPos.centerX + Math.cos(angleRad) * radius - 2.2;
-                                        const y = centerPos.centerY + Math.sin(angleRad) * radius - 5;
+                                        const x = parseFloat((centerPos.centerX + Math.cos(angleRad) * radius - 2.2).toFixed(2));
+                                        const y = parseFloat((centerPos.centerY + Math.sin(angleRad) * radius - 5).toFixed(2));
 
                                         return (
                                             <SkillNode

@@ -28,6 +28,11 @@ export const metadata: Metadata = {
   description: "A modern, professional portfolio showcasing my work.",
 };
 
+
+import LiquidCanvas from "@/components/LiquidCanvas";
+import Navbar from "@/components/Navbar";
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,7 +43,10 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${orbitron.variable} antialiased transition-colors duration-300`}
       >
+        <LiquidCanvas />
+        <Navbar />
         {children}
+
         <ThemeToggle />
       </body>
     </html>
