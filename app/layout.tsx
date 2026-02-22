@@ -24,8 +24,8 @@ const orbitron = Orbitron({
 });
 
 export const metadata: Metadata = {
-  title: "Mohit Lakhara | MERN Stack Developer & UI/UX Engineer",
-  description: "Explore the MERN stack portfolio of Mohit Lakhara – skilled in React.js, Node.js, MongoDB, Express, and UI/UX design. Building clean, performant web apps.",
+  title: "Mohit Lakhara | 🚀 MERN Developer & UI/UX Engineer",
+  description: "v4 Cosmic Cyber Portfolio of Mohit Lakhara. Exploring high-end React, Node.js, and MongoDB architectures through cinematic web experiences.",
   authors: [{ name: "Mohit Lakhara" }],
   creator: "Mohit Lakhara",
   metadataBase: new URL('https://mohitlakhara.vercel.app'),
@@ -33,19 +33,26 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Mohit Lakhara | MERN Stack Developer Portfolio",
-    description: "Discover Mohit's React and Node.js projects, MongoDB integrations, and UI/UX design expertise.",
+    title: "Mohit Lakhara | MERN Stack Developer Portfolio v4",
+    description: "Discover Mohit's premium React/Node.js architecture and UI/UX design expertise in this cinematic cyber experience.",
     url: 'https://mohitlakhara.vercel.app/',
     siteName: 'Mohit Lakhara Portfolio',
     images: [
       {
-        url: 'https://mohitlakhara.vercel.app/src/assets/screenshots/home.webp', // Can update this later
+        url: '/images/og-image-v4.webp',
         width: 1200,
         height: 630,
+        alt: 'Mohit Lakhara Portfolio v4 - Cosmic Cyber Edition',
       },
     ],
     locale: 'en_IN',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mohit Lakhara | MERN Stack Developer Portfolio',
+    description: "Explore Mohit Lakhara's full-stack development work with React, Node, MongoDB and Cinematic UI/UX design.",
+    images: ['/images/og-image-v4.webp'],
   },
   icons: {
     icon: [
