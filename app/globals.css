@@ -7,8 +7,9 @@
   --foreground: #171717;
 
   /* Light Mode Defaults */
-  --primary-bg: #ffffff;
-  --secondary-bg: #F1F5F9;
+  --primary-bg: #F5F7F9;
+  --secondary-bg: #FFFFFF;
+  /* Darkened from #F1F5F9 for better contrast */
   --accent-action: #6200ea;
   --accent-action-rgb: 98, 0, 234;
   --accent-highlight: #00bcd4;

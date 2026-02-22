@@ -1,7 +1,10 @@
 'use client';
+import { GitBranch, WarningCircle, Check, Collapse, Expand } from 'iconoir-react';
+
+
 
 import React from 'react';
-import { GitBranch, AlertCircle, Maximize2, Minimize2, Check } from 'lucide-react';
+
 import { Project } from '@/data/projectData';
 
 interface StatusBarProps {
@@ -16,11 +19,11 @@ export default function StatusBar({ project, isFocusMode, onToggleFocus }: Statu
             {/* Left Section */}
             <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1.5 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-pointer transition-colors">
-                    <GitBranch size={10} />
+                    <GitBranch width={10} height={10} />
                     <span className="font-bold">main*</span>
                 </div>
                 <div className="hidden md:flex items-center gap-1.5 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-pointer transition-colors opacity-80">
-                    <AlertCircle size={10} />
+                    <WarningCircle width={10} height={10} />
                     <span>0 Errors</span>
                 </div>
             </div>
@@ -46,7 +49,7 @@ export default function StatusBar({ project, isFocusMode, onToggleFocus }: Statu
                     `}
                     title="Toggle Focus Mode"
                 >
-                    {isFocusMode ? <Minimize2 size={10} /> : <Maximize2 size={10} />}
+                    {isFocusMode ? <Collapse width={10} height={10} /> : <Expand width={10} height={10} />}
                     <span className="hidden sm:inline">Focus Mode</span>
                 </button>
             </div>

@@ -1,7 +1,9 @@
 'use client';
+import { Xmark, Code, EmptyPage, Database } from 'iconoir-react';
+
 
 import React from 'react';
-import { X, FileCode, FileJson, FileText } from 'lucide-react';
+
 import { Project } from '@/data/projectData';
 
 interface EditorTabsProps {
@@ -14,9 +16,9 @@ export default function EditorTabs({ project, onClose }: EditorTabsProps) {
 
     // Simulate other tabs for specific projects or random
     const tabs = [
-        { name: `${project.title.replace(/\s+/g, '')}.tsx`, icon: FileCode, active: true },
-        { name: 'README.md', icon: FileText, active: false },
-        { name: 'package.json', icon: FileJson, active: false },
+        { name: `${project.title.replace(/\s+/g, '')}.tsx`, icon: Code, active: true },
+        { name: 'README.md', icon: EmptyPage, active: false },
+        { name: 'package.json', icon: Database, active: false },
     ];
 
     return (
@@ -32,10 +34,10 @@ export default function EditorTabs({ project, onClose }: EditorTabsProps) {
                         }
                     `}
                 >
-                    <tab.icon size={14} className={tab.active ? 'text-[var(--ide-accent)]' : 'opacity-70'} />
+                    <tab.icon width={14} height={14} className={tab.active ? 'text-[var(--ide-accent)]' : 'opacity-70'} />
                     <span className="truncate flex-1">{tab.name}</span>
                     <div className={`opacity-0 group-hover:opacity-100 p-0.5 rounded-md hover:bg-[var(--ide-bg-panel)] transition-opacity ${tab.active ? 'text-[var(--ide-fg-primary)]' : ''}`}>
-                        <X size={12} />
+                        <Xmark width={12} height={12} />
                     </div>
                 </div>
             ))}

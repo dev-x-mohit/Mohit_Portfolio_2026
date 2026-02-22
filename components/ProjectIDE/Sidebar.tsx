@@ -1,22 +1,11 @@
 'use client';
+import { NavArrowRight, NavArrowDown, Folder, SmartphoneDevice, LayoutLeft, Box, OpenNewWindow, Github, Play, Search, Code, InfoCircle } from 'iconoir-react';
+
+
 
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-    ChevronRight,
-    ChevronDown,
-    Folder,
-    FolderOpen,
-    FileCode,
-    Smartphone,
-    Layout,
-    Box,
-    ExternalLink,
-    Github,
-    Info,
-    Play,
-    Search
-} from 'lucide-react';
+
 import { Project, projects } from '@/data/projectData';
 
 interface SidebarProps {
@@ -25,10 +14,10 @@ interface SidebarProps {
 }
 
 const categoryIcons: Record<string, React.ReactNode> = {
-    'Web-Platforms': <Layout size={14} className="text-blue-400" />,
-    'Mobile-Apps': <Smartphone size={14} className="text-purple-400" />,
-    'Algorithms': <Box size={14} className="text-yellow-400" />,
-    'UI-UX': <FileCode size={14} className="text-pink-400" />,
+    'Web-Platforms': <LayoutLeft width={14} height={14} className="text-blue-400" />,
+    'Mobile-Apps': <SmartphoneDevice width={14} height={14} className="text-purple-400" />,
+    'Algorithms': <Box width={14} height={14} className="text-yellow-400" />,
+    'UI-UX': <Code width={14} height={14} className="text-pink-400" />,
 };
 
 export default function Sidebar({ onSelectProject, currentProjectId }: SidebarProps) {
@@ -77,7 +66,7 @@ export default function Sidebar({ onSelectProject, currentProjectId }: SidebarPr
             {/* Search Bar */}
             <div className="px-3 py-2 border-b border-[var(--ide-border)]">
                 <div className="relative group">
-                    <Search size={12} className="absolute left-2 top-1/2 -translate-y-1/2 text-[var(--ide-fg-secondary)] group-focus-within:text-[var(--ide-accent)] transition-colors" />
+                    <Search width={12} height={12} className="absolute left-2 top-1/2 -translate-y-1/2 text-[var(--ide-fg-secondary)] group-focus-within:text-[var(--ide-accent)] transition-colors" />
                     <input
                         type="text"
                         placeholder="Search projects..."
@@ -104,12 +93,12 @@ export default function Sidebar({ onSelectProject, currentProjectId }: SidebarPr
                             className="flex items-center gap-1 px-3 py-1 cursor-pointer hover:bg-[var(--ide-line-highlight)] text-[var(--ide-fg-secondary)] hover:text-[var(--ide-fg-primary)] transition-colors group"
                         >
                             {(openCategories[category] || searchQuery) ? (
-                                <ChevronDown size={12} className="opacity-70" />
+                                <NavArrowDown width={12} height={12} className="opacity-70" />
                             ) : (
-                                <ChevronRight size={12} className="opacity-70" />
+                                <NavArrowRight width={12} height={12} className="opacity-70" />
                             )}
                             <div className="text-[var(--ide-fg-secondary)] group-hover:text-[var(--ide-accent)] transition-colors">
-                                {(openCategories[category] || searchQuery) ? <FolderOpen size={14} /> : <Folder size={14} />}
+                                {(openCategories[category] || searchQuery) ? <Folder width={14} height={14} /> : <Folder width={14} height={14} />}
                             </div>
                             <span className="font-bold truncate ml-1">{category}</span>
                             {searchQuery && (
@@ -143,9 +132,9 @@ export default function Sidebar({ onSelectProject, currentProjectId }: SidebarPr
                                                                 : 'text-[var(--ide-fg-secondary)] hover:text-[var(--ide-fg-primary)] hover:bg-[var(--ide-line-highlight)]'}
                                                         `}
                                                     >
-                                                        {isActive ? <ChevronDown size={10} /> : <ChevronRight size={10} className="opacity-50" />}
+                                                        {isActive ? <NavArrowDown width={10} height={10} /> : <NavArrowRight width={10} height={10} className="opacity-50" />}
 
-                                                        {categoryIcons[category] || <FileCode size={12} />}
+                                                        {categoryIcons[category] || <Code width={12} height={12} />}
                                                         <span className="truncate">{project.title}</span>
                                                         <span className="text-[9px] opacity-30 ml-auto">.{project.type === 'web' ? 'tsx' : 'jsx'}</span>
                                                     </div>
@@ -163,7 +152,7 @@ export default function Sidebar({ onSelectProject, currentProjectId }: SidebarPr
 
                                                                     {/* Action: View Details (Always implied as active view) */}
                                                                     <div className="flex items-center gap-2 text-[10px] text-[var(--ide-accent)] py-1 px-2 rounded bg-[var(--ide-selection)]">
-                                                                        <Info size={10} />
+                                                                        <InfoCircle width={10} height={10} />
                                                                         <span>View Details</span>
                                                                     </div>
 
@@ -174,7 +163,7 @@ export default function Sidebar({ onSelectProject, currentProjectId }: SidebarPr
                                                                         rel="noopener noreferrer"
                                                                         className="flex items-center gap-2 text-[10px] text-[var(--ide-fg-secondary)] hover:text-[var(--ide-fg-primary)] py-1 px-2 hover:bg-[var(--ide-line-highlight)] rounded transition-colors"
                                                                     >
-                                                                        <Github size={10} />
+                                                                        <Github width={10} height={10} />
                                                                         <span>View Code</span>
                                                                     </a>
 
@@ -185,7 +174,7 @@ export default function Sidebar({ onSelectProject, currentProjectId }: SidebarPr
                                                                         rel="noopener noreferrer"
                                                                         className="flex items-center gap-2 text-[10px] text-[var(--ide-fg-secondary)] hover:text-[var(--ide-accent)] py-1 px-2 hover:bg-[var(--ide-line-highlight)] rounded transition-colors"
                                                                     >
-                                                                        <Play size={10} />
+                                                                        <Play width={10} height={10} />
                                                                         <span>Open Live</span>
                                                                     </a>
 

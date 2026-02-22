@@ -1,10 +1,13 @@
 'use client';
+import { Home, User, Mail, Cpu, Menu, Xmark } from 'iconoir-react';
+
+
 
 import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { Home, User, Mail, Cpu, Menu, X } from 'lucide-react';
+
 import { cn } from '@/lib/utils';
 
 // Magnetic effect for that premium interactive feel
@@ -62,7 +65,7 @@ export default function Navbar() {
         }
     });
 
-    if (pathname === '/studio') return null;
+    if (pathname === '/studio' || pathname === '/projects') return null;
 
     return (
         <>
@@ -87,7 +90,7 @@ export default function Navbar() {
 
                 {/* Slow rotating edge highlight (Cool detail, not distracting) */}
                 <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none -z-10 [mask-image:linear-gradient(white,white)]">
-                    <div className="absolute -inset-[100%] animate-[spin_6s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,rgba(168,85,247,0.3)_50%,transparent_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <div className="absolute w-[1000px] h-[1000px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-[spin_6s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,rgba(168,85,247,0.5)_50%,transparent_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 </div>
 
                 {/* Left side cosmetic icon / Logo */}
@@ -169,9 +172,9 @@ export default function Navbar() {
                 )}
             >
                 {/* Subtle border glow on mobile toggle too */}
-                <div className="absolute inset-0 bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,rgba(168,85,247,0.2)_50%,transparent_100%)] animate-[spin_4s_linear_infinite]" />
+                <div className="absolute w-[250%] h-[250%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,rgba(168,85,247,0.4)_50%,transparent_100%)] animate-[spin_4s_linear_infinite]" />
                 <div className="relative z-10">
-                    {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                    {isOpen ? <Xmark className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                 </div>
             </motion.button>
 

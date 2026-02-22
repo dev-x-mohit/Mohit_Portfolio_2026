@@ -1,8 +1,11 @@
 'use client';
+import { Send, Refresh } from 'iconoir-react';
+
+
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Loader2 } from 'lucide-react';
+
 import SuccessOverlay from './SuccessOverlay';
 
 const ContactForm = () => {
@@ -46,7 +49,7 @@ const ContactForm = () => {
         }
     };
 
-    const inputClasses = "w-full bg-secondary-bg/50 border border-border/10 rounded-xl px-4 py-3 outline-none focus:border-accent-action/50 focus:bg-secondary-bg/80 transition-all duration-300 placeholder:text-text-secondary/30 text-foreground font-light";
+    const inputClasses = "w-full bg-secondary-bg/50 border border-border/10 rounded-xl px-4 py-3 outline-none focus:border-accent-action/50 focus:bg-secondary-bg/80 transition-all duration-300 placeholder:text-text-secondary/60 text-foreground font-light";
 
     return (
         <div className="relative">
@@ -104,10 +107,10 @@ const ContactForm = () => {
                 >
                     <span className="relative z-10 flex items-center gap-2">
                         {status === 'loading' ? (
-                            <Loader2 className="animate-spin" size={20} />
+                            <Refresh className="animate-spin" width={20} height={20} />
                         ) : (
                             <>
-                                Send Message <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+                                Send Message <Send width={18} height={18} className="group-hover:translate-x-1 transition-transform" />
                             </>
                         )}
                     </span>

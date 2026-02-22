@@ -1,8 +1,11 @@
 'use client';
+import { OpenNewWindow, ShieldCheck, NavArrowRight, NavArrowLeft, Star } from 'iconoir-react';
+
+
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Award, ShieldCheck, ChevronRight, ChevronLeft } from 'lucide-react';
+
 import { useGlobalData } from '@/context/GlobalContext';
 
 const Certifications = () => {
@@ -46,7 +49,7 @@ const Certifications = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[10px] font-bold text-blue-500 tracking-widest uppercase mb-4"
                     >
-                        <Award size={12} />
+                        <Star width={12} height={12} />
                         Professional Credentials
                     </motion.div>
                     <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground mb-4">
@@ -109,10 +112,10 @@ const Certifications = () => {
                                     {/* Verification Status */}
                                     <div className="pt-4 border-t border-white/5 flex items-center justify-between mt-auto">
                                         <div className="flex items-center gap-2 text-xs text-muted-foreground/60 group-hover:text-blue-400/80 transition-colors">
-                                            <ShieldCheck size={14} />
+                                            <ShieldCheck width={14} height={14} />
                                             <span>Verified Credential</span>
                                         </div>
-                                        <ExternalLink size={14} className="text-muted-foreground/40 group-hover:text-foreground transition-colors opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                                        <OpenNewWindow width={14} height={14} className="text-muted-foreground/40 group-hover:text-foreground transition-colors opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                                     </div>
                                 </motion.a>
                             ))}
@@ -128,7 +131,7 @@ const Certifications = () => {
                             disabled={currentPage === 1}
                             className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-all hover:scale-110 active:scale-95"
                         >
-                            <ChevronLeft size={20} />
+                            <NavArrowLeft width={20} height={20} />
                         </button>
 
                         <div className="flex items-center gap-2">
@@ -149,7 +152,7 @@ const Certifications = () => {
                             disabled={currentPage === totalPages}
                             className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-all hover:scale-110 active:scale-95"
                         >
-                            <ChevronRight size={20} />
+                            <NavArrowRight width={20} height={20} />
                         </button>
                     </div>
                 )}

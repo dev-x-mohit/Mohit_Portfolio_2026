@@ -1,8 +1,10 @@
 'use client';
+import { ArrowRight, Github, Linkedin, Instagram, Mail, Copy, Check, Globe, Codepen } from 'iconoir-react';
+
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Instagram, Mail, Copy, Check, Globe, Codepen } from 'lucide-react';
+
 import ContactForm from './ContactForm';
 
 const ContactCTA = () => {
@@ -352,10 +354,10 @@ const ContactCTA = () => {
                                 onClick={copyToClipboard}
                                 className="cursor-pointer flex items-center gap-3 px-5 py-2.5 rounded-xl bg-secondary-bg/50 backdrop-blur-md border border-border/10 hover:border-foreground/50 transition-colors group shadow-lg"
                             >
-                                <Mail size={16} className="text-text-secondary group-hover:text-foreground transition-colors" />
+                                <Mail width={16} height={16} className="text-text-secondary group-hover:text-foreground transition-colors" />
                                 <span className="font-mono text-sm text-text-secondary group-hover:text-foreground transition-colors">{email}</span>
                                 <div className="ml-2 p-1 rounded-md bg-white/5">
-                                    {copied ? <Check size={12} className="text-green-400" /> : <Copy size={12} className="text-text-secondary" />}
+                                    {copied ? <Check width={12} height={12} className="text-green-400" /> : <Copy width={12} height={12} className="text-text-secondary" />}
                                 </div>
                             </motion.div>
 
@@ -372,7 +374,7 @@ const ContactCTA = () => {
                                         className="p-2.5 rounded-lg bg-secondary-bg/30 text-text-secondary hover:text-foreground hover:bg-secondary-bg/60 transition-all border border-transparent hover:border-foreground/20"
                                         title={social.label}
                                     >
-                                        <social.icon size={20} />
+                                        <social.icon width={20} height={20} />
                                     </motion.a>
                                 ))}
                             </div>

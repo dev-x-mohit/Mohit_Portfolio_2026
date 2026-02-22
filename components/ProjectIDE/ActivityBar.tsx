@@ -1,15 +1,10 @@
 'use client';
+import { Search, Settings, GitBranch, MultiplePages, ViewGrid } from 'iconoir-react';
+
+
 
 import React from 'react';
-import {
-    Files,
-    Search,
-    Settings,
-    GitBranch,
-    Monitor,
-    LayoutGrid,
-    Command
-} from 'lucide-react';
+
 
 interface ActivityBarProps {
     activeView: 'explorer' | 'search' | 'settings' | 'extensions' | null;
@@ -33,7 +28,7 @@ const ActivityItem = ({ icon: Icon, label, active, onClick }: { icon: any, label
             {active && (
                 <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[var(--ide-accent)]" />
             )}
-            <Icon size={24} strokeWidth={1.5} />
+            <Icon width={24} height={24} strokeWidth={1.5} />
 
             {/* Custom Tooltip */}
             {isHovered && (
@@ -52,7 +47,7 @@ export default function ActivityBar({ activeView, onViewChange, onToggleTheme }:
             {/* Top Actions */}
             <div className="flex flex-col gap-0 mt-2">
                 <ActivityItem
-                    icon={Files}
+                    icon={MultiplePages}
                     label="Explorer (Ctrl+Shift+E)"
                     active={activeView === 'explorer'}
                     onClick={() => onViewChange(activeView === 'explorer' ? null : 'explorer')}
@@ -70,7 +65,7 @@ export default function ActivityBar({ activeView, onViewChange, onToggleTheme }:
                     onClick={() => window.open('https://github.com/mohitlakhara-ind', '_blank')}
                 />
                 <ActivityItem
-                    icon={LayoutGrid}
+                    icon={ViewGrid}
                     label="Libraries"
                     active={activeView === 'extensions'}
                     onClick={() => onViewChange(activeView === 'extensions' ? null : 'extensions')}

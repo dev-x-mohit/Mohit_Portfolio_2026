@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ContactForm from '@/components/ContactForm';
-import { Mail, MapPin, Phone, ArrowUpRight } from 'lucide-react';
+import { Mail, MapPin, Phone, ArrowUpRight } from 'iconoir-react';
 
 export default function ContactPage() {
     return (
@@ -35,7 +35,7 @@ export default function ContactPage() {
                             <div className="space-y-8">
                                 <div className="flex items-start gap-6 group cursor-pointer">
                                     <div className="p-4 rounded-2xl bg-secondary-bg/30 border border-border/10 text-foreground group-hover:text-accent-action group-hover:bg-accent-action/10 transition-all duration-300">
-                                        <Mail size={24} />
+                                        <Mail width={24} height={24} />
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-bold uppercase tracking-widest text-text-secondary mb-1">Email</h3>
@@ -45,7 +45,7 @@ export default function ContactPage() {
 
                                 <div className="flex items-start gap-6 group cursor-pointer">
                                     <div className="p-4 rounded-2xl bg-secondary-bg/30 border border-border/10 text-foreground group-hover:text-accent-action group-hover:bg-accent-action/10 transition-all duration-300">
-                                        <MapPin size={24} />
+                                        <MapPin width={24} height={24} />
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-bold uppercase tracking-widest text-text-secondary mb-1">Location</h3>
@@ -63,7 +63,7 @@ export default function ContactPage() {
                                 ].map((social, i) => (
                                     <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-text-secondary hover:text-accent-action transition-colors group">
                                         {social.label}
-                                        <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                        <ArrowUpRight width={14} height={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                                     </a>
                                 ))}
                             </div>

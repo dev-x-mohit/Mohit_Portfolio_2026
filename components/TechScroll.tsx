@@ -1,12 +1,13 @@
 'use client';
+import { Html5, Database, Key, Wifi, Github, Npm, Linux, Code, ServerConnection, Figma } from 'iconoir-react';
+
+
 
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import {
-    FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase, FaKey, FaWifi, FaNetworkWired, FaGitAlt, FaGithub, FaNpm, FaDocker, FaLinux, FaCode, FaPython, FaJava, FaCogs, FaFireAlt, FaServer
-} from 'react-icons/fa';
-import { SiBootstrap, SiVite, SiNextdotjs, SiTailwindcss, SiMongodb, SiPostgresql, SiFirebase, SiPostman, SiFigma, SiOpenai, SiTensorflow } from 'react-icons/si';
-import { VscVscode } from 'react-icons/vsc';
+
+
+
 import { useGlobalData } from '@/context/GlobalContext';
 
 

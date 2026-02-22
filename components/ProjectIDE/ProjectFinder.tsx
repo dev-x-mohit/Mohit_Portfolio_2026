@@ -1,21 +1,11 @@
 'use client';
+import { Folder, LayoutLeft, SmartphoneDevice, Box, Search, List, Clock, Star, Cloud, HardDrive, Dashboard, Code } from 'iconoir-react';
+
+
 
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-    Folder,
-    FileCode,
-    Layout,
-    Smartphone,
-    Box,
-    Search,
-    Grid,
-    List,
-    Clock,
-    Star,
-    Cloud,
-    HardDrive
-} from 'lucide-react';
+
 import { Project, projects } from '@/data/projectData';
 
 interface ProjectFinderProps {
@@ -29,7 +19,7 @@ const SidebarItem = ({ icon: Icon, label, active, onClick }: { icon: any, label:
         onClick={onClick}
         className={`flex items-center gap-2 px-3 py-2 rounded-md text-xs cursor-pointer select-none transition-all duration-200 ${active ? 'bg-[var(--ide-accent)] text-white font-medium shadow-md shadow-[var(--ide-accent)]/20' : 'text-[var(--ide-fg-secondary)] hover:bg-[var(--ide-bg-workspace)] hover:text-[var(--ide-fg-primary)]'}`}
     >
-        <Icon size={14} className={active ? 'text-white' : 'opacity-70'} />
+        <Icon width={14} height={14} className={active ? 'text-white' : 'opacity-70'} />
         <span>{label}</span>
     </div>
 );
@@ -81,13 +71,13 @@ export default function ProjectFinder({ isOpen, onClose, onSelectProject }: Proj
                                             onClick={() => setViewMode('grid')}
                                             className={`p-1.5 rounded-md ${viewMode === 'grid' ? 'bg-[var(--ide-bg-panel)] shadow-sm text-[var(--ide-accent)]' : 'hover:bg-[var(--ide-bg-panel)]/50 text-[var(--ide-fg-secondary)]'} cursor-pointer transition-all`}
                                         >
-                                            <Grid size={14} />
+                                            <Dashboard width={14} height={14} />
                                         </div>
                                         <div
                                             onClick={() => setViewMode('list')}
                                             className={`p-1.5 rounded-md ${viewMode === 'list' ? 'bg-[var(--ide-bg-panel)] shadow-sm text-[var(--ide-accent)]' : 'hover:bg-[var(--ide-bg-panel)]/50 text-[var(--ide-fg-secondary)]'} cursor-pointer transition-all`}
                                         >
-                                            <List size={14} />
+                                            <List width={14} height={14} />
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +88,7 @@ export default function ProjectFinder({ isOpen, onClose, onSelectProject }: Proj
                             </div>
 
                             <div className="w-32 md:w-64 relative">
-                                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--ide-fg-secondary)]" />
+                                <Search width={14} height={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--ide-fg-secondary)]" />
                                 <input
                                     type="text"
                                     placeholder="Search projects..."
@@ -122,10 +112,10 @@ export default function ProjectFinder({ isOpen, onClose, onSelectProject }: Proj
                                 <div>
                                     <div className="text-[10px] uppercase font-bold text-[var(--ide-fg-secondary)] mb-3 px-3 tracking-widest opacity-70">Categories</div>
                                     <div className="flex flex-col gap-1">
-                                        <SidebarItem icon={Layout} label="Web Platforms" active={selectedCategory === 'Web-Platforms'} onClick={() => setSelectedCategory('Web-Platforms')} />
-                                        <SidebarItem icon={Smartphone} label="Mobile Apps" active={selectedCategory === 'Mobile-Apps'} onClick={() => setSelectedCategory('Mobile-Apps')} />
+                                        <SidebarItem icon={LayoutLeft} label="Web Platforms" active={selectedCategory === 'Web-Platforms'} onClick={() => setSelectedCategory('Web-Platforms')} />
+                                        <SidebarItem icon={SmartphoneDevice} label="Mobile Apps" active={selectedCategory === 'Mobile-Apps'} onClick={() => setSelectedCategory('Mobile-Apps')} />
                                         <SidebarItem icon={Box} label="Algorithms" active={selectedCategory === 'Algorithms'} onClick={() => setSelectedCategory('Algorithms')} />
-                                        <SidebarItem icon={FileCode} label="UI / UX" active={selectedCategory === 'UI-UX'} onClick={() => setSelectedCategory('UI-UX')} />
+                                        <SidebarItem icon={Code} label="UI / UX" active={selectedCategory === 'UI-UX'} onClick={() => setSelectedCategory('UI-UX')} />
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +137,7 @@ export default function ProjectFinder({ isOpen, onClose, onSelectProject }: Proj
                                                 <div className="w-16 h-16 md:w-20 md:h-20 relative flex items-center justify-center">
                                                     <div className="absolute inset-0 bg-gradient-to-br from-[var(--ide-accent)]/20 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                                     <div className="relative w-full h-full bg-[var(--ide-bg-workspace)] rounded-2xl border border-[var(--ide-border)] flex items-center justify-center text-[var(--ide-accent)] shadow-sm group-hover:scale-105 transition-transform duration-300">
-                                                        {project.type === 'web' ? <Layout size={32} strokeWidth={1.5} /> : <Smartphone size={32} strokeWidth={1.5} />}
+                                                        {project.type === 'web' ? <LayoutLeft width={32} height={32} strokeWidth={1.5} /> : <SmartphoneDevice width={32} height={32} strokeWidth={1.5} />}
                                                     </div>
                                                 </div>
 
@@ -184,7 +174,7 @@ export default function ProjectFinder({ isOpen, onClose, onSelectProject }: Proj
                                                 className={`grid grid-cols-12 items-center px-4 py-3 rounded-lg cursor-pointer text-xs border border-transparent hover:border-[var(--ide-border)] ${i % 2 === 0 ? 'bg-transparent' : 'bg-[var(--ide-bg-panel)]/30'} hover:bg-[var(--ide-selection)] group transition-all`}
                                             >
                                                 <div className="col-span-5 flex items-center gap-3 font-medium text-[var(--ide-fg-primary)]">
-                                                    {project.type === 'web' ? <Layout size={16} className="text-[var(--ide-accent)]" /> : <Smartphone size={16} className="text-[var(--ide-fg-secondary)] group-hover:text-[var(--ide-accent)] transition-colors" />}
+                                                    {project.type === 'web' ? <LayoutLeft width={16} height={16} className="text-[var(--ide-accent)]" /> : <SmartphoneDevice width={16} height={16} className="text-[var(--ide-fg-secondary)] group-hover:text-[var(--ide-accent)] transition-colors" />}
                                                     <span className="group-hover:translate-x-1 transition-transform">{project.title}</span>
                                                 </div>
                                                 <div className="col-span-3 text-[var(--ide-fg-secondary)] font-mono text-[10px]">

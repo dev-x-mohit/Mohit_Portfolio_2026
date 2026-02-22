@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { skillCategories } from '@/data/skillsData';

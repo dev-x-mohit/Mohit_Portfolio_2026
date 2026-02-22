@@ -1,6 +1,4 @@
-
-"use client";
-
+'use client';
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { serviceQualities } from "@/data/servicesData";
@@ -93,7 +91,7 @@ function MonolithCard({ service, index }: { service: any, index: number }) {
             <div className="relative z-10 flex flex-col h-full">
                 <div className="flex justify-between items-start mb-8">
                     <div className="p-3 bg-white/5 rounded-sm text-accent-highlight group-hover:text-accent-action group-hover:bg-accent-action/10 transition-all duration-300">
-                        <service.icon size={28} />
+                        <service.icon width={28} height={28} />
                     </div>
                     <span className="font-mono text-xs text-secondary-text/50 group-hover:text-accent-action transition-colors duration-300">
                         MNLTH-{index.toString().padStart(2, '0')}

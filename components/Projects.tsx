@@ -1,10 +1,12 @@
 'use client';
+import { Github, OpenNewWindow, ArrowRight, MultiplePages, LayoutLeft, Flash } from 'iconoir-react';
+
 
 import React, { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, ArrowRight, Layers, Layout, Zap } from 'lucide-react';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { useGlobalData } from '@/context/GlobalContext';
@@ -300,7 +302,7 @@ const Projects = () => {
                         A journey through my most impactful work. Scroll to explore the universe of code.
                     </p>
                     <div className="mt-12 flex items-center gap-4 text-accent-highlight">
-                        <ArrowRight className="animate-bounce-right" size={32} />
+                        <ArrowRight className="animate-bounce-right" width={32} height={32} />
                         <span className="text-sm font-mono tracking-widest uppercase">Start Scrolling</span>
                     </div>
                 </div>
@@ -325,7 +327,7 @@ const Projects = () => {
                                     sizes="(max-width: 768px) 100vw, 60vw"
                                 />
                                 {/* Fixed darker overlay for better text visibility */}
-                                <div className="absolute inset-0 bg-black/80" />
+                                <div className="absolute inset-0 bg-black/50" />
                             </div>
                         </div>
 
@@ -345,17 +347,17 @@ const Projects = () => {
                             </div>
 
                             <div className="transform transition-transform duration-500 group-hover:translate-y-0">
-                                <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-2 drop-shadow-lg">{project.title}</h3>
-                                <p className="text-xl text-foreground/80 font-mono mb-6 drop-shadow-md">[{project.year}] {project.features?.slice(0, 2).join(' • ')}</p>
+                                <h3 className="text-4xl md:text-5xl font-bold text-white mb-2 drop-shadow-lg">{project.title}</h3>
+                                <p className="text-xl text-white/80 font-mono mb-6 drop-shadow-md">[{project.year}] {project.features?.slice(0, 2).join(' • ')}</p>
 
-                                <p className="text-base text-text-secondary max-w-lg mb-8 line-clamp-3 md:line-clamp-none">
+                                <p className="text-base text-white/70 max-w-lg mb-8 line-clamp-3 md:line-clamp-none">
                                     {project.description}
                                 </p>
 
                                 {/* Tech Stack */}
-                                <div className="flex flex-wrap gap-2 mb-8 text-text-secondary">
+                                <div className="flex flex-wrap gap-2 mb-8 text-white/70">
                                     {project.techStack.map(tech => (
-                                        <span key={tech} className="text-sm font-mono bg-secondary-bg/50 px-2 py-1 rounded border border-border/10">
+                                        <span key={tech} className="text-sm font-mono bg-white/10 px-2 py-1 rounded border border-white/20 text-white/90">
                                             {tech}
                                         </span>
                                     ))}
@@ -364,13 +366,13 @@ const Projects = () => {
                                 {/* Actions */}
                                 <div className="flex gap-4">
                                     {project.githubLink && (
-                                        <Link href={project.githubLink} target="_blank" className="p-3 rounded-full bg-secondary-bg/50 hover:bg-secondary-bg backdrop-blur-md border border-border/10 transition-colors text-foreground">
-                                            <Github size={20} />
+                                        <Link href={project.githubLink} target="_blank" className="p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 transition-colors text-white">
+                                            <Github width={20} height={20} />
                                         </Link>
                                     )}
                                     {project.liveLink && (
                                         <Link href={project.liveLink} target="_blank" className="px-6 py-3 rounded-full bg-foreground text-background font-bold hover:bg-foreground/80 transition-colors flex items-center gap-2">
-                                            Visit Site <ExternalLink size={16} />
+                                            Visit Site <OpenNewWindow width={16} height={16} />
                                         </Link>
                                     )}
                                 </div>
@@ -388,14 +390,14 @@ const Projects = () => {
                     </div>
 
                     <div className="relative z-10 text-center p-8 bg-background/30 backdrop-blur-xl rounded-2xl border border-border/10 hover:border-accent-highlight/50 transition-colors duration-300">
-                        <Layout className="w-16 h-16 mx-auto mb-6 text-accent-highlight" />
+                        <LayoutLeft className="w-16 h-16 mx-auto mb-6 text-accent-highlight" />
                         <h3 className="text-3xl font-bold text-foreground mb-2">Explore the Archives</h3>
                         <p className="text-text-secondary mb-6 max-w-xs mx-auto">
                             Dive deeper into 20+ more projects, experiments, and open-source contributions.
                         </p>
                         <Link href="/projects">
                             <button className="px-8 py-3 rounded-full bg-accent-action text-background font-bold hover:bg-accent-action/80 transition-all flex items-center justify-center gap-2 mx-auto">
-                                View All Projects <ArrowRight size={18} />
+                                View All Projects <ArrowRight width={18} height={18} />
                             </button>
                         </Link>
                     </div>

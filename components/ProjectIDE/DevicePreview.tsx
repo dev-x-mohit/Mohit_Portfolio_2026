@@ -1,8 +1,11 @@
 'use client';
+import { SmartphoneDevice, Computer } from 'iconoir-react';
+
+
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Smartphone, Monitor } from 'lucide-react';
+
 import { Project } from '@/data/projectData';
 
 interface DevicePreviewProps {
@@ -63,14 +66,14 @@ export default function DevicePreview({ project }: DevicePreviewProps) {
                         className={`p-1.5 rounded-md transition-all ${viewMode === 'web' ? 'bg-white/10 text-white shadow-sm' : 'text-white/40 hover:text-white/80'}`}
                         title="Desktop View"
                     >
-                        <Monitor size={14} />
+                        <Computer width={14} height={14} />
                     </button>
                     <button
                         onClick={() => setViewMode('mobile')}
                         className={`p-1.5 rounded-md transition-all ${viewMode === 'mobile' ? 'bg-white/10 text-white shadow-sm' : 'text-white/40 hover:text-white/80'}`}
                         title="Mobile View"
                     >
-                        <Smartphone size={14} />
+                        <SmartphoneDevice width={14} height={14} />
                     </button>
                 </div>
             </div>

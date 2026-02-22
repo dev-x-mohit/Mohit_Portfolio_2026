@@ -1,8 +1,11 @@
 'use client';
+import { Search, LayoutLeft, SmartphoneDevice, Box, Code as FileCode, ArrowDownLeft } from 'iconoir-react';
+
+
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Command, CornerDownLeft, FileCode, Layout, Smartphone, Box } from 'lucide-react';
+
 import { Project, projects } from '@/data/projectData';
 
 interface SearchOverlayProps {
@@ -12,10 +15,10 @@ interface SearchOverlayProps {
 }
 
 const categoryIcons: Record<string, React.ReactNode> = {
-    'Web-Platforms': <Layout size={14} className="text-blue-400" />,
-    'Mobile-Apps': <Smartphone size={14} className="text-purple-400" />,
-    'Algorithms': <Box size={14} className="text-yellow-400" />,
-    'UI-UX': <FileCode size={14} className="text-pink-400" />,
+    'Web-Platforms': <LayoutLeft width={14} height={14} className="text-blue-400" />,
+    'Mobile-Apps': <SmartphoneDevice width={14} height={14} className="text-purple-400" />,
+    'Algorithms': <Box width={14} height={14} className="text-yellow-400" />,
+    'UI-UX': <FileCode width={14} height={14} className="text-pink-400" />,
 };
 
 export default function SearchOverlay({ isOpen, onClose, onSelectProject }: SearchOverlayProps) {
@@ -91,7 +94,7 @@ export default function SearchOverlay({ isOpen, onClose, onSelectProject }: Sear
                     >
                         {/* Search Input */}
                         <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--ide-border)]">
-                            <Search className="text-[var(--ide-fg-secondary)]" size={18} />
+                            <Search className="text-[var(--ide-fg-secondary)]" width={18} height={18} />
                             <input
                                 autoFocus
                                 type="text"
@@ -130,7 +133,7 @@ export default function SearchOverlay({ isOpen, onClose, onSelectProject }: Sear
                                             `}
                                         >
                                             <div className="opacity-60">
-                                                {categoryIcons[project.category] || <FileCode size={16} className="text-[var(--ide-fg-secondary)]" />}
+                                                {categoryIcons[project.category] || <FileCode width={16} height={16} className="text-[var(--ide-fg-secondary)]" />}
                                             </div>
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex items-center gap-2">
@@ -146,7 +149,7 @@ export default function SearchOverlay({ isOpen, onClose, onSelectProject }: Sear
                                                 </div>
                                             </div>
                                             {index === selectedIndex && (
-                                                <CornerDownLeft size={14} className="text-[var(--ide-fg-secondary)]" />
+                                                <ArrowDownLeft width={14} height={14} className="text-[var(--ide-fg-secondary)]" />
                                             )}
                                         </div>
                                     ))}

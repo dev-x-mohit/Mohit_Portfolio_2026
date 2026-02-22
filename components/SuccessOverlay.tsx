@@ -1,8 +1,10 @@
 'use client';
+import { Check, ServerConnection, Globe, Lock } from 'iconoir-react';
+
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Server, Globe, Lock } from 'lucide-react';
+
 
 const SuccessOverlay = ({ onClose }: { onClose: () => void }) => {
     const [nodes] = useState<{ x: number, y: number, id: number }[]>(() =>
@@ -64,7 +66,7 @@ const SuccessOverlay = ({ onClose }: { onClose: () => void }) => {
                         transition={{ type: "spring", damping: 15, stiffness: 200, delay: 0.2 }}
                         className="w-32 h-32 bg-gradient-to-tr from-[var(--accent-action)] to-[var(--accent-highlight)] rounded-full flex items-center justify-center shadow-[0_0_80px_rgba(var(--accent-action-rgb),0.4)] border-4 border-white/20"
                     >
-                        <Check size={64} className="text-white drop-shadow-lg" />
+                        <Check width={64} height={64} className="text-white drop-shadow-lg" />
                     </motion.div>
 
                     <motion.div
@@ -96,7 +98,7 @@ const SuccessOverlay = ({ onClose }: { onClose: () => void }) => {
 
                 <div className="grid grid-cols-3 gap-4">
                     {[
-                        { icon: Server, label: "ENCRYPTED" },
+                        { icon: ServerConnection, label: "ENCRYPTED" },
                         { icon: Globe, label: "BROADCAST" },
                         { icon: Lock, label: "VERIFIED" }
                     ].map((item, i) => (
@@ -107,7 +109,7 @@ const SuccessOverlay = ({ onClose }: { onClose: () => void }) => {
                             transition={{ delay: 0.6 + (i * 0.1) }}
                             className="flex flex-col items-center gap-2 p-4 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors"
                         >
-                            <item.icon size={20} className="text-[var(--accent-action)]" />
+                            <item.icon width={20} height={20} className="text-[var(--accent-action)]" />
                             <span className="text-[9px] font-black tracking-[0.2em] text-gray-400">{item.label}</span>
                         </motion.div>
                     ))}

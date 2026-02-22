@@ -1,7 +1,10 @@
 'use client';
+import { Play, Code as FileCode, Xmark } from 'iconoir-react';
+
+
 
 import React from 'react';
-import { X, FileCode, Play } from 'lucide-react';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { Project } from '@/data/projectData';
 
@@ -42,7 +45,7 @@ export default function EditorArea({ activeProject, openProjects, onCloseProject
     if (!activeProject) {
         return (
             <div className="flex-1 flex flex-col items-center justify-center text-white/20 bg-[#1e1e1e]">
-                <FileCode size={64} strokeWidth={1} />
+                <FileCode width={64} height={64} strokeWidth={1} />
                 <p className="mt-4 font-mono text-sm">Select a file to view code</p>
                 <div className="mt-8 flex gap-2">
                     <span className="text-xs border border-white/10 px-2 py-1 rounded">⌘ P</span>
@@ -71,7 +74,7 @@ export default function EditorArea({ activeProject, openProjects, onCloseProject
                             onClick={(e) => { e.stopPropagation(); onCloseProject(project.id); }}
                             className={`opacity-0 group-hover:opacity-100 p-0.5 hover:bg-white/10 rounded-sm transition-all ${activeProject.id === project.id ? 'opacity-100' : ''}`}
                         >
-                            <X size={12} />
+                            <Xmark width={12} height={12} />
                         </button>
                     </div>
                 ))}
@@ -105,7 +108,7 @@ export default function EditorArea({ activeProject, openProjects, onCloseProject
 
             {/* Run Button (Decorative or triggers preview refresh) */}
             <button className="absolute bottom-6 right-6 bg-green-600 hover:bg-green-500 text-white p-3 rounded-full shadow-lg shadow-green-900/20 transition-all hover:scale-110 z-10 group">
-                <Play fill="currentColor" size={20} className="ml-1" />
+                <Play fill="currentColor" width={20} height={20} className="ml-1" />
                 <span className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black/80 px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                     Run Preview
                 </span>

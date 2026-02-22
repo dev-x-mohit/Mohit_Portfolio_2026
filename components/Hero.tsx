@@ -1,10 +1,13 @@
 'use client';
+import { ArrowRight, Download } from 'iconoir-react';
+
+
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, shaderMaterial, Stars } from '@react-three/drei';
-import { ArrowRight, Download, MousePointer2 } from 'lucide-react';
+
 import * as THREE from 'three';
 
 // --- Custom Warp Shader Material ---

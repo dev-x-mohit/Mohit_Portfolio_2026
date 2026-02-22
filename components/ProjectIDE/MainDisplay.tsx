@@ -1,10 +1,13 @@
 'use client';
+import { OpenNewWindow, Cpu, MultiplePages, Flash, Play, Home, UserCircle, Terminal as TerminalIcon, Collapse, Expand } from 'iconoir-react';
+
+
 
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import NextImage from 'next/image';
-import { ExternalLink, Terminal as TerminalIcon, Cpu, Layers, Zap, Maximize2, Minimize2, Play, Home, UserCircle } from 'lucide-react';
+
 import { Project } from '@/data/projectData';
 import EditorTabs from './EditorTabs';
 import Terminal, { TerminalRef } from './Terminal';
@@ -87,7 +90,7 @@ export default function MainDisplay({ activeProject, onSelectProject, onSelectTh
                 {/* Left: Breadcrumbs / Project Info */}
                 <div className="flex-1 min-w-0">
                     <div className="flex items-center text-[10px] md:text-xs font-mono text-[var(--ide-fg-secondary)] truncate">
-                        <Home size={14} className="mr-2 opacity-50 shrink-0" />
+                        <Home width={14} height={14} className="mr-2 opacity-50 shrink-0" />
                         <span className="hidden sm:inline">projects</span>
                         <span className="mx-1.5 md:mx-2 opacity-30 hidden sm:inline">/</span>
                         <span className="truncate opacity-70">{activeProject.category}</span>
@@ -103,7 +106,7 @@ export default function MainDisplay({ activeProject, onSelectProject, onSelectTh
                         className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-semibold transition-all border ${isTerminalOpen ? 'bg-[var(--ide-line-highlight)] text-[var(--ide-fg-primary)] border-[var(--ide-border)]' : 'bg-transparent text-[var(--ide-fg-secondary)] border-transparent hover:bg-[var(--ide-bg-panel)]'}`}
                         title="Toggle Terminal"
                     >
-                        <TerminalIcon size={14} />
+                        <TerminalIcon width={14} height={14} />
                     </button>
 
                     <div className="w-px h-4 bg-[var(--ide-border)] mx-1" />
@@ -112,7 +115,7 @@ export default function MainDisplay({ activeProject, onSelectProject, onSelectTh
                         onClick={handleRunProject}
                         className="flex items-center gap-2 px-3 py-1.5 bg-[var(--ide-accent)] hover:bg-[var(--ide-accent)]/90 text-white rounded-md text-xs font-semibold transition-all shadow-lg hover:shadow-[var(--ide-accent)]/20 active:scale-95 group"
                     >
-                        <Play size={10} className="fill-current group-hover:scale-110 transition-transform" />
+                        <Play width={10} height={10} className="fill-current group-hover:scale-110 transition-transform" />
                         <span>Run Project</span>
                     </button>
                 </div>
@@ -204,7 +207,7 @@ export default function MainDisplay({ activeProject, onSelectProject, onSelectTh
                             {/* Tech Stack */}
                             <div className="space-y-4">
                                 <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--ide-fg-secondary)] opacity-70 flex items-center gap-2">
-                                    <Layers size={14} /> Technologies
+                                    <MultiplePages width={14} height={14} /> Technologies
                                 </h3>
                                 <div className="flex flex-wrap gap-2">
                                     {activeProject.techStack.map(tech => (
@@ -223,7 +226,7 @@ export default function MainDisplay({ activeProject, onSelectProject, onSelectTh
                                 {/* Features */}
                                 <div className="p-6 rounded-xl bg-[var(--ide-bg-panel)]/50 border border-[var(--ide-border)] hover:border-[var(--ide-accent)]/30 transition-colors">
                                     <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--ide-accent)] mb-5 flex items-center gap-2">
-                                        <Zap size={14} /> Key Features
+                                        <Flash width={14} height={14} /> Key Features
                                     </h3>
                                     <ul className="space-y-4">
                                         {activeProject.features?.map((feature, i) => (
@@ -238,7 +241,7 @@ export default function MainDisplay({ activeProject, onSelectProject, onSelectTh
                                 {/* Code Snippet */}
                                 <div className="flex flex-col">
                                     <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--ide-fg-secondary)] opacity-70 mb-4 flex items-center gap-2">
-                                        <TerminalIcon size={14} /> Core Logic
+                                        <TerminalIcon width={14} height={14} /> Core Logic
                                     </h3>
                                     <div className="flex-1 bg-[#09090b] p-5 rounded-xl border border-[var(--ide-border)] overflow-hidden shadow-2xl relative group">
                                         <div className="absolute top-3 right-3 flex gap-1.5">
@@ -283,12 +286,12 @@ export default function MainDisplay({ activeProject, onSelectProject, onSelectTh
                             className={`h-11 flex items-center justify-between px-4 cursor-pointer hover:bg-[var(--ide-bg-workspace)] transition-colors shrink-0 border-b border-[var(--ide-border)]`}
                         >
                             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--ide-fg-secondary)]">
-                                <TerminalIcon size={12} />
+                                <TerminalIcon width={12} height={12} />
                                 <span>Terminal</span>
                                 {isTerminalOpen && <span className="ml-2 px-1.5 py-0.5 rounded-full bg-green-500/20 text-green-500 text-[9px] font-normal lowercase">node</span>}
                             </div>
                             <div className="text-[var(--ide-fg-secondary)] hover:text-[var(--ide-fg-primary)]">
-                                {isTerminalOpen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+                                {isTerminalOpen ? <Collapse width={14} height={14} /> : <Expand width={14} height={14} />}
                             </div>
                         </div>
 

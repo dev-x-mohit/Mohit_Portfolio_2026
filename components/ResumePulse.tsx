@@ -1,8 +1,11 @@
 'use client';
+import { Calendar, Code, Globe, Flash, Suitcase } from 'iconoir-react';
+
+
 
 import React, { useState, useRef } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Calendar, Award, Code, Globe, Zap, Briefcase } from 'lucide-react';
+
 import { useGlobalData } from '@/context/GlobalContext';
 
 

@@ -1,8 +1,11 @@
 'use client';
+import { Terminal, Search, LayoutLeft, HelpCircle, Home, Xmark } from 'iconoir-react';
+
+
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Command, Terminal, Search, Layout, HelpCircle, Home } from 'lucide-react';
+
 import { useRouter } from 'next/navigation';
 
 interface HelpOverlayProps {
@@ -41,7 +44,7 @@ export default function HelpOverlay({ isOpen, onClose }: HelpOverlayProps) {
                             <h2 className="text-lg font-bold tracking-tight">System Guide</h2>
                         </div>
                         <button onClick={onClose} className="p-1 rounded-md hover:bg-[var(--ide-bg-panel)] transition-colors">
-                            <X size={20} />
+                            <Xmark width={20} height={20} />
                         </button>
                     </div>
 
@@ -59,7 +62,7 @@ export default function HelpOverlay({ isOpen, onClose }: HelpOverlayProps) {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="p-4 rounded-lg bg-[var(--ide-bg-workspace)] border border-[var(--ide-border)] flex flex-col gap-3">
                                 <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500">
-                                    <Command size={20} />
+                                    <Terminal width={20} height={20} />
                                 </div>
                                 <h4 className="font-bold">Project Explorer</h4>
                                 <p className="text-sm text-[var(--ide-fg-secondary)]">
@@ -69,7 +72,7 @@ export default function HelpOverlay({ isOpen, onClose }: HelpOverlayProps) {
 
                             <div className="p-4 rounded-lg bg-[var(--ide-bg-workspace)] border border-[var(--ide-border)] flex flex-col gap-3">
                                 <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500">
-                                    <Terminal size={20} />
+                                    <Terminal width={20} height={20} />
                                 </div>
                                 <h4 className="font-bold">Interactive Terminal</h4>
                                 <p className="text-sm text-[var(--ide-fg-secondary)]">
@@ -79,7 +82,7 @@ export default function HelpOverlay({ isOpen, onClose }: HelpOverlayProps) {
 
                             <div className="p-4 rounded-lg bg-[var(--ide-bg-workspace)] border border-[var(--ide-border)] flex flex-col gap-3">
                                 <div className="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500">
-                                    <Layout size={20} />
+                                    <LayoutLeft width={20} height={20} />
                                 </div>
                                 <h4 className="font-bold">Live Preview</h4>
                                 <p className="text-sm text-[var(--ide-fg-secondary)]">
@@ -89,7 +92,7 @@ export default function HelpOverlay({ isOpen, onClose }: HelpOverlayProps) {
 
                             <div className="p-4 rounded-lg bg-[var(--ide-bg-workspace)] border border-[var(--ide-border)] flex flex-col gap-3">
                                 <div className="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-500">
-                                    <Search size={20} />
+                                    <Search width={20} height={20} />
                                 </div>
                                 <h4 className="font-bold">Quick Navigation</h4>
                                 <p className="text-sm text-[var(--ide-fg-secondary)]">
@@ -105,7 +108,7 @@ export default function HelpOverlay({ isOpen, onClose }: HelpOverlayProps) {
                                 onClick={() => router.push('/')}
                                 className="flex items-center gap-2 px-6 py-2 bg-[var(--ide-accent)] text-white rounded-full font-bold hover:opacity-90 transition-opacity"
                             >
-                                <Home size={16} />
+                                <Home width={16} height={16} />
                                 Return to Homepage
                             </button>
                         </div>

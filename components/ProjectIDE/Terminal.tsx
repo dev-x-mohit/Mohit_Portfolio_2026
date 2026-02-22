@@ -1,7 +1,9 @@
 'use client';
+import { Xmark, Expand, Collapse, Terminal as TerminalIcon } from 'iconoir-react';
+
 
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Maximize2, Minimize2, Terminal as TerminalIcon } from 'lucide-react';
+
 import { Project, projects } from '@/data/projectData';
 import { Theme, themes } from './themes';
 
@@ -255,14 +257,14 @@ const Terminal = React.forwardRef<TerminalRef, TerminalProps>(({ isOpen, onClose
             {/* Terminal Header */}
             <div className="flex items-center justify-between px-4 py-2 bg-[var(--ide-bg-activity-bar)] border-b border-[var(--ide-border)] shrink-0 select-none">
                 <div className="flex items-center gap-2 text-[var(--ide-fg-secondary)] flex-1">
-                    <TerminalIcon size={14} />
+                    <TerminalIcon width={14} height={14} />
                     <span className="text-xs uppercase tracking-wider font-semibold">Terminal</span>
                     {/* CWD Display in Header */}
                     <span className="text-xs opacity-50 ml-2 normal-case font-normal">— {cwd}</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <button onClick={onClose} className="text-[var(--ide-fg-secondary)] hover:text-[var(--ide-fg-primary)] p-1 rounded-sm hover:bg-[var(--ide-bg-workspace)] transition-colors">
-                        <X size={14} />
+                        <Xmark width={14} height={14} />
                     </button>
                 </div>
             </div>

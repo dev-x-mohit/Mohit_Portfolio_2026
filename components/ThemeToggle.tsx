@@ -1,7 +1,10 @@
-"use client"
+'use client';
+import { Laptop, SunLight, HalfMoon } from 'iconoir-react';
+
+
 
 import * as React from "react"
-import { Moon, Sun, Laptop } from "lucide-react"
+
 import { useTheme } from "@/hooks/use-theme"
 import { usePathname } from "next/navigation"
 
@@ -32,7 +35,7 @@ export function ThemeToggle() {
                     }`}
                 aria-label="Light Mode"
             >
-                <Sun className="w-5 h-5 text-amber-500" />
+                <SunLight className="w-5 h-5 text-amber-500" />
             </button>
             <button
                 onClick={() => setTheme("dark")}
@@ -40,7 +43,7 @@ export function ThemeToggle() {
                     }`}
                 aria-label="Dark Mode"
             >
-                <Moon className="w-5 h-5 text-purple-500" />
+                <HalfMoon className="w-5 h-5 text-purple-500" />
             </button>
             <button
                 onClick={() => setTheme("system")}

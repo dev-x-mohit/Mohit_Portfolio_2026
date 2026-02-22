@@ -1,9 +1,12 @@
 'use client';
+import { Check, HalfMoon, SunLight } from 'iconoir-react';
+
+
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { themes, Theme } from './themes';
-import { Check, Moon, Sun } from 'lucide-react';
+
 
 interface ThemeSelectorProps {
     isOpen: boolean;
@@ -45,7 +48,7 @@ export default function ThemeSelector({ isOpen, onClose, currentThemeId, onSelec
                         <div className="overflow-y-auto py-1">
                             {/* Dark Themes */}
                             <div className="px-3 py-1.5 text-[10px] font-mono opacity-50 flex items-center gap-2">
-                                <Moon size={10} /> DARK THEMES
+                                <HalfMoon width={10} height={10} /> DARK THEMES
                             </div>
                             {darkThemes.map(theme => (
                                 <div
@@ -60,7 +63,7 @@ export default function ThemeSelector({ isOpen, onClose, currentThemeId, onSelec
                                     } : {}}
                                 >
                                     <span>{theme.name}</span>
-                                    {currentThemeId === theme.id && <Check size={14} />}
+                                    {currentThemeId === theme.id && <Check width={14} height={14} />}
                                 </div>
                             ))}
 
@@ -68,7 +71,7 @@ export default function ThemeSelector({ isOpen, onClose, currentThemeId, onSelec
 
                             {/* Light Themes */}
                             <div className="px-3 py-1.5 text-[10px] font-mono opacity-50 flex items-center gap-2">
-                                <Sun size={10} /> LIGHT THEMES
+                                <SunLight width={10} height={10} /> LIGHT THEMES
                             </div>
                             {lightThemes.map(theme => (
                                 <div
@@ -80,7 +83,7 @@ export default function ThemeSelector({ isOpen, onClose, currentThemeId, onSelec
                                     `}
                                 >
                                     <span>{theme.name}</span>
-                                    {currentThemeId === theme.id && <Check size={14} />}
+                                    {currentThemeId === theme.id && <Check width={14} height={14} />}
                                 </div>
                             ))}
                         </div>

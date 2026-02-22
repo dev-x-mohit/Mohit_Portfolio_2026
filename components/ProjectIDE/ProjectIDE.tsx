@@ -1,11 +1,14 @@
 'use client';
+import { Search, Minus, Menu, Settings, HelpCircle, Xmark, Expand, Terminal as TerminalIcon } from 'iconoir-react';
+
+
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Project, projects } from '@/data/projectData';
 import Sidebar from './Sidebar';
 import MainDisplay from './MainDisplay';
-import { Command, Maximize2, Minimize2, Search, X, Minus, Menu, Settings } from 'lucide-react';
+
 import { useRouter } from 'next/navigation';
 import SearchOverlay from './SearchOverlay';
 import ProjectFinder from './ProjectFinder';
@@ -15,7 +18,7 @@ import StatusBar from './StatusBar';
 import ExtensionsSidebar from './ExtensionsSidebar';
 import HelpOverlay from './HelpOverlay';
 import { themes, Theme } from './themes';
-import { HelpCircle } from 'lucide-react';
+
 
 export default function ProjectIDE() {
     const router = useRouter();
@@ -116,7 +119,7 @@ export default function ProjectIDE() {
                             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                             className="lg:hidden p-1 text-[var(--ide-fg-secondary)] hover:text-[var(--ide-fg-primary)] hover:bg-[var(--ide-bg-workspace)] rounded transition-colors mr-1"
                         >
-                            <Menu size={16} />
+                            <Menu width={16} height={16} />
                         </button>
 
                         <div
@@ -124,21 +127,21 @@ export default function ProjectIDE() {
                             className="w-3 h-3 rounded-full bg-red-500/20 hover:bg-red-500 transition-colors cursor-pointer flex items-center justify-center border border-red-500/10"
                             title="Close (Go Home)"
                         >
-                            <X size={8} className="opacity-0 group-hover/controls:opacity-100 text-red-900 font-bold" />
+                            <Xmark width={8} height={8} className="opacity-0 group-hover/controls:opacity-100 text-red-900 font-bold" />
                         </div>
                         <div
                             onClick={handleHome}
                             className="w-3 h-3 rounded-full bg-yellow-500/20 hover:bg-yellow-500 transition-colors cursor-pointer flex items-center justify-center border border-yellow-500/10"
                             title="Minimize (Go Home)"
                         >
-                            <Minus size={8} className="opacity-0 group-hover/controls:opacity-100 text-yellow-900 font-bold" />
+                            <Minus width={8} height={8} className="opacity-0 group-hover/controls:opacity-100 text-yellow-900 font-bold" />
                         </div>
                         <div
                             onClick={toggleFullscreen}
                             className="hidden sm:flex w-3 h-3 rounded-full bg-green-500/20 hover:bg-green-500 transition-colors cursor-pointer items-center justify-center border border-green-500/10"
                             title="Maximize (Toggle Fullscreen)"
                         >
-                            <Maximize2 size={6} className="opacity-0 group-hover/controls:opacity-100 text-green-900 font-bold" />
+                            <Expand width={6} height={6} className="opacity-0 group-hover/controls:opacity-100 text-green-900 font-bold" />
                         </div>
                     </div>
 
@@ -159,14 +162,14 @@ export default function ProjectIDE() {
                             className="lg:hidden p-1.5 text-[var(--ide-fg-secondary)] hover:text-[var(--ide-fg-primary)] hover:bg-[var(--ide-bg-workspace)] rounded-md transition-colors"
                             title="Themes"
                         >
-                            <Settings size={14} />
+                            <Settings width={14} height={14} />
                         </button>
                         <button
                             onClick={() => setIsHelpOpen(true)}
                             className="p-1.5 text-[var(--ide-fg-secondary)] hover:text-[var(--ide-fg-primary)] hover:bg-[var(--ide-bg-workspace)] rounded-md transition-colors"
                             title="Help & Guide"
                         >
-                            <HelpCircle size={14} />
+                            <HelpCircle width={14} height={14} />
                         </button>
                     </div>
                 </div>
@@ -233,7 +236,7 @@ export default function ProjectIDE() {
                                     >
                                         <div className="mb-6 inline-flex items-center justify-center p-3 rounded-2xl bg-[var(--ide-bg-panel)] border border-[var(--ide-border)] shadow-xl animate-float">
                                             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--ide-accent)] to-purple-600 flex items-center justify-center text-white shadow-lg">
-                                                <Command size={24} />
+                                                <TerminalIcon width={24} height={24} />
                                             </div>
                                         </div>
 
@@ -250,7 +253,7 @@ export default function ProjectIDE() {
                                                 className="group flex flex-col items-center gap-1.5 focus:outline-none"
                                             >
                                                 <div className="w-10 h-10 rounded-lg bg-[var(--ide-bg-panel)] flex items-center justify-center border border-[var(--ide-border)] shadow-sm group-hover:border-[var(--ide-accent)] group-hover:text-[var(--ide-accent)] transition-all">
-                                                    <Search size={18} className="opacity-70 group-hover:opacity-100" />
+                                                    <Search width={18} height={18} className="opacity-70 group-hover:opacity-100" />
                                                 </div>
                                                 <span className="text-[9px] uppercase tracking-widest text-[var(--ide-fg-secondary)] group-hover:text-[var(--ide-fg-primary)]">Finder</span>
                                             </button>
@@ -259,7 +262,7 @@ export default function ProjectIDE() {
                                                 className="group flex flex-col items-center gap-1.5 focus:outline-none"
                                             >
                                                 <div className="w-10 h-10 rounded-lg bg-[var(--ide-bg-panel)] flex items-center justify-center border border-[var(--ide-border)] shadow-sm group-hover:border-[var(--ide-accent)] group-hover:text-[var(--ide-accent)] transition-all">
-                                                    <Command size={18} className="opacity-70 group-hover:opacity-100" />
+                                                    <TerminalIcon width={18} height={18} className="opacity-70 group-hover:opacity-100" />
                                                 </div>
                                                 <span className="text-[9px] uppercase tracking-widest text-[var(--ide-fg-secondary)] group-hover:text-[var(--ide-fg-primary)]">Explorer</span>
                                             </button>
