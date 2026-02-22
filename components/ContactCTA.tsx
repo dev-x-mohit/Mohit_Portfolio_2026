@@ -11,7 +11,7 @@ const ContactCTA = () => {
     const [showForm, setShowForm] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
     const [copied, setCopied] = useState(false);
-    const email = "mohit.dev.contact@gmail.com";
+    const email = "mohitlakhara78500@gmail.com";
 
     // Canvas & Particle System
     const canvasRef = useRef<HTMLCanvasElement>(null);

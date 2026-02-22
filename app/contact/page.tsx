@@ -39,7 +39,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-bold uppercase tracking-widest text-text-secondary mb-1">Email</h3>
-                                        <p className="text-lg font-medium text-foreground group-hover:text-accent-action transition-colors">mohit.dev.contact@gmail.com</p>
+                                        <p className="text-lg font-medium text-foreground group-hover:text-accent-action transition-colors">mohitlakhara78500@gmail.com</p>
                                     </div>
                                 </div>
 
