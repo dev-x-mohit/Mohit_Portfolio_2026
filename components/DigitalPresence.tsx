@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, Instagram, Mail, ExternalLink, Codepen } from 'lucide-react';
 
 const socialLinks = [
     {
         name: "GitHub",
         icon: <Github size={24} />,
-        url: "https://github.com/mohitlakhara", // Replace with actual
+        url: "https://github.com/mohitlakhara-ind",
         color: "#ffffff"
     },
     {
@@ -18,10 +18,16 @@ const socialLinks = [
         color: "#0077b5"
     },
     {
-        name: "Twitter",
-        icon: <Twitter size={24} />,
-        url: "https://twitter.com/your_handle", // Replace if exists
-        color: "#1da1f2"
+        name: "Instagram",
+        icon: <Instagram size={24} />,
+        url: "https://instagram.com/webdev_mohit",
+        color: "#E1306C"
+    },
+    {
+        name: "CodePen",
+        icon: <Codepen size={24} />,
+        url: "https://codepen.io/mohitlakhara",
+        color: "#ffffff"
     },
     {
         name: "Email",

@@ -16,11 +16,34 @@ const ContactForm = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus('loading');
-        // Simulate sending
-        setTimeout(() => {
-            setStatus('success');
-            setFormData({ name: '', email: '', message: '' });
-        }, 2000);
+
+        try {
+            const response = await fetch("https://formspree.io/f/mzzeddwd", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                    _subject: `New Contact Request from ${formData.name}`
+                })
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+            } else {
+                setStatus('error');
+                // Auto revert status on error
+                setTimeout(() => setStatus('idle'), 3000);
+            }
+        } catch (error) {
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 3000);
+        }
     };
 
     const inputClasses = "w-full bg-secondary-bg/50 border border-border/10 rounded-xl px-4 py-3 outline-none focus:border-accent-action/50 focus:bg-secondary-bg/80 transition-all duration-300 placeholder:text-text-secondary/30 text-foreground font-light";

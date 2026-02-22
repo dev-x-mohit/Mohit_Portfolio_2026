@@ -110,7 +110,7 @@ export default function ProjectFinder({ isOpen, onClose, onSelectProject }: Proj
                         {/* Content */}
                         <div className="flex-1 flex overflow-hidden">
                             {/* Sidebar - Hidden on mobile */}
-                            <div className="hidden md:flex w-56 bg-[var(--ide-bg-panel)]/30 border-r border-[var(--ide-border)] p-4 flex-col gap-8 overflow-y-auto backdrop-blur-xl">
+                            <div className="hidden md:flex w-56 bg-[var(--ide-bg-panel)]/30 border-r border-[var(--ide-border)] p-4 flex-col gap-8 overflow-y-auto backdrop-blur-xl" data-lenis-prevent>
                                 <div>
                                     <div className="text-[10px] uppercase font-bold text-[var(--ide-fg-secondary)] mb-3 px-3 tracking-widest opacity-70">Favorites</div>
                                     <div className="flex flex-col gap-1">
@@ -131,7 +131,7 @@ export default function ProjectFinder({ isOpen, onClose, onSelectProject }: Proj
                             </div>
 
                             {/* Main View */}
-                            <div className="flex-1 bg-[var(--ide-bg-workspace)] overflow-y-auto p-4 md:p-8">
+                            <div className="flex-1 bg-[var(--ide-workspace)] overflow-y-auto p-4 md:p-8" data-lenis-prevent>
                                 {viewMode === 'grid' ? (
                                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                                         {filteredProjects.map(project => (

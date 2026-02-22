@@ -33,7 +33,7 @@ const About = () => {
                             <Mail size={16} className="text-accent-highlight" />
                             mohitlakhara78500@gmail.com
                         </a>
-                        <a href="https://www.linkedin.com/in/mohitlakharaind" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
+                        <a href="https://linkedin.com/in/mohitlakhara-ind" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
                             <Linkedin size={16} className="text-accent-highlight" />
                             LinkedIn
                         </a>

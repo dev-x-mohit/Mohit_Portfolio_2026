@@ -109,7 +109,7 @@ export default function SearchOverlay({ isOpen, onClose, onSelectProject }: Sear
                         </div>
 
                         {/* Results List */}
-                        <div className="overflow-y-auto p-2">
+                        <div className="overflow-y-auto p-2" data-lenis-prevent>
                             {results.length === 0 ? (
                                 <div className="text-center py-8 text-[var(--ide-fg-secondary)] text-sm font-mono opacity-60">
                                     No matching projects found.

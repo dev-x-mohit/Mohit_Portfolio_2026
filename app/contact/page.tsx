@@ -55,9 +55,14 @@ export default function ContactPage() {
                             </div>
 
                             <div className="mt-16 flex gap-6">
-                                {['GitHub', 'LinkedIn', 'Twitter'].map((social, i) => (
-                                    <a key={i} href="#" className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-text-secondary hover:text-accent-action transition-colors group">
-                                        {social}
+                                {[
+                                    { label: 'GitHub', href: 'https://github.com/mohitlakhara-ind' },
+                                    { label: 'LinkedIn', href: 'https://linkedin.com/in/mohitlakhara-ind' },
+                                    { label: 'Instagram', href: 'https://instagram.com/webdev_mohit' },
+                                    { label: 'CodePen', href: 'https://codepen.io/mohitlakhara' }
+                                ].map((social, i) => (
+                                    <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-text-secondary hover:text-accent-action transition-colors group">
+                                        {social.label}
                                         <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                                     </a>
                                 ))}

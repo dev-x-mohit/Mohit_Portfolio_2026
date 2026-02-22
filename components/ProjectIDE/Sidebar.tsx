@@ -67,7 +67,7 @@ export default function Sidebar({ onSelectProject, currentProjectId }: SidebarPr
     };
 
     return (
-        <aside className="w-full h-full border-r border-[var(--ide-border)] bg-[var(--ide-bg-sidebar)] flex flex-col font-mono text-xs select-none overflow-y-auto">
+        <aside className="w-full h-full border-r border-[var(--ide-border)] bg-[var(--ide-bg-sidebar)] flex flex-col font-mono text-xs select-none overflow-y-auto" data-lenis-prevent>
             {/* Sidebar Header */}
             <div className="p-3 text-[10px] font-bold text-[var(--ide-fg-secondary)] tracking-widest uppercase border-b border-[var(--ide-border)] flex items-center justify-between">
                 <span>Explorer</span>

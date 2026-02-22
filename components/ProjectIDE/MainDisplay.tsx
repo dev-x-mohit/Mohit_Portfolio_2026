@@ -2,6 +2,8 @@
 
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import NextImage from 'next/image';
 import { ExternalLink, Terminal as TerminalIcon, Cpu, Layers, Zap, Maximize2, Minimize2, Play, Home, UserCircle } from 'lucide-react';
 import { Project } from '@/data/projectData';
 import EditorTabs from './EditorTabs';
@@ -83,14 +85,14 @@ export default function MainDisplay({ activeProject, onSelectProject, onSelectTh
             <div className="h-12 bg-[var(--ide-bg-workspace)] border-b border-[var(--ide-border)] flex items-center justify-between px-4 shrink-0">
 
                 {/* Left: Breadcrumbs / Project Info */}
-                <div className="flex items-center gap-4">
-                    <div className="flex items-center text-xs font-mono text-[var(--ide-fg-secondary)]">
-                        <Home size={14} className="mr-2 opacity-50" />
-                        <span>projects</span>
-                        <span className="mx-2 opacity-30">/</span>
-                        <span>{activeProject.category}</span>
-                        <span className="mx-2 opacity-30">/</span>
-                        <span className="text-[var(--ide-fg-primary)] font-bold">{activeProject.title}</span>
+                <div className="flex-1 min-w-0">
+                    <div className="flex items-center text-[10px] md:text-xs font-mono text-[var(--ide-fg-secondary)] truncate">
+                        <Home size={14} className="mr-2 opacity-50 shrink-0" />
+                        <span className="hidden sm:inline">projects</span>
+                        <span className="mx-1.5 md:mx-2 opacity-30 hidden sm:inline">/</span>
+                        <span className="truncate opacity-70">{activeProject.category}</span>
+                        <span className="mx-1.5 md:mx-2 opacity-30">/</span>
+                        <span className="text-[var(--ide-fg-primary)] font-bold truncate">{activeProject.title}</span>
                     </div>
                 </div>
 
@@ -126,24 +128,77 @@ export default function MainDisplay({ activeProject, onSelectProject, onSelectTh
                     </div>
 
                     {/* Content Scrollable Area */}
-                    <div className="flex-1 overflow-y-auto custom-scrollbar p-8 pb-32">
-                        <div className="max-w-4xl mx-auto space-y-10">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-8 pb-32" data-lenis-prevent>
+                        <div className="max-w-4xl mx-auto space-y-8 md:space-y-10">
 
                             {/* Header Section */}
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <span className="px-2.5 py-1 rounded-md border border-[var(--ide-border)] bg-[var(--ide-bg-panel)] text-[11px] font-mono text-[var(--ide-fg-secondary)] tracking-wider uppercase font-medium">
+                                    <span className="px-2 py-0.5 md:px-2.5 md:py-1 rounded-md border border-[var(--ide-border)] bg-[var(--ide-bg-panel)] text-[10px] md:text-[11px] font-mono text-[var(--ide-fg-secondary)] tracking-wider uppercase font-medium">
                                         {activeProject.year}
                                     </span>
-                                    <span className="px-2.5 py-1 rounded-md border border-[var(--ide-accent)]/20 bg-[var(--ide-accent)]/10 text-[11px] font-mono text-[var(--ide-accent)] tracking-wider uppercase font-medium">
+                                    <span className="px-2 py-0.5 md:px-2.5 md:py-1 rounded-md border border-[var(--ide-accent)]/20 bg-[var(--ide-accent)]/10 text-[10px] md:text-[11px] font-mono text-[var(--ide-accent)] tracking-wider uppercase font-medium">
                                         {activeProject.type}
                                     </span>
                                 </div>
 
                                 <div>
-                                    <h1 className="text-5xl font-extrabold tracking-tight text-[var(--ide-fg-primary)] mb-4">{activeProject.title}</h1>
-                                    <p className="text-xl text-[var(--ide-fg-secondary)] leading-relaxed max-w-2xl">{activeProject.description}</p>
+                                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[var(--ide-fg-primary)] mb-3 md:mb-4 leading-tight">{activeProject.title}</h1>
+                                    <p className="text-base md:text-xl text-[var(--ide-fg-secondary)] leading-relaxed max-w-2xl">{activeProject.description}</p>
                                 </div>
+
+                                {(() => {
+                                    const isCodePen = activeProject.liveLink.includes('codepen.io');
+                                    if (isCodePen) {
+                                        // Convert full/pen URL to embed URL
+                                        const embedUrl = activeProject.liveLink.replace('/full/', '/embed/').replace('/pen/', '/embed/') + '?default-tab=result&theme-id=dark';
+
+                                        return (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.2 }}
+                                                className="relative w-full rounded-2xl overflow-hidden border border-[var(--ide-border)] bg-[var(--ide-bg-panel)] shadow-2xl"
+                                            >
+                                                <iframe
+                                                    src={embedUrl}
+                                                    title={activeProject.title}
+                                                    className="w-full h-[300px] md:h-[450px] border-none"
+                                                    loading="lazy"
+                                                    allowFullScreen
+                                                    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+                                                />
+                                                <div className="absolute top-3 right-3 z-10">
+                                                    <div className="text-[9px] md:text-[10px] font-mono backdrop-blur-md bg-black/60 px-2 py-1 rounded border border-white/10 text-white/50">
+                                                        Live Interactive Preview
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+                                        );
+                                    }
+
+                                    return (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.2 }}
+                                            className="relative aspect-video w-full rounded-2xl overflow-hidden border border-[var(--ide-border)] bg-[var(--ide-bg-panel)] group shadow-2xl"
+                                        >
+                                            <NextImage
+                                                src={activeProject.coverImage}
+                                                alt={activeProject.title}
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                                priority
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                                                <div className="text-white text-xs font-mono backdrop-blur-md bg-black/40 px-3 py-1.5 rounded-full border border-white/10">
+                                                    Screenshot: {activeProject.title}
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    );
+                                })()}
                             </div>
 
                             {/* Tech Stack */}

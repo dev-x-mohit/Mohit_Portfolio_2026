@@ -272,6 +272,7 @@ const Terminal = React.forwardRef<TerminalRef, TerminalProps>(({ isOpen, onClose
                 ref={scrollRef}
                 className="flex-1 overflow-y-auto p-4 space-y-1 text-[var(--ide-fg-secondary)] selection:bg-[var(--ide-selection)]"
                 onClick={() => inputRef.current?.focus()}
+                data-lenis-prevent
             >
                 {history.map((entry, index) => (
                     <div key={index} className={`

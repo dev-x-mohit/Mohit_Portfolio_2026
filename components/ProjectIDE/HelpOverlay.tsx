@@ -46,7 +46,7 @@ export default function HelpOverlay({ isOpen, onClose }: HelpOverlayProps) {
                     </div>
 
                     {/* Content */}
-                    <div className="p-8 space-y-8 overflow-y-auto max-h-[70vh]">
+                    <div className="p-8 space-y-8 overflow-y-auto max-h-[70vh]" data-lenis-prevent>
                         {/* Intro */}
                         <div className="text-center mb-8">
                             <h3 className="text-2xl font-bold mb-2">Welcome to Project Workspace v2.0</h3>

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Twitter, Mail, Copy, Check, Globe } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Instagram, Mail, Copy, Check, Globe, Codepen } from 'lucide-react';
 import ContactForm from './ContactForm';
 
 const ContactCTA = () => {
@@ -29,9 +29,9 @@ const ContactCTA = () => {
 
     const socials = [
         { icon: Github, label: 'GitHub', href: 'https://github.com/mohitlakhara-ind' },
-        { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/mohitlakhara' },
-        { icon: Twitter, label: 'Twitter', href: 'https://twitter.com/mohitlakhara_' },
-        { icon: Globe, label: 'Website', href: 'https://linktr.ee/mohitlakhara' },
+        { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/mohitlakhara-ind' },
+        { icon: Instagram, label: 'Instagram', href: 'https://instagram.com/webdev_mohit' },
+        { icon: Codepen, label: 'CodePen', href: 'https://codepen.io/mohitlakhara' },
     ];
 
     useEffect(() => {
@@ -194,10 +194,27 @@ const ContactCTA = () => {
             }
         };
 
-        // ANIMATE
+
+
+        // Resize Logic
+        const handleResize = () => {
+            if (!containerRef.current || !canvasRef.current) return;
+            width = containerRef.current.offsetWidth;
+            height = containerRef.current.offsetHeight;
+            canvasRef.current.width = width;
+            canvasRef.current.height = height;
+            updateThemeColors();
+            init();
+        };
+
+        // Initialize dimensions immediately
+        handleResize();
+
+        // Animation Loop with Visibility Check
+        let isVisible = false;
         const animate = () => {
-            // Use local width/height to avoid issues, or update them?
-            // The closure variables 'width' and 'height' are updated by handleResize.
+            if (!isVisible) return; // Stop if not visible
+
             if (!canvasRef.current || !ctx) return;
 
             ctx.clearRect(0, 0, width, height);
@@ -216,22 +233,20 @@ const ContactCTA = () => {
             animationRef.current = requestAnimationFrame(animate);
         };
 
-        // Resize Logic
-        const handleResize = () => {
-            if (!containerRef.current || !canvasRef.current) return;
-            width = containerRef.current.offsetWidth;
-            height = containerRef.current.offsetHeight;
-            canvasRef.current.width = width;
-            canvasRef.current.height = height;
-            updateThemeColors();
-            init();
-        };
+        // Intersection Observer
+        const observerIntersection = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                isVisible = true;
+                animate();
+            } else {
+                isVisible = false;
+                cancelAnimationFrame(animationRef.current);
+            }
+        }, { threshold: 0.1 });
 
-        // Initialize dimensions immediately
-        handleResize();
-
-        // Start Loop
-        animate();
+        if (container) {
+            observerIntersection.observe(container);
+        }
 
         // Use ResizeObserver for container-aware resizing
         const resizeObserver = new ResizeObserver(() => handleResize());
@@ -246,18 +261,19 @@ const ContactCTA = () => {
         };
 
         // MutationObserver for Theme
-        const observer = new MutationObserver(() => {
+        const observerHelper = new MutationObserver(() => {
             updateThemeColors();
             init();
         });
-        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+        observerHelper.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
         window.addEventListener('mousemove', handleMouseMove);
 
         return () => {
             resizeObserver.disconnect();
             window.removeEventListener('mousemove', handleMouseMove);
-            observer.disconnect();
+            observerHelper.disconnect();
+            observerIntersection.disconnect();
             cancelAnimationFrame(animationRef.current);
         };
     }, []);
@@ -284,8 +300,8 @@ const ContactCTA = () => {
             <canvas
                 ref={canvasRef}
                 className="absolute inset-0 w-full h-full z-0 pointer-events-none"
-                width={typeof window !== 'undefined' ? window.innerWidth : 1000}
-                height={typeof window !== 'undefined' ? window.innerHeight : 1000}
+                width={1000}
+                height={1000}
             />
 
             <AnimatePresence mode="wait">

@@ -1,0 +1,3 @@
+components/Projects.tsx(342,46): error TS2339: Property 'type' does not exist on type 'FeaturedProject'.
+components/Projects.tsx(348,115): error TS2339: Property 'year' does not exist on type 'FeaturedProject'.
+components/Projects.tsx(348,131): error TS2339: Property 'features' does not exist on type 'FeaturedProject'.

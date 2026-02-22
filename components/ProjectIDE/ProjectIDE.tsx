@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Project, projects } from '@/data/projectData';
 import Sidebar from './Sidebar';
 import MainDisplay from './MainDisplay';
-import { Command, Maximize2, Minimize2, Search, X, Minus } from 'lucide-react';
+import { Command, Maximize2, Minimize2, Search, X, Minus, Menu, Settings } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import SearchOverlay from './SearchOverlay';
 import ProjectFinder from './ProjectFinder';
@@ -30,6 +30,22 @@ export default function ProjectIDE() {
     const [activeView, setActiveView] = useState<'explorer' | 'search' | 'settings' | 'extensions' | null>('explorer');
     const [isThemeSelectorOpen, setIsThemeSelectorOpen] = useState(false);
     const [isHelpOpen, setIsHelpOpen] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+    // Responsive Sidebar Logic
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 1024) {
+                setIsSidebarOpen(false);
+            } else {
+                setIsSidebarOpen(true);
+            }
+        };
+
+        handleResize(); // Initial check
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Derived State
     const activeProject = projects.find(p => p.id === activeProjectId) || null;
@@ -94,7 +110,15 @@ export default function ProjectIDE() {
 
                 {/* Window Controls / Title Bar */}
                 <div className="h-9 bg-[var(--ide-bg-panel)] flex items-center px-4 border-b border-[var(--ide-border)] select-none relative shrink-0">
-                    <div className="flex gap-2 mr-4 group/controls">
+                    <div className="flex gap-2 mr-4 group/controls shrink-0">
+                        {/* Mobile Sidebar Toggle */}
+                        <button
+                            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                            className="lg:hidden p-1 text-[var(--ide-fg-secondary)] hover:text-[var(--ide-fg-primary)] hover:bg-[var(--ide-bg-workspace)] rounded transition-colors mr-1"
+                        >
+                            <Menu size={16} />
+                        </button>
+
                         <div
                             onClick={handleHome}
                             className="w-3 h-3 rounded-full bg-red-500/20 hover:bg-red-500 transition-colors cursor-pointer flex items-center justify-center border border-red-500/10"
@@ -111,7 +135,7 @@ export default function ProjectIDE() {
                         </div>
                         <div
                             onClick={toggleFullscreen}
-                            className="w-3 h-3 rounded-full bg-green-500/20 hover:bg-green-500 transition-colors cursor-pointer flex items-center justify-center border border-green-500/10"
+                            className="hidden sm:flex w-3 h-3 rounded-full bg-green-500/20 hover:bg-green-500 transition-colors cursor-pointer items-center justify-center border border-green-500/10"
                             title="Maximize (Toggle Fullscreen)"
                         >
                             <Maximize2 size={6} className="opacity-0 group-hover/controls:opacity-100 text-green-900 font-bold" />
@@ -129,7 +153,14 @@ export default function ProjectIDE() {
                     </div>
 
                     {/* Right Side Actions */}
-                    <div className="w-16 flex items-center justify-end">
+                    <div className="flex items-center justify-end gap-1">
+                        <button
+                            onClick={() => setIsThemeSelectorOpen(!isThemeSelectorOpen)}
+                            className="lg:hidden p-1.5 text-[var(--ide-fg-secondary)] hover:text-[var(--ide-fg-primary)] hover:bg-[var(--ide-bg-workspace)] rounded-md transition-colors"
+                            title="Themes"
+                        >
+                            <Settings size={14} />
+                        </button>
                         <button
                             onClick={() => setIsHelpOpen(true)}
                             className="p-1.5 text-[var(--ide-fg-secondary)] hover:text-[var(--ide-fg-primary)] hover:bg-[var(--ide-bg-workspace)] rounded-md transition-colors"
@@ -145,26 +176,40 @@ export default function ProjectIDE() {
 
                     {/* Sidebar Container */}
                     <AnimatePresence initial={false} mode="popLayout">
-                        <motion.div
-                            initial={{ width: 0, opacity: 0 }}
-                            animate={{
-                                width: (activeView === 'explorer' || activeView === 'extensions') ? 260 : 0,
-                                opacity: (activeView === 'explorer' || activeView === 'extensions') ? 1 : 0
-                            }}
-                            transition={{ duration: 0.2, ease: "easeInOut" }}
-                            className="h-full border-r border-[var(--ide-border)] bg-[var(--ide-bg-sidebar)] flex-shrink-0 overflow-hidden"
-                        >
-                            <div className="w-[260px] h-full"> {/* Inner width fixed to prevent squishing */}
-                                {activeView === 'extensions' ? (
-                                    <ExtensionsSidebar />
-                                ) : (
-                                    <Sidebar
-                                        onSelectProject={handleSelectProject}
-                                        currentProjectId={activeProjectId}
-                                    />
-                                )}
-                            </div>
-                        </motion.div>
+                        {isSidebarOpen && (activeView === 'explorer' || activeView === 'extensions') && (
+                            <>
+                                {/* Mobile Backdrop */}
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    onClick={() => setIsSidebarOpen(false)}
+                                    className="lg:hidden fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[35]"
+                                />
+                                <motion.div
+                                    initial={{ width: 0, x: -260, opacity: 0 }}
+                                    animate={{
+                                        width: 260,
+                                        x: 0,
+                                        opacity: 1
+                                    }}
+                                    exit={{ width: 0, x: -260, opacity: 0 }}
+                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                    className="h-full border-r border-[var(--ide-border)] bg-[var(--ide-bg-sidebar)] flex-shrink-0 overflow-hidden absolute lg:relative z-40"
+                                >
+                                    <div className="w-[260px] h-full"> {/* Inner width fixed to prevent squishing */}
+                                        {activeView === 'extensions' ? (
+                                            <ExtensionsSidebar />
+                                        ) : (
+                                            <Sidebar
+                                                onSelectProject={handleSelectProject}
+                                                currentProjectId={activeProjectId}
+                                            />
+                                        )}
+                                    </div>
+                                </motion.div>
+                            </>
+                        )}
                     </AnimatePresence>
 
                     {/* Editor / Idle Area */}

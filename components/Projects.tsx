@@ -7,89 +7,16 @@ import { motion } from 'framer-motion';
 import { Github, ExternalLink, ArrowRight, Layers, Layout, Zap } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useGlobalData } from '@/context/GlobalContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 // --- Project Data ---
-const projects = [
-    {
-        "id": "feat-1",
-        "title": "Ekovym",
-        "subtitle": "Developer Productivity Suite",
-        "description": "A developer-focused platform designed to streamline workflows with a strong emphasis on modern UI/UX and collaborative modules.",
-        "techStack": ["React.js", "TailwindCSS", "Node.js", "MongoDB"],
-        "category": "Fullstack",
-        "status": "In Progress",
-        "accentColor": "#8A2BE2",
-        "parallaxStrength": 0.15,
-        "githubLink": "https://github.com/mohitlakhara-ind/ekovym",
-        "liveLink": "",
-        "coverImage": "https://raw.githubusercontent.com/mohitlakhara-ind/ekovym/refs/heads/master/ekovym-test-assets/ss07.png",
-        "mockupType": "Desktop"
-    },
-    {
-        "id": "feat-2",
-        "title": "NoteNow",
-        "subtitle": "Cloud-Synced Markdown Editor",
-        "description": "A minimal, intuitive note-taking app featuring real-time synchronization, Firebase integration, and PWA capabilities.",
-        "techStack": ["React.js", "Firebase", "Markdown", "PWA"],
-        "category": "Productivity",
-        "status": "Active",
-        "accentColor": "#FF00FF",
-        "parallaxStrength": 0.25,
-        "githubLink": "https://github.com/mohitlakhara-ind/notes-app",
-        "liveLink": "https://notemenow.vercel.app",
-        "coverImage": "https://raw.githubusercontent.com/mohitlakhara-ind/notes-app/main/ss1.png",
-        "mockupType": "Mobile Focused"
-    },
-    {
-        "id": "feat-3",
-        "title": "SnapNews",
-        "subtitle": "Real-time Intelligence Feed",
-        "description": "Delivering headlines via NewsAPI with advanced filtering, lazy loading, and custom-built responsive UI components.",
-        "techStack": ["React.js", "NewsAPI", "CSS3", "JavaScript"],
-        "category": "API Integration",
-        "status": "Completed",
-        "accentColor": "#00FF41",
-        "parallaxStrength": 0.1,
-        "githubLink": "https://github.com/mohitlakhara-ind/Snap_News",
-        "liveLink": "",
-        "coverImage": "https://raw.githubusercontent.com/mohitlakhara-ind/Snap_News/refs/heads/main/Screenshots/main_genral.png",
-        "mockupType": "Desktop"
-    },
-    {
-        "id": "feat-4",
-        "title": "TxtXpert",
-        "subtitle": "Comprehensive Text Tool",
-        "description": "A versatile text transformation engine for manipulation, extraction, and analysis with a focus on real-time performance.",
-        "techStack": ["React.js", "Bootstrap", "JavaScript"],
-        "category": "Utility",
-        "status": "Active",
-        "accentColor": "#007BFF",
-        "parallaxStrength": 0.2,
-        "githubLink": "https://github.com/mohitlakhara-ind/Txt-Xpert/",
-        "liveLink": "https://codepen.io/mohitlakhara-ind/full/mdNjKee",
-        "coverImage": "https://raw.githubusercontent.com/mohitlakhara-ind/Txt-Xpert/refs/heads/main/TxtXpert%20(3).png",
-        "mockupType": "Desktop"
-    },
-    {
-        "id": "feat-5",
-        "title": "CarBook",
-        "subtitle": "Premium Car Rental UI",
-        "description": "A comprehensive rental experience template with payment gateway simulation and a dynamic booking system.",
-        "techStack": ["HTML5", "SCSS", "JavaScript", "UI/UX"],
-        "category": "Frontend Template",
-        "status": "Active",
-        "accentColor": "#FFD700",
-        "parallaxStrength": 0.3,
-        "githubLink": "https://github.com/mohitlakhara-ind/CarBook",
-        "liveLink": "https://mohitlakhara-ind.github.io/CarBook/",
-        "coverImage": "https://raw.githubusercontent.com/mohitlakhara-ind/CarBook/refs/heads/main/images/CarSS%20(5).jpeg",
-        "mockupType": "Desktop"
-    }
-];
+
 
 const Projects = () => {
+    const { projects: allProjects } = useGlobalData();
+    const projects = allProjects.slice(0, 6);
     const sectionRef = useRef<HTMLElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState<number>(0); // Default to 0 so we always have a color
@@ -406,20 +333,20 @@ const Projects = () => {
                         <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end z-20">
                             {/* Floating Tags */}
                             <div className="absolute top-8 right-8 flex gap-2">
-                                <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-xs font-medium text-white">
+                                <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-xs font-medium text-white transition-colors duration-300">
                                     {project.category}
                                 </span>
                                 <span
-                                    className="px-3 py-1 rounded-full backdrop-blur-md border border-white/10 text-xs font-medium text-black"
+                                    className="px-3 py-1 rounded-full backdrop-blur-md border border-white/10 text-xs font-medium text-black transition-colors duration-300"
                                     style={{ backgroundColor: project.accentColor }}
                                 >
-                                    {project.status}
+                                    {project.type === 'web' ? 'Web Platform' : 'Mobile App'}
                                 </span>
                             </div>
 
                             <div className="transform transition-transform duration-500 group-hover:translate-y-0">
-                                <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-2">{project.title}</h3>
-                                <p className="text-xl text-foreground/80 font-light mb-6">{project.subtitle}</p>
+                                <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-2 drop-shadow-lg">{project.title}</h3>
+                                <p className="text-xl text-foreground/80 font-mono mb-6 drop-shadow-md">[{project.year}] {project.features?.slice(0, 2).join(' • ')}</p>
 
                                 <p className="text-base text-text-secondary max-w-lg mb-8 line-clamp-3 md:line-clamp-none">
                                     {project.description}

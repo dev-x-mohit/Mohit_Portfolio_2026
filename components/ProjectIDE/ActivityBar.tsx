@@ -47,7 +47,7 @@ const ActivityItem = ({ icon: Icon, label, active, onClick }: { icon: any, label
 
 export default function ActivityBar({ activeView, onViewChange, onToggleTheme }: ActivityBarProps) {
     return (
-        <div className="w-12 flex flex-col items-center bg-[var(--ide-bg-activity-bar)] border-r border-[var(--ide-border)] h-full shrink-0 z-20">
+        <div className="hidden lg:flex w-12 flex-col items-center bg-[var(--ide-bg-activity-bar)] border-r border-[var(--ide-border)] h-full shrink-0 z-20">
 
             {/* Top Actions */}
             <div className="flex flex-col gap-0 mt-2">

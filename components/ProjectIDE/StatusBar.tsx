@@ -19,7 +19,7 @@ export default function StatusBar({ project, isFocusMode, onToggleFocus }: Statu
                     <GitBranch size={10} />
                     <span className="font-bold">main*</span>
                 </div>
-                <div className="hidden sm:flex items-center gap-1.5 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-pointer transition-colors opacity-80">
+                <div className="hidden md:flex items-center gap-1.5 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-pointer transition-colors opacity-80">
                     <AlertCircle size={10} />
                     <span>0 Errors</span>
                 </div>

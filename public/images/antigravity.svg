@@ -1,0 +1,10 @@
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" fill="url(#ag-grad)" />
+    <circle cx="12" cy="12" r="3" fill="#1e1e1e" />
+    <defs>
+        <linearGradient id="ag-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#8A2BE2" />
+            <stop offset="1" stopColor="#4169E1" />
+        </linearGradient>
+    </defs>
+</svg>

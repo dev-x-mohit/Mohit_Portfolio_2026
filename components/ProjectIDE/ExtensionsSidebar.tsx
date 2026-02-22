@@ -54,7 +54,7 @@ export default function ExtensionsSidebar() {
             </div>
 
             {/* List */}
-            <div className="flex-1 overflow-y-auto custom-scrollbar">
+            <div className="flex-1 overflow-y-auto custom-scrollbar" data-lenis-prevent>
                 <div className="px-4 py-2 text-[10px] font-bold uppercase text-[var(--ide-fg-secondary)] opacity-70">
                     Most Popular
                 </div>
