@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: 'Mohit Lakhara Portfolio',
     images: [
       {
-        url: '/images/og-image-v4.webp',
+        url: 'https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio/og-home.webp',
         width: 1200,
         height: 630,
         alt: 'Mohit Lakhara Portfolio v4 - Cosmic Cyber Edition',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mohit Lakhara | MERN Stack Developer Portfolio',
     description: "Explore Mohit Lakhara's full-stack development work with React, Node, MongoDB and Cinematic UI/UX design.",
-    images: ['/images/og-image-v4.webp'],
+    images: ['https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio/og-home.webp'],
   },
   icons: {
     icon: [

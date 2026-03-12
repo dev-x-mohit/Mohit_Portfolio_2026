@@ -1,48 +1,110 @@
 import puppeteer from 'puppeteer';
+import { v2 as cloudinary } from 'cloudinary';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { readFileSync } from 'fs';
+import { writeFileSync } from 'fs';
+import * as dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Load .env
+dotenv.config({ path: path.join(__dirname, '..', '.env') });
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_CLOUD_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+    secure: true,
+});
+
+// Pages to capture
+const PAGES = [
+    {
+        id: 'home',
+        path: '/',
+        label: 'Home',
+        publicId: 'portfolio/og-home',
+    },
+    {
+        id: 'about',
+        path: '/about',
+        label: 'About',
+        publicId: 'portfolio/og-about',
+    },
+    {
+        id: 'projects',
+        path: '/projects',
+        label: 'Projects',
+        publicId: 'portfolio/og-projects',
+    },
+    {
+        id: 'contact',
+        path: '/contact',
+        label: 'Contact',
+        publicId: 'portfolio/og-contact',
+    },
+];
+
+const BASE_URL = 'https://mohitlakhara.vercel.app';
+const VIEWPORT = { width: 1200, height: 630 };
+
+async function uploadToCloudinary(filePath, publicId) {
+    console.log(`  ☁  Uploading to Cloudinary (${publicId})...`);
+    const result = await cloudinary.uploader.upload(filePath, {
+        public_id: publicId,
+        overwrite: true,
+        format: 'webp',
+        transformation: [{ width: 1200, height: 630, crop: 'fill' }],
+    });
+    return result.secure_url;
+}
+
 async function capture() {
-    console.log('Starting Puppeteer...');
+    console.log('\n🚀 Starting Puppeteer screenshot + Cloudinary upload...\n');
+
     const browser = await puppeteer.launch({
         headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
-    const page = await browser.newPage();
+    const results = {};
 
-    // Set viewport to a standard desktop size for OpenGraph images
-    await page.setViewport({ width: 1200, height: 630 });
+    for (const pg of PAGES) {
+        const url = `${BASE_URL}${pg.path}`;
+        const outputPath = path.join(
+            __dirname, '..', 'public', 'images', `og-${pg.id}.webp`
+        );
 
-    // We'll capture the live prod URL, or the local build if needed.
-    // Using the canonical URL for the screenshot:
-    const targetUrl = 'https://mohitlakhara.vercel.app';
-    console.log(`Navigating to ${targetUrl}...`);
+        console.log(`📸 [${pg.label}] Navigating to ${url}`);
+        const page = await browser.newPage();
+        await page.setViewport(VIEWPORT);
+        await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
 
-    // Wait until network is idle to ensure animations/fonts load
-    await page.goto(targetUrl, { waitUntil: 'networkidle0', timeout: 60000 });
+        // Extra wait for animations/fonts to settle
+        await new Promise(r => setTimeout(r, 4000));
 
-    // Wait an extra 3 seconds for any GSAP/Framer Motion entrance animations to settle
-    console.log('Waiting for enter animations to finish...');
-    await new Promise(r => setTimeout(r, 3000));
+        await page.screenshot({ path: outputPath, type: 'webp', quality: 90 });
+        await page.close();
+        console.log(`  ✅ Screenshot saved: ${outputPath}`);
 
-    const outputPath = path.join(__dirname, '..', 'public', 'images', 'og-image-v4.webp');
-
-    console.log(`Capturing screenshot to ${outputPath}...`);
-    await page.screenshot({
-        path: outputPath,
-        type: 'webp',
-        quality: 90
-    });
+        // Upload to Cloudinary
+        const cloudUrl = await uploadToCloudinary(outputPath, pg.publicId);
+        results[pg.id] = cloudUrl;
+        console.log(`  🔗 Cloudinary URL: ${cloudUrl}\n`);
+    }
 
     await browser.close();
-    console.log('Capture complete!');
+
+    // Save URLs to JSON for use in metadata
+    const outputJson = path.join(__dirname, 'og-urls.json');
+    writeFileSync(outputJson, JSON.stringify(results, null, 2));
+    console.log(`\n✨ All done! URLs saved to ${outputJson}`);
+    console.log(JSON.stringify(results, null, 2));
 }
 
 capture().catch(err => {
-    console.error('Error capturing screenshot:', err);
+    console.error('Error:', err);
     process.exit(1);
 });
