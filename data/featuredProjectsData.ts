@@ -17,7 +17,7 @@ export interface FeaturedProject {
 
 export const featuredProjects: FeaturedProject[] = [
     {
-        "id": "feat-1",
+        "id": "feat-6",
         "title": "Nexus",
         "subtitle": "Intelligent Visual Mapping",
         "description": "A premium collaborative platform for transforming complex thoughts into structured visual intelligence. Features an infinite canvas, real-time sync, and AI-powered node generation.",
@@ -32,7 +32,7 @@ export const featuredProjects: FeaturedProject[] = [
         "mockupType": "Desktop"
     },
     {
-        "id": "feat-2",
+        "id": "feat-1",
         "title": "Ekovym",
         "subtitle": "Developer Productivity Suite",
         "description": "A developer-focused platform designed to streamline workflows with a strong emphasis on modern UI/UX and collaborative modules.",
@@ -43,11 +43,11 @@ export const featuredProjects: FeaturedProject[] = [
         "parallaxStrength": 0.15,
         "githubLink": "https://github.com/mohitlakhara-ind/ekovym",
         "liveLink": "",
-        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio_projects/cover_feat-2.png",
+        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612364/portfolio_projects/cover_feat-1.png",
         "mockupType": "Desktop"
     },
     {
-        "id": "feat-3",
+        "id": "feat-2",
         "title": "NoteNow",
         "subtitle": "Cloud-Synced Markdown Editor",
         "description": "A minimal, intuitive note-taking app featuring real-time synchronization, Firebase integration, and PWA capabilities.",
@@ -58,11 +58,11 @@ export const featuredProjects: FeaturedProject[] = [
         "parallaxStrength": 0.25,
         "githubLink": "https://github.com/mohitlakhara-ind/notes-app",
         "liveLink": "https://notemenow.vercel.app",
-        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio_projects/cover_feat-3.png",
+        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612374/portfolio_projects/cover_feat-2.png",
         "mockupType": "Mobile Focused"
     },
     {
-        "id": "feat-4",
+        "id": "feat-3",
         "title": "SnapNews",
         "subtitle": "Real-time Intelligence Feed",
         "description": "Delivering headlines via NewsAPI with advanced filtering, lazy loading, and custom-built responsive UI components.",
@@ -73,11 +73,11 @@ export const featuredProjects: FeaturedProject[] = [
         "parallaxStrength": 0.1,
         "githubLink": "https://github.com/mohitlakhara-ind/Snap_News",
         "liveLink": "",
-        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio_projects/cover_feat-4.png",
+        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio_projects/cover_feat-3.png",
         "mockupType": "Desktop"
     },
     {
-        "id": "feat-5",
+        "id": "feat-4",
         "title": "TxtXpert",
         "subtitle": "Comprehensive Text Tool",
         "description": "A versatile text transformation engine for manipulation, extraction, and analysis with a focus on real-time performance.",
@@ -88,11 +88,11 @@ export const featuredProjects: FeaturedProject[] = [
         "parallaxStrength": 0.2,
         "githubLink": "https://github.com/mohitlakhara-ind/Txt-Xpert/",
         "liveLink": "https://codepen.io/mohitlakhara-ind/full/mdNjKee",
-        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio_projects/cover_feat-5.png",
+        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio_projects/cover_feat-4.png",
         "mockupType": "Desktop"
     },
     {
-        "id": "feat-6",
+        "id": "feat-5",
         "title": "CarBook",
         "subtitle": "Premium Car Rental UI",
         "description": "A comprehensive rental experience template with payment gateway simulation and a dynamic booking system.",
@@ -103,7 +103,7 @@ export const featuredProjects: FeaturedProject[] = [
         "parallaxStrength": 0.3,
         "githubLink": "https://github.com/mohitlakhara-ind/CarBook",
         "liveLink": "https://mohitlakhara-ind.github.io/CarBook/",
-        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1773763966/portfolio_projects/Nexus.png",
+        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612402/portfolio_projects/cover_feat-5.png",
         "mockupType": "Desktop"
     }
 ];
