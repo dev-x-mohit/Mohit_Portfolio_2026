@@ -51,14 +51,14 @@ export const timelineData: TimelineItem[] = [
         date: '2025',
         title: 'Freelance Developer',
         subtitle: 'Various Clients',
-        description: 'Delivered 4-5 high-impact projects across web and mobile platforms. Specialized in creating custom solutions tailored to client needs, ensuring scalable and performant architecture.',
+        description: 'Delivered high-impact freelance projects across web platforms, including Gudgig, a full-stack job portal and freelancer marketplace. Specialized in scalable product architecture, real-time features, payment flows, and production deployment across Hostinger and VPS infrastructure.',
         icon: <Briefcase width={16} height={16} />,
         color: 'text-accent-action',
         borderColor: 'border-accent-action',
         bgColor: 'bg-accent-action',
         details: [
             { label: 'Projects', value: '4-5 Delivered' },
-            { label: 'Stack', value: 'Web & App' }
+            { label: 'Highlight', value: 'Gudgig' }
         ]
     },
     {

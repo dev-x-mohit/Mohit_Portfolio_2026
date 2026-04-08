@@ -19,9 +19,51 @@ export interface Project {
   };
   type: 'web' | 'mobile';
   features: string[];
+  screenshots?: string[];
 }
 
 export const projects: Project[] = [
+  {
+    "id": "feat-7",
+    "title": "Gudgig",
+    "year": "2026",
+    "category": "Freelance Fullstack",
+    "summary": "A freelance full-stack job portal and freelancer marketplace with bidding, real-time notifications, admin analytics, and production deployment across Hostinger and a VPS.",
+    "description": "# Gudgig: Full-Stack Job Portal & Freelancer Marketplace\n\n## Executive Summary\nGudgig is a production-grade freelancer marketplace and lead-based job portal built for real-world hiring, bidding, and gig discovery workflows. The platform enables users to browse gigs, unlock contact details, place bids, save jobs, manage profiles, track payments, and receive real-time updates. It includes separate experiences for public users, authenticated freelancers, clients, and administrators, making it a complete marketplace system rather than a simple listings site.\n\n---\n\n## Marketplace Flows & User Experience\n\nThe platform was designed around multi-role workflows. Freelancers can explore leads, place bids, manage saved gigs, and maintain their profiles, while gig seekers can publish opportunities and manage responses. The admin side includes controls for users, gigs, bids, payment logs, fee configuration, announcements, notifications, and platform analytics.\n\n### Real-Time Interaction\nGudgig uses authenticated Socket.IO connections for live notifications and platform events. Push notifications are also integrated through Web Push so users stay informed about bids, updates, and account activity beyond the active session.\n\n### Conversion-Oriented Lead Unlocking\nA core business workflow is the contact-details unlock flow for leads and gigs. This allows the platform to support monetized lead access alongside traditional bidding and job application patterns.\n\n---\n\n## Full-Stack Architecture\n\nThe frontend is built with **Next.js 15**, **React 19**, **TypeScript**, **Tailwind CSS 4**, **Radix UI**, **Framer Motion**, and **Chart.js** for dashboard analytics. The backend runs as a separate **Node.js** and **Express.js** API with **MongoDB**, **Mongoose**, **JWT authentication**, **Redis**, **Cloudinary**, **Nodemailer**, **Twilio**, and **Socket.IO**.\n\n### Core Platform Modules\nThe system includes job and gig listings, bid management, saved jobs and gigs, payment tracking, testimonials, announcements, support flows, metrics endpoints, cron-based automations, caching, and error monitoring. Payment handling is integrated with **Razorpay**, with backend support prepared for **Stripe** and **PayPal**.\n\n### Operational Reliability\nTo support production usage, the platform includes health monitoring, metrics endpoints, scheduled cron jobs, caching layers, and error tracking. These pieces help keep both the user-facing marketplace and the admin dashboard stable under active use.\n\n---\n\n## Deployment & Hosting\n\nGudgig was deployed with a split hosting architecture. The **frontend is hosted on Hostinger**, while the **backend is deployed on a VPS**. Production routing is managed through **Nginx**, and server deployment and maintenance are handled over **SSH**. The project also includes **Docker** and **Docker Compose** configuration for container-based deployment workflows.\n\n---\n\n## My Role\n\nThis was delivered as a freelance full-stack project. I handled the platform architecture, responsive frontend development, dashboard and admin workflows, backend APIs, authentication, database models, real-time notifications, analytics modules, payment flows, and production deployment. I also configured the frontend on Hostinger and deployed the backend to a VPS with Nginx and SSH-based server operations.",
+    "techStack": [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Socket.IO"
+    ],
+    "accentColor": "#14B8A6",
+    "githubLink": "",
+    "liveLink": "https://gudgig.com",
+    "coverImage": "/projects/Gudgig-home.webp",
+    "type": "web",
+    "stats": {
+      "commits": 120,
+      "stars": 0,
+      "topLanguage": "TypeScript",
+      "issues": 0
+    },
+    "features": [
+      "Gig and Job Bidding Flow",
+      "Admin Dashboard and Analytics",
+      "Real-time Socket.IO Notifications",
+      "Hostinger Frontend with VPS Backend Deployment"
+    ],
+    "screenshots": [
+      "/projects/Gudgig-home.webp",
+      "/projects/Gudgig-mid.webp",
+      "/projects/Gudgig-deep.webp"
+    ],
+    "codeSnippet": "// Authenticated notification bootstrap\nconst socket = io(API_BASE_URL, {\n  auth: { token: accessToken }\n});\n\nsocket.on('notification:new', (payload) => {\n  setNotifications(prev => [payload, ...prev]);\n});"
+  },
   {
     "id": "feat-1",
     "title": "Ekovym",
