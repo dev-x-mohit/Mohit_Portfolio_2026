@@ -932,39 +932,5 @@ export const projects: Project[] = [
       "Debt Minimization Graph"
     ],
     "codeSnippet": "// Express API route for receipt OCR parsing\nrouter.post('/ocr', upload.single('file'), async (req, res) => {\n  const result = await ocrService.parseReceipt(req.file.buffer);\n  res.json({ merchant: result.merchant, total: result.total, items: result.items });\n});"
-  },
-  {
-    "id": "feat-10",
-    "title": "Storvana",
-    "year": "2026",
-    "category": "Fullstack",
-    "summary": "Premium Medusa.js-powered mobile commerce app with offline wishlists and debounced search cache.",
-    "description": "# Storvana: Premium Mobile Commerce App with Medusa.js\n\n## Executive Summary\nStorvana is a luxury-themed mobile commerce application built on the Medusa.js v2 open-commerce engine. The app features a warm-amber dark mode layout with fluid physics-based animations. It integrates offline-first support including AsyncStorage-persisted wishlists and debounced search with query history.\n\n## Core Capabilities\n- **Medusa.js v2 Integration**: Complete mobile client interface for products, categorization, checkout workflows, and user orders.\n- **Offline Wishlist**: Local storage persistence featuring spring-animated actions and automatic price-drop indicators (🔥 -37%).\n- **Smart Search Caching**: Caches search query histories locally and generates trending product tags automatically from user actions.",
-    "techStack": [
-      "React Native",
-      "TypeScript",
-      "Medusa.js v2",
-      "React Query",
-      "AsyncStorage",
-      "Reanimated"
-    ],
-    "accentColor": "#F59E0B",
-    "githubLink": "https://github.com/mohitlakhara-ind/storvana",
-    "liveLink": "",
-    "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612402/portfolio_projects/cover_feat-5.png",
-    "type": "mobile",
-    "stats": {
-      "commits": 48,
-      "stars": 6,
-      "topLanguage": "TypeScript",
-      "issues": 0
-    },
-    "features": [
-      "Medusa.js Checkout",
-      "Offline Wishlist Caching",
-      "Debounced Search Engine",
-      "Smooth Spring Animations"
-    ],
-    "codeSnippet": "// AsyncStorage wish list toggle\nconst toggleWishlist = async (productId) => {\n  const current = await AsyncStorage.getItem('wishlist') || '[]';\n  const list = JSON.parse(current);\n  const next = list.includes(productId) ? list.filter(id => id !== productId) : [...list, productId];\n  await AsyncStorage.setItem('wishlist', JSON.stringify(next));\n};"
   }
 ];

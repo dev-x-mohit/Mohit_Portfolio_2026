@@ -135,20 +135,5 @@ export const featuredProjects: FeaturedProject[] = [
         "liveLink": "https://splitwiser-expense.vercel.app/",
         "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1782020893/portfolio_projects/splitwiser_dashboard.png",
         "mockupType": "Mobile Focused"
-    },
-    {
-        "id": "feat-10",
-        "title": "Storvana",
-        "subtitle": "Premium Mobile Commerce",
-        "description": "A luxury-dark e-commerce mobile app built on the Medusa.js open-commerce engine with an offline-first wishlist and debounced search.",
-        "techStack": ["React Native", "TypeScript", "Medusa.js v2", "React Query", "AsyncStorage", "Reanimated"],
-        "category": "Fullstack",
-        "status": "Active",
-        "accentColor": "#F59E0B",
-        "parallaxStrength": 0.3,
-        "githubLink": "https://github.com/mohitlakhara-ind/storvana",
-        "liveLink": "",
-        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612402/portfolio_projects/cover_feat-5.png",
-        "mockupType": "Mobile Focused"
     }
 ];
