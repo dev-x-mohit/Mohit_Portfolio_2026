@@ -898,22 +898,25 @@ export const projects: Project[] = [
   },
   {
     "id": "feat-9",
-    "title": "WealthTrack",
+    "title": "Splitwiser",
     "year": "2026",
     "category": "Fullstack",
-    "summary": "AI-powered expense splitter mobile application with bill scanner OCR and WhatsApp payment nudges.",
-    "description": "# WealthTrack: AI Expense Splitter & Personal Finance Mobile App\n\n## Executive Summary\nWealthTrack is a dark-themed personal finance and expense splitting mobile application built with React Native and FastAPI. It integrates an AI-powered OCR bill scanner to instantly parse receipt details, reducing manual entry errors. It features expense analytics with animated dashboards and a graph-based debt simplification algorithm to settle group debts in the minimum possible transactions.\n\n## Core Capabilities\n- **OCR Bill Scanner**: Real-time receipt parsing powered by OCR.space API to extract merchant, line items, and totals.\n- **Debt Simplification**: Implementation of transactional graph minimization to reduce the total transfers required to settle debts.\n- **WhatsApp Settlement Nudge**: Custom native share sheet integration to draft and format payment summaries with direct UPI links.",
+    "summary": "AI-powered multi-platform expense splitter with receipt OCR, Splitwise OAuth migration, and graph-based debt simplification.",
+    "description": "# Splitwiser: AI Expense Splitter & Multi-Platform Finance Ecosystem\n\n## Executive Summary\nSplitwiser is a modern, cross-platform expense splitting ecosystem consisting of a dark-themed React Native/Expo mobile application, a React 19 web frontend, and a Node.js/Express API. It integrates an AI-powered OCR bill scanner to instantly parse receipt details, a secure Splitwise OAuth import tool to migrate existing groups and balances, and a graph-based debt simplification algorithm to settle group debts in the minimum possible transactions.\n\n## Core Capabilities\n- **OCR Bill Scanner**: Real-time receipt parsing powered by OCR.space API to extract merchant, line items, and totals.\n- **Splitwise OAuth Import**: Seamless data migration enabling users to authenticate with Splitwise, fetch active groups, select specific groups, and sync their balances directly into Splitwiser.\n- **Debt Simplification**: Transactional graph minimization using custom heuristics to reduce the total transfers required to settle debts.\n- **Multi-Platform UI**: Beautiful glassmorphic UI styled with Tailwind CSS v4 on the web client, and Poppins typography on the mobile app.\n- **WhatsApp Settlement Nudge**: Custom native share sheet integration to draft and format payment summaries with direct UPI links.",
     "techStack": [
       "React Native",
-      "Expo SDK",
-      "TypeScript",
-      "FastAPI",
+      "React 19",
+      "Tailwind CSS v4",
+      "Vite",
+      "Node.js",
+      "Express",
       "MongoDB",
-      "OCR.space API"
+      "Firebase Auth",
+      "Splitwise API"
     ],
     "accentColor": "#7C3AED",
-    "githubLink": "https://github.com/mohitlakhara-ind/wealthtrack",
-    "liveLink": "",
+    "githubLink": "https://github.com/mohitlakhara-ind/splitsmart",
+    "liveLink": "https://web-gz8lisyvm-mohitlakhara-inds-projects.vercel.app",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612374/portfolio_projects/cover_feat-2.png",
     "type": "mobile",
     "stats": {
@@ -923,12 +926,12 @@ export const projects: Project[] = [
       "issues": 1
     },
     "features": [
-      "OCR Receipt Parser",
-      "Debt Minimization Graph",
-      "WhatsApp Shared Settlements",
-      "Google OAuth"
+      "React 19 Web App & Expo Mobile",
+      "Splitwise OAuth Data Import",
+      "OCR Receipt Auto-Parsing",
+      "Debt Minimization Graph"
     ],
-    "codeSnippet": "// OCR scan receipt API route\n@app.post(\"/api/ocr\")\ndef scan_receipt(file: UploadFile = File(...)):\n    result = ocr_service.parse_receipt(file.file.read())\n    return {\"merchant\": result.merchant, \"total\": result.total, \"items\": result.items}"
+    "codeSnippet": "// Express API route for receipt OCR parsing\nrouter.post('/ocr', upload.single('file'), async (req, res) => {\n  const result = await ocrService.parseReceipt(req.file.buffer);\n  res.json({ merchant: result.merchant, total: result.total, items: result.items });\n});"
   },
   {
     "id": "feat-10",

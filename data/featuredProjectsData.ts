@@ -123,16 +123,16 @@ export const featuredProjects: FeaturedProject[] = [
     },
     {
         "id": "feat-9",
-        "title": "WealthTrack",
-        "subtitle": "AI Expense Splitter Mobile App",
-        "description": "A modern, dark-themed expense splitting mobile app with AI-powered bill scanning, expense analytics, and one-tap settlement reminders.",
-        "techStack": ["React Native", "Expo SDK", "TypeScript", "FastAPI", "MongoDB", "OCR.space API"],
+        "title": "Splitwiser",
+        "subtitle": "AI Expense Splitter Mobile & Web App",
+        "description": "A modern expense splitting platform with a React Native mobile app and a React 19 web frontend. Features receipt OCR, Splitwise OAuth data migration, and instant WhatsApp reminders.",
+        "techStack": ["React Native", "React 19", "Vite", "Tailwind CSS v4", "Node.js", "Express", "MongoDB", "Firebase Auth", "Splitwise API"],
         "category": "Fullstack",
         "status": "Active",
-        "accentColor": "#7C3AED",
+        "accentColor": "#7C3AED", // Violet matching Splitwiser primary theme
         "parallaxStrength": 0.25,
-        "githubLink": "https://github.com/mohitlakhara-ind/wealthtrack",
-        "liveLink": "",
+        "githubLink": "https://github.com/mohitlakhara-ind/splitsmart",
+        "liveLink": "https://splitwiser-expense.vercel.app/",
         "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612374/portfolio_projects/cover_feat-2.png",
         "mockupType": "Mobile Focused"
     },
