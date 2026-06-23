@@ -1,5 +1,5 @@
 'use client';
-import { OpenNewWindow, Cpu, MultiplePages, Flash, Play, Home, UserCircle, Terminal as TerminalIcon, Collapse, Expand } from 'iconoir-react';
+import { OpenNewWindow, Cpu, MultiplePages, Flash, Play, Home, UserCircle, Terminal as TerminalIcon, Collapse, Expand, Github, Download } from 'iconoir-react';
 
 
 
@@ -164,6 +164,23 @@ export default function MainDisplay({ activeProject, onSelectProject, onSelectTh
                                     <p className="text-lg md:text-xl text-[var(--ide-fg-primary)] opacity-90 max-w-3xl leading-relaxed font-medium">
                                         {activeProject.summary}
                                     </p>
+                                    <div className="flex flex-wrap gap-4 mt-8">
+                                        {activeProject.githubLink && (
+                                            <Link href={activeProject.githubLink} target="_blank" className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--ide-border)] bg-[var(--ide-bg-panel)] hover:bg-[var(--ide-selection)] transition-colors text-[var(--ide-fg-primary)] text-sm font-semibold">
+                                                <Github width={16} height={16} /> Source Code
+                                            </Link>
+                                        )}
+                                        {activeProject.liveLink && (
+                                            <Link href={activeProject.liveLink} target="_blank" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--ide-accent)] text-white hover:bg-[var(--ide-accent)]/90 transition-colors text-sm font-semibold shadow-md">
+                                                <OpenNewWindow width={16} height={16} /> Live Demo
+                                            </Link>
+                                        )}
+                                        {activeProject.apkLink && (
+                                            <Link href={activeProject.apkLink} target="_blank" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#3DDC84] text-black hover:bg-[#3DDC84]/90 transition-colors text-sm font-semibold shadow-md">
+                                                <Download width={16} height={16} /> Download APK
+                                            </Link>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
 

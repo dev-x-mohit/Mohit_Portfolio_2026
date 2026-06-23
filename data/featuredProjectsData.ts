@@ -13,16 +13,49 @@ export interface FeaturedProject {
     liveLink: string;
     coverImage: string;
     mockupType: string;
+    apkLink?: string;
 }
 
 export const featuredProjects: FeaturedProject[] = [
+    {
+        "id": "feat-10",
+        "title": "Soloflow",
+        "subtitle": "AI Billing SaaS",
+        "description": "A production-ready SaaS application for freelancers to manage clients, projects, time logs, and invoices — with Razorpay payment integration and GPT-4o AI proposal generation.",
+        "techStack": ["Next.js", "Prisma", "NextAuth", "Razorpay"],
+        "category": "Mobile Apps",
+        "status": "Active",
+        "accentColor": "#000000",
+        "parallaxStrength": 0.2,
+        "githubLink": "https://github.com/mohitlakhara-ind/soloflow",
+        "liveLink": "https://soloflow-invoice.vercel.app",
+        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1781679012/portfolio_projects/soloflow/dashboard_dark.png",
+        "mockupType": "Desktop",
+        "apkLink": "#"
+    },
+    {
+        "id": "feat-9",
+        "title": "Splitwiser",
+        "subtitle": "Expense Splitter",
+        "description": "AI-powered multi-platform expense splitter with receipt OCR, Splitwise OAuth migration, and graph-based debt simplification.",
+        "techStack": ["React Native", "Express", "Tailwind", "OCR"],
+        "category": "Mobile Apps",
+        "status": "Active",
+        "accentColor": "#7C3AED",
+        "parallaxStrength": 0.2,
+        "githubLink": "https://github.com/mohitlakhara-ind/splitsmart",
+        "liveLink": "https://web-gz8lisyvm-mohitlakhara-inds-projects.vercel.app",
+        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612374/portfolio_projects/cover_feat-2.png",
+        "mockupType": "Desktop",
+        "apkLink": "#"
+    },
     {
         "id": "feat-6",
         "title": "Nexus",
         "subtitle": "Intelligent Visual Mapping",
         "description": "A premium collaborative platform for transforming complex thoughts into structured visual intelligence. Features an infinite canvas, real-time sync, and AI-powered node generation.",
         "techStack": ["React 19", "React Flow", "Tailwind CSS v4", "Socket.io"],
-        "category": "Fullstack",
+        "category": "Web Platforms",
         "status": "Active",
         "accentColor": "#8B5CF6",
         "parallaxStrength": 0.2,
@@ -37,7 +70,7 @@ export const featuredProjects: FeaturedProject[] = [
         "subtitle": "Developer Productivity Suite",
         "description": "A developer-focused platform designed to streamline workflows with a strong emphasis on modern UI/UX and collaborative modules.",
         "techStack": ["React.js", "TailwindCSS", "Node.js", "MongoDB"],
-        "category": "Fullstack",
+        "category": "Web Platforms",
         "status": "In Progress",
         "accentColor": "#8A2BE2",
         "parallaxStrength": 0.15,
@@ -52,7 +85,7 @@ export const featuredProjects: FeaturedProject[] = [
         "subtitle": "Cloud-Synced Markdown Editor",
         "description": "A minimal, intuitive note-taking app featuring real-time synchronization, Firebase integration, and PWA capabilities.",
         "techStack": ["React.js", "Firebase", "Markdown", "PWA"],
-        "category": "Fullstack",
+        "category": "Web Platforms",
         "status": "Active",
         "accentColor": "#FF00FF",
         "parallaxStrength": 0.25,
@@ -67,7 +100,7 @@ export const featuredProjects: FeaturedProject[] = [
         "subtitle": "Real-time Intelligence Feed",
         "description": "Delivering headlines via NewsAPI with advanced filtering, lazy loading, and custom-built responsive UI components.",
         "techStack": ["React.js", "NewsAPI", "CSS3", "JavaScript"],
-        "category": "Frontend Web",
+        "category": "Frontend Projects",
         "status": "Completed",
         "accentColor": "#00FF41",
         "parallaxStrength": 0.1,
@@ -82,7 +115,7 @@ export const featuredProjects: FeaturedProject[] = [
         "subtitle": "Comprehensive Text Tool",
         "description": "A versatile text transformation engine for manipulation, extraction, and analysis with a focus on real-time performance.",
         "techStack": ["React.js", "Bootstrap", "JavaScript"],
-        "category": "Frontend Web",
+        "category": "Algorithms & Utilities",
         "status": "Active",
         "accentColor": "#007BFF",
         "parallaxStrength": 0.2,
@@ -97,7 +130,7 @@ export const featuredProjects: FeaturedProject[] = [
         "subtitle": "Premium Car Rental UI",
         "description": "A comprehensive rental experience template with payment gateway simulation and a dynamic booking system.",
         "techStack": ["HTML5", "SCSS", "JavaScript", "UI/UX"],
-        "category": "UI-UX",
+        "category": "Frontend Projects",
         "status": "Active",
         "accentColor": "#FFD700",
         "parallaxStrength": 0.3,
@@ -105,35 +138,5 @@ export const featuredProjects: FeaturedProject[] = [
         "liveLink": "https://mohitlakhara-ind.github.io/CarBook/",
         "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612402/portfolio_projects/cover_feat-5.png",
         "mockupType": "Desktop"
-    },
-    {
-        "id": "feat-8",
-        "title": "Soloflow",
-        "subtitle": "The Ultimate AI-Powered Freelancer OS",
-        "description": "An enterprise-grade SaaS application for freelancers to manage clients, projects, time logs, and automated invoicing. Features secure Razorpay payment integration and an advanced GPT-4o AI proposal writer.",
-        "techStack": ["Next.js", "PostgreSQL", "Prisma", "NextAuth v5", "Razorpay", "OpenAI GPT-4o", "Tailwind CSS"],
-        "category": "Fullstack",
-        "status": "Active",
-        "accentColor": "#3B82F6",
-        "parallaxStrength": 0.2,
-        "githubLink": "https://github.com/mohitlakhara-ind/soloflow",
-        "liveLink": "https://soloflow-invoice.vercel.app/",
-        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1781679012/portfolio_projects/soloflow/dashboard_dark.png",
-        "mockupType": "Desktop"
-    },
-    {
-        "id": "feat-9",
-        "title": "Splitwiser",
-        "subtitle": "AI Expense Splitter Mobile & Web App",
-        "description": "A modern expense splitting platform with a React Native mobile app and a React 19 web frontend. Features receipt OCR, Splitwise OAuth data migration, and instant WhatsApp reminders.",
-        "techStack": ["React Native", "React 19", "Vite", "Tailwind CSS v4", "Node.js", "Express", "MongoDB", "Firebase Auth", "Splitwise API"],
-        "category": "Fullstack",
-        "status": "Active",
-        "accentColor": "#7C3AED", // Violet matching Splitwiser primary theme
-        "parallaxStrength": 0.25,
-        "githubLink": "https://github.com/mohitlakhara-ind/splitsmart",
-        "liveLink": "https://splitwiser-expense.vercel.app/",
-        "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1782020893/portfolio_projects/splitwiser_dashboard.png",
-        "mockupType": "Mobile Focused"
     }
 ];

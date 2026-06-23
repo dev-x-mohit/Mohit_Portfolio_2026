@@ -1,5 +1,5 @@
 'use client';
-import { Github, OpenNewWindow, ArrowRight, MultiplePages, LayoutLeft, Flash } from 'iconoir-react';
+import { Github, OpenNewWindow, ArrowRight, MultiplePages, LayoutLeft, Flash, Download } from 'iconoir-react';
 
 
 import React, { useRef, useLayoutEffect, useState, useEffect } from 'react';
@@ -375,6 +375,11 @@ const Projects = () => {
                                     {project.liveLink && (
                                         <Link href={project.liveLink} target="_blank" className="px-6 py-3 rounded-full bg-foreground text-background font-bold hover:bg-foreground/80 transition-colors flex items-center gap-2">
                                             Visit Site <OpenNewWindow width={16} height={16} />
+                                        </Link>
+                                    )}
+                                    {project.apkLink && (
+                                        <Link href={project.apkLink} target="_blank" className="px-6 py-3 rounded-full bg-[#3DDC84] text-black font-bold hover:bg-[#3DDC84]/80 transition-colors flex items-center gap-2">
+                                            Download APK <Download width={16} height={16} />
                                         </Link>
                                     )}
                                 </div>

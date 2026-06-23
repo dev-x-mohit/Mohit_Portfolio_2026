@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import React from 'react';
-import ProjectIDE from '@/components/ProjectIDE/ProjectIDE';
+import ProjectDirectory from '@/components/ProjectsPage/ProjectDirectory';
 
 export const metadata: Metadata = {
     title: 'Projects | Mohit Lakhara — MERN Stack & React Portfolio',
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     alternates: { canonical: '/projects' },
     openGraph: {
         title: 'Projects | Mohit Lakhara — MERN Stack & React Developer',
-        description: 'Explore the full-stack MERN, Next.js, and React projects built by Mohit Lakhara. Interactive IDE-style portfolio showcase.',
+        description: 'Explore the full-stack MERN, Next.js, and React projects built by Mohit Lakhara. Interactive portfolio showcase.',
         url: 'https://mohitlakhara.vercel.app/projects',
         siteName: 'Mohit Lakhara Portfolio',
         images: [
@@ -32,15 +32,8 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
     return (
-        <main className="relative w-full h-screen bg-[#050505] text-white overflow-hidden">
-            {/* Background Texture */}
-            <div className="fixed inset-0 pointer-events-none opacity-20 z-0">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
-            </div>
-
-            <div className="relative z-10 w-full h-full">
-                <ProjectIDE />
-            </div>
+        <main className="w-full bg-[#050505] text-white">
+            <ProjectDirectory />
         </main>
     );
 }

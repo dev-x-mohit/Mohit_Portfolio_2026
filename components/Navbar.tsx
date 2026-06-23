@@ -65,7 +65,7 @@ export default function Navbar() {
         }
     });
 
-    if (pathname === '/studio' || pathname === '/projects') return null;
+    if (pathname === '/studio') return null;
 
     return (
         <>

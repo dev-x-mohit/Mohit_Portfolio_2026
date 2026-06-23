@@ -112,10 +112,11 @@ export default function ProjectFinder({ isOpen, onClose, onSelectProject }: Proj
                                 <div>
                                     <div className="text-[10px] uppercase font-bold text-[var(--ide-fg-secondary)] mb-3 px-3 tracking-widest opacity-70">Categories</div>
                                     <div className="flex flex-col gap-1">
-                                        <SidebarItem icon={LayoutLeft} label="Web Platforms" active={selectedCategory === 'Web-Platforms'} onClick={() => setSelectedCategory('Web-Platforms')} />
-                                        <SidebarItem icon={SmartphoneDevice} label="Mobile Apps" active={selectedCategory === 'Mobile-Apps'} onClick={() => setSelectedCategory('Mobile-Apps')} />
-                                        <SidebarItem icon={Box} label="Algorithms" active={selectedCategory === 'Algorithms'} onClick={() => setSelectedCategory('Algorithms')} />
-                                        <SidebarItem icon={Code} label="UI / UX" active={selectedCategory === 'UI-UX'} onClick={() => setSelectedCategory('UI-UX')} />
+                                        <SidebarItem icon={LayoutLeft} label="Web Platforms" active={selectedCategory === 'Web Platforms'} onClick={() => setSelectedCategory('Web Platforms')} />
+                                        <SidebarItem icon={Code} label="Frontend Projects" active={selectedCategory === 'Frontend Projects'} onClick={() => setSelectedCategory('Frontend Projects')} />
+                                        <SidebarItem icon={SmartphoneDevice} label="Mobile Apps" active={selectedCategory === 'Mobile Apps'} onClick={() => setSelectedCategory('Mobile Apps')} />
+                                        <SidebarItem icon={Box} label="Algorithms & Utilities" active={selectedCategory === 'Algorithms & Utilities'} onClick={() => setSelectedCategory('Algorithms & Utilities')} />
+                                        <SidebarItem icon={Box} label="Games" active={selectedCategory === 'Games'} onClick={() => setSelectedCategory('Games')} />
                                     </div>
                                 </div>
                             </div>
