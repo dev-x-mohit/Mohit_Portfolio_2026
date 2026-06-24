@@ -33,18 +33,10 @@ const Projects = () => {
     const glowColor = activeColor === '#000000' ? '#555555' : activeColor;
 
     return (
-        <section ref={container} id="projects" className="relative w-full bg-primary-bg transition-colors duration-500">
+        <section ref={container} id="projects" className="relative w-full bg-transparent transition-colors duration-500">
 
-            {/* Dynamic Ambient Background */}
-            <div className="fixed inset-0 pointer-events-none z-0 transition-colors duration-1000 ease-in-out" style={{ backgroundColor: `${glowColor}08` }}>
-                <div
-                    className="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] rounded-full blur-[150px] opacity-30 transition-all duration-1000 ease-in-out"
-                    style={{ backgroundColor: glowColor }}
-                />
-                <div
-                    className="absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] rounded-full blur-[150px] opacity-20 transition-all duration-1000 ease-in-out"
-                    style={{ backgroundColor: glowColor }}
-                />
+            {/* Ambient Background Base */}
+            <div className="fixed inset-0 pointer-events-none z-0 transition-colors duration-1000 ease-in-out" style={{ backgroundColor: `${glowColor}05` }}>
             </div>
 
             {/* Header */}
@@ -80,21 +72,19 @@ const Projects = () => {
 };
 
 const HeaderContent = ({ progress, totalCards }: { progress: MotionValue<number>, totalCards: number }) => {
-    // Header fades out and scales down as the first card scrolls up over it.
+    // Header fades out as the first card scrolls up over it.
     const opacity = useTransform(progress, [0, 0.8 / totalCards], [1, 0]);
-    const y = useTransform(progress, [0, 0.8 / totalCards], [0, -100]);
-    const scale = useTransform(progress, [0, 0.8 / totalCards], [1, 0.9]);
 
     return (
-        <motion.div style={{ opacity, y, scale }} className="w-full flex flex-col items-center justify-center px-4 relative z-10 text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/5 px-4 py-1.5 font-mono text-xs uppercase tracking-wider text-foreground/70 backdrop-blur-sm">
+        <motion.div style={{ transform: 'translateZ(0)' }} className="w-full flex flex-col items-center justify-center px-4 relative z-10 text-center">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/5 px-4 py-1.5 font-mono text-xs uppercase tracking-wider text-foreground/70">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
                 Featured Works
             </div>
 
             <h2 className="mb-6 font-display text-5xl font-bold md:text-7xl text-foreground">
                 Selected <br />
-                <span className="bg-gradient-to-r from-accent-action to-accent-highlight bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] bg-clip-text text-transparent">
                     Projects
                 </span>
             </h2>
@@ -106,7 +96,7 @@ const HeaderContent = ({ progress, totalCards }: { progress: MotionValue<number>
             <motion.div
                 animate={{ y: [0, 12, 0] }}
                 transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-                className="mt-16 flex flex-col items-center gap-3 text-accent-highlight"
+                className="mt-16 flex flex-col items-center gap-3 text-[var(--gold-light)]"
             >
                 <span className="font-mono text-sm uppercase tracking-widest">
                     Scroll
@@ -147,7 +137,7 @@ const Card = ({
     const imageScale = useTransform(scrollYProgress, [0, 1], [1.1, 1]);
     const imageY = useTransform(scrollYProgress, [0, 1], ["10%", "0%"]);
 
-    const accent = project.accentColor === '#000000' ? 'var(--accent-action)' : project.accentColor;
+    const accent = project.accentColor === '#000000' ? 'var(--gold-primary)' : project.accentColor;
     const formattedIndex = (i + 1).toString().padStart(2, '0');
 
     return (
@@ -157,7 +147,7 @@ const Card = ({
                     scale,
                     top: `calc(10vh + ${i * 25}px)`
                 }}
-                className="absolute w-[92vw] h-[80vh] md:w-[75vw] md:h-[75vh] flex flex-col-reverse md:flex-row bg-secondary-bg backdrop-blur-2xl rounded-[2rem] overflow-hidden shadow-2xl origin-top border border-foreground/10 group transition-colors duration-500"
+                className="card-metallic absolute w-[92vw] h-[80vh] md:w-[75vw] md:h-[75vh] flex flex-col-reverse md:flex-row origin-top shadow-2xl group transition-colors duration-500"
             >
                 {/* Overlay for when it stacks behind */}
                 <motion.div
@@ -208,7 +198,7 @@ const Card = ({
                         {/* Links */}
                         <div className="flex items-center gap-4 mt-auto md:mt-0">
                             {project.liveLink && (
-                                <Link href={project.liveLink} target="_blank" className="group/btn flex items-center gap-3 rounded-full bg-foreground px-6 py-3.5 font-bold text-background transition-all hover:scale-105 hover:bg-foreground/90 hover:shadow-xl hover:shadow-foreground/30 pointer-events-auto">
+                                <Link href={project.liveLink} target="_blank" className="group/btn btn-metallic flex items-center gap-3 px-6 py-3.5 pointer-events-auto">
                                     <span>Visit Live</span>
                                     <OpenNewWindow className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" width={18} height={18} />
                                 </Link>
@@ -229,18 +219,14 @@ const Card = ({
 
                 {/* Right/Background Image - 55% Inset */}
                 <div className="relative w-full h-1/2 md:h-full md:w-[55%] p-4 md:p-6 lg:p-8 z-0 flex items-center justify-center">
-                    {/* Glowing shadow behind the image frame */}
-                    <div
-                        className="absolute inset-12 md:inset-20 rounded-full blur-[80px] opacity-20 transition-opacity duration-700 group-hover:opacity-40"
-                        style={{ backgroundColor: accent }}
-                    />
+                    {/* Container for image */}
 
                     <motion.div
                         style={{ scale: imageScale, y: imageY }}
                         className="w-full h-full relative flex items-center justify-center pointer-events-none"
                     >
                         {/* Desktop Mockup (Background Layer) */}
-                        <div 
+                        <div
                             className={`absolute ${project.mobileImage ? 'top-[8%] md:top-[12%] -right-[15%] md:-right-[5%] w-[110%] h-[75%] md:w-[100%] md:h-[70%]' : 'w-full h-[85%] max-h-[600px]'} rounded-xl border border-foreground/20 bg-background shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col pointer-events-auto transition-all duration-700 group-hover:shadow-[0_30px_60px_rgba(0,0,0,0.6)] origin-center z-10 overflow-hidden group-hover:scale-[1.02]`}
                             style={project.mobileImage ? { transform: 'perspective(1200px) rotateY(-4deg) rotateX(2deg)' } : {}}
                         >
@@ -251,12 +237,12 @@ const Card = ({
                                 <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500/80 shadow-sm" />
                                 <div className="mx-auto h-4 w-1/3 rounded bg-foreground/10 hidden md:block" />
                             </div>
-                            
+
                             <div className="relative flex-1 bg-primary-bg overflow-hidden group/desktop">
-                                <Image 
-                                    src={project.coverImage} 
-                                    alt={`${project.title} Desktop Interface`} 
-                                    fill 
+                                <Image
+                                    src={project.coverImage}
+                                    alt={`${project.title} Desktop Interface`}
+                                    fill
                                     className="object-cover object-top transition-transform duration-[1.5s] group-hover/desktop:scale-[1.03]"
                                     sizes="(max-width: 768px) 100vw, 55vw"
                                 />
@@ -266,7 +252,7 @@ const Card = ({
 
                         {/* Mobile Mockup (Foreground Layer) */}
                         {project.mobileImage && (
-                            <div 
+                            <div
                                 className="absolute bottom-[2%] md:bottom-[5%] left-[2%] md:left-[5%] w-[32%] md:w-[30%] lg:w-[26%] h-[60%] md:h-[65%] max-h-[500px] pointer-events-auto transition-all duration-700 group-hover:scale-[1.08] group-hover:-translate-y-4 origin-bottom-left z-20"
                                 style={{ transform: 'perspective(1000px) rotateY(6deg) rotateX(2deg) rotateZ(-1deg)' }}
                             >
@@ -278,10 +264,10 @@ const Card = ({
                                 {/* Actual Phone Frame (With Overflow Hidden) */}
                                 <div className="relative w-full h-full rounded-[1.5rem] md:rounded-[2rem] border-[4px] md:border-[6px] border-foreground/20 bg-background shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] overflow-hidden">
                                     <div className="relative w-full h-full bg-primary-bg overflow-hidden group/mobile">
-                                        <Image 
-                                            src={project.mobileImage} 
-                                            alt={`${project.title} Mobile Interface`} 
-                                            fill 
+                                        <Image
+                                            src={project.mobileImage}
+                                            alt={`${project.title} Mobile Interface`}
+                                            fill
                                             className="object-cover transition-transform duration-[1.5s] group-hover/mobile:scale-[1.05]"
                                             sizes="(max-width: 768px) 50vw, 25vw"
                                         />
@@ -318,27 +304,27 @@ const FinaleCard = ({
                     scale,
                     top: `calc(10vh + ${i * 25}px)`
                 }}
-                className="absolute w-[92vw] h-[80vh] md:w-[75vw] md:h-[75vh] flex flex-col items-center justify-center bg-secondary-bg backdrop-blur-2xl rounded-[2rem] overflow-hidden shadow-2xl origin-top border border-foreground/10 text-center p-6 md:p-12 group transition-colors duration-500"
+                className="card-metallic absolute w-[92vw] h-[80vh] md:w-[75vw] md:h-[75vh] flex flex-col items-center justify-center origin-top shadow-2xl text-center p-6 md:p-12 group transition-colors duration-500"
             >
                 {/* Internal Inset Frame */}
                 <div className="relative w-full h-full flex flex-col items-center justify-center rounded-2xl md:rounded-[2rem] overflow-hidden border border-foreground/5 bg-primary-bg/50 px-4">
 
                     {/* Animated glow background inside the frame */}
                     <div className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-700 pointer-events-none">
-                        <div className="absolute top-1/2 left-1/2 h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 animate-[spin_8s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0deg,var(--accent-action)_360deg)] blur-[100px]" />
+                        <div className="absolute top-1/2 left-1/2 h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 animate-[spin_8s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0deg,var(--gold-primary)_360deg)] blur-[100px]" />
                     </div>
 
-                    <LayoutLeft className="mb-8 h-20 w-20 md:h-24 md:w-24 text-accent-action relative z-10 opacity-80 transition-transform duration-700 group-hover:scale-110" />
+                    <LayoutLeft className="mb-8 h-20 w-20 md:h-24 md:w-24 text-[var(--gold-primary)] relative z-10 opacity-80 transition-transform duration-700 group-hover:scale-110" />
 
                     <h3 className="mb-4 text-4xl md:text-6xl lg:text-7xl font-display font-bold text-foreground relative z-10 tracking-tight">
-                        Explore the <span className="text-accent-action italic">Archives</span>
+                        Explore the <span className="text-[var(--gold-primary)] italic">Archives</span>
                     </h3>
 
                     <p className="mb-10 md:mb-12 max-w-lg text-base md:text-lg text-foreground/60 relative z-10 font-light leading-relaxed">
                         Dive deeper into 20+ more full-stack projects, experimental UI designs, and open‑source contributions.
                     </p>
 
-                    <Link href="/projects" className="relative z-10 group/btn flex items-center gap-3 rounded-full bg-foreground px-8 py-4 font-bold text-background transition-all hover:scale-105 hover:shadow-xl hover:shadow-foreground/30 pointer-events-auto">
+                    <Link href="/projects" className="relative z-10 group/btn btn-metallic flex items-center gap-3 px-8 py-4 pointer-events-auto">
                         <span>View All Projects</span>
                         <ArrowRight className="transition-transform group-hover/btn:translate-x-1" width={20} height={20} />
                     </Link>

@@ -6,12 +6,12 @@ import { Mail, MapPin, ArrowUpRight } from 'iconoir-react';
 
 export default function ContactPageClient() {
     return (
-        <main className="relative min-h-screen w-full bg-background text-foreground overflow-hidden flex flex-col lg:flex-row selection:bg-accent-action/30">
+        <main className="relative min-h-screen w-full bg-background text-foreground overflow-hidden flex flex-col lg:flex-row selection:bg-[var(--gold-primary)]/30">
             {/* Left Column: 40% Width - Dark / Abstract Sidebar */}
             <div className="w-full lg:w-[40%] bg-secondary-bg/50 relative flex flex-col justify-between p-8 md:p-16 lg:p-20 lg:min-h-screen border-b lg:border-b-0 lg:border-r border-border/10 overflow-hidden">
                 {/* Decorative Elements */}
-                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-accent-action/20 via-transparent to-transparent opacity-50" />
-                <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-accent-highlight/20 via-transparent to-transparent opacity-50" />
+                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-[var(--gold-dark)]/20 via-transparent to-transparent opacity-50" />
+                <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-[var(--gold-light)]/20 via-transparent to-transparent opacity-50" />
                 <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.04] mix-blend-overlay" />
 
                 {/* Top Section: Header & Status */}
@@ -22,7 +22,7 @@ export default function ContactPageClient() {
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/50 backdrop-blur-md border border-border/20 text-xs font-bold uppercase tracking-widest self-start"
                     >
-                        <span className="w-2 h-2 rounded-full bg-accent-action animate-pulse" />
+                        <span className="w-2 h-2 rounded-full bg-[var(--gold-primary)] animate-pulse" />
                         Accepting New Projects
                     </motion.div>
 
@@ -33,7 +33,7 @@ export default function ContactPageClient() {
                         className="text-5xl md:text-7xl font-bold font-display tracking-tighter leading-[0.9]"
                     >
                         Hello. <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-br from-accent-action to-accent-highlight">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--gold-dark)] to-[var(--gold-light)]">
                             Let's talk.
                         </span>
                     </motion.h1>
@@ -51,7 +51,7 @@ export default function ContactPageClient() {
                             <h3 className="text-xs font-bold uppercase tracking-widest text-text-secondary mb-2 flex items-center gap-2">
                                 <Mail width={16} height={16} /> Email
                             </h3>
-                            <a href="mailto:mohitlakhara78500@gmail.com" className="text-xl md:text-2xl font-medium text-foreground group-hover:text-accent-action transition-colors">
+                            <a href="mailto:mohitlakhara78500@gmail.com" className="text-xl md:text-2xl font-medium text-foreground group-hover:text-[var(--gold-primary)] transition-colors">
                                 mohitlakhara78500@gmail.com
                             </a>
                         </div>
@@ -78,7 +78,7 @@ export default function ContactPageClient() {
                             { label: 'Instagram', href: 'https://instagram.com/dev_x_mohit' },
                             { label: 'CodePen', href: 'https://codepen.io/mohitlakhara' }
                         ].map((social, i) => (
-                            <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm font-bold uppercase tracking-wider text-text-secondary hover:text-accent-action transition-colors group">
+                            <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm font-bold uppercase tracking-wider text-text-secondary hover:text-[var(--gold-primary)] transition-colors group">
                                 {social.label}
                                 <ArrowUpRight width={14} height={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                             </a>

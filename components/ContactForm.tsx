@@ -45,7 +45,7 @@ const ContactForm = () => {
         }
     };
 
-    const inputClasses = "w-full bg-transparent border-b border-border/20 py-4 outline-none focus:border-accent-action transition-all duration-300 placeholder:text-text-secondary/40 text-2xl font-light text-foreground focus:ring-0";
+    const inputClasses = "w-full bg-transparent border-b border-border/20 py-4 outline-none focus:border-[var(--border)] transition-all duration-300 placeholder:text-text-secondary/40 text-2xl font-light text-foreground focus:ring-0";
 
     return (
         <div className="relative z-10 w-full">
@@ -58,7 +58,7 @@ const ContactForm = () => {
                 className="space-y-12"
             >
                 <div className="space-y-2 group relative">
-                    <label className="text-xs font-bold uppercase tracking-widest text-text-secondary block group-focus-within:text-accent-action transition-colors">
+                    <label className="text-xs font-bold uppercase tracking-widest text-text-secondary block group-focus-within:text-[var(--gold-primary)] transition-colors">
                         01 / What's your name?
                     </label>
                     <div className="relative">
@@ -70,12 +70,12 @@ const ContactForm = () => {
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         />
-                        <div className="absolute bottom-0 left-0 h-[2px] bg-accent-action w-0 group-focus-within:w-full transition-all duration-500 ease-out" />
+                        <div className="absolute bottom-0 left-0 h-[2px] bg-[var(--gold-primary)] w-0 group-focus-within:w-full transition-all duration-500 ease-out" />
                     </div>
                 </div>
 
                 <div className="space-y-2 group relative">
-                    <label className="text-xs font-bold uppercase tracking-widest text-text-secondary block group-focus-within:text-accent-action transition-colors">
+                    <label className="text-xs font-bold uppercase tracking-widest text-text-secondary block group-focus-within:text-[var(--gold-primary)] transition-colors">
                         02 / What's your email address?
                     </label>
                     <div className="relative">
@@ -87,12 +87,12 @@ const ContactForm = () => {
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         />
-                        <div className="absolute bottom-0 left-0 h-[2px] bg-accent-action w-0 group-focus-within:w-full transition-all duration-500 ease-out" />
+                        <div className="absolute bottom-0 left-0 h-[2px] bg-[var(--gold-primary)] w-0 group-focus-within:w-full transition-all duration-500 ease-out" />
                     </div>
                 </div>
 
                 <div className="space-y-2 group relative">
-                    <label className="text-xs font-bold uppercase tracking-widest text-text-secondary block group-focus-within:text-accent-action transition-colors">
+                    <label className="text-xs font-bold uppercase tracking-widest text-text-secondary block group-focus-within:text-[var(--gold-primary)] transition-colors">
                         03 / Tell me about your project
                     </label>
                     <div className="relative">
@@ -104,7 +104,7 @@ const ContactForm = () => {
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         />
-                        <div className="absolute bottom-1 left-0 h-[2px] bg-accent-action w-0 group-focus-within:w-full transition-all duration-500 ease-out" />
+                        <div className="absolute bottom-1 left-0 h-[2px] bg-[var(--gold-primary)] w-0 group-focus-within:w-full transition-all duration-500 ease-out" />
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@ const ContactForm = () => {
                     disabled={status === 'loading'}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full md:w-auto px-10 py-5 mt-4 bg-foreground text-background font-bold text-lg rounded-full hover:bg-accent-action transition-colors duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed group"
+                    className="w-full md:w-auto px-10 py-5 mt-4 btn-metallic flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed group"
                 >
                     <span className="flex items-center gap-2">
                         {status === 'loading' ? (

@@ -33,7 +33,7 @@ export interface SkillCategory {
 export const skillCategories: SkillCategory[] = [
     {
         name: "Frontend",
-        color: "var(--accent-highlight, #00ffff)",
+        color: "#C89A3C",
         positions: {
             mobile: { centerX: 28, centerY: 20 },
             tablet: { centerX: 25, centerY: 25 },
@@ -52,7 +52,7 @@ export const skillCategories: SkillCategory[] = [
     },
     {
         name: "Backend",
-        color: "var(--accent-action, #a855f7)",
+        color: "#B8C1CC",
         positions: {
             mobile: { centerX: 75, centerY: 20 },
             tablet: { centerX: 75, centerY: 25 },
@@ -71,7 +71,7 @@ export const skillCategories: SkillCategory[] = [
     },
     {
         name: "Tools",
-        color: "var(--foreground, #ffffff)",
+        color: "#A8791D",
         positions: {
             mobile: { centerX: 25, centerY: 80 },
             tablet: { centerX: 25, centerY: 75 },
@@ -94,7 +94,7 @@ export const skillCategories: SkillCategory[] = [
     },
     {
         name: "Programming",
-        color: "var(--accent-action, #a855f7)",
+        color: "#CD7F32",
         positions: {
             mobile: { centerX: 75, centerY: 80 },
             tablet: { centerX: 75, centerY: 75 },

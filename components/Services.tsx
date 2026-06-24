@@ -20,9 +20,9 @@ export default function Services() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={isInView ? { opacity: 1, x: 0 } : {}}
                             transition={{ duration: 0.6 }}
-                            className="flex items-center gap-2 mb-2 text-accent-action/60 font-mono text-sm tracking-wider"
+                            className="flex items-center gap-2 mb-2 text-[var(--gold-primary)]/60 font-mono text-sm tracking-wider"
                         >
-                            <span className="w-2 h-2 bg-accent-action rounded-full animate-pulse" />
+                            <span className="w-2 h-2 bg-[var(--gold-primary)] rounded-full animate-pulse" />
                             SYS.MODULES.V3
                         </motion.div>
                         <motion.h2
@@ -31,7 +31,7 @@ export default function Services() {
                             transition={{ duration: 0.6, delay: 0.1 }}
                             className="text-4xl md:text-6xl font-bold font-display tracking-tighter text-primary-text"
                         >
-                            THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-action to-accent-highlight">DATA VAULT</span>
+                            THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)]">DATA VAULT</span>
                         </motion.h2>
                     </div>
 
@@ -73,32 +73,32 @@ function MonolithCard({ service, index }: { service: any, index: number }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group relative h-full bg-secondary-bg/5 border border-white/5 p-8 overflow-hidden hover:bg-secondary-bg/10 transition-colors duration-500"
+            className="card-metallic group h-full p-8"
         >
             {/* Active Border Overlay */}
-            <div className="absolute inset-0 border border-accent-action/0 group-hover:border-accent-action/50 transition-colors duration-500 z-20 pointer-events-none" />
+            <div className="absolute inset-0 border border-[var(--border)]/0 group-hover:border-[var(--border)]/50 transition-colors duration-500 z-20 pointer-events-none" />
 
             {/* Vertical Scanline */}
-            <div className="absolute top-0 left-0 w-1 h-full bg-accent-action/0 group-hover:bg-accent-action transition-colors duration-300" />
+            <div className="absolute top-0 left-0 w-1 h-full bg-[var(--gold-primary)]/0 group-hover:bg-[var(--gold-primary)] transition-colors duration-300" />
 
             {/* Corner Brackets */}
-            <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-white/20 group-hover:border-accent-action transition-colors duration-500" />
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/20 group-hover:border-accent-action transition-colors duration-500" />
+            <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-white/20 group-hover:border-[var(--border)] transition-colors duration-500" />
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/20 group-hover:border-[var(--border)] transition-colors duration-500" />
 
             {/* Background Scanlines (Active State) */}
             <div className="absolute inset-0 bg-[linear-gradient(transparent_2px,_#000_2px)] bg-[length:100%_4px] opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none mix-blend-overlay" />
 
             <div className="relative z-10 flex flex-col h-full">
                 <div className="flex justify-between items-start mb-8">
-                    <div className="p-3 bg-white/5 rounded-sm text-accent-highlight group-hover:text-accent-action group-hover:bg-accent-action/10 transition-all duration-300">
+                    <div className="p-3 bg-white/5 rounded-sm text-[var(--gold-light)] group-hover:text-[var(--gold-primary)] group-hover:bg-[var(--gold-primary)]/10 transition-all duration-300">
                         <service.icon width={28} height={28} />
                     </div>
-                    <span className="font-mono text-xs text-secondary-text/50 group-hover:text-accent-action transition-colors duration-300">
+                    <span className="font-mono text-xs text-secondary-text/50 group-hover:text-[var(--gold-primary)] transition-colors duration-300">
                         MNLTH-{index.toString().padStart(2, '0')}
                     </span>
                 </div>
 
-                <h3 className="text-2xl font-bold font-display mb-4 text-primary-text group-hover:text-accent-action transition-colors duration-300 tracking-wide">
+                <h3 className="text-2xl font-bold font-display mb-4 text-primary-text group-hover:text-[var(--gold-primary)] transition-colors duration-300 tracking-wide">
                     {service.title.toUpperCase()}
                 </h3>
 
@@ -107,8 +107,8 @@ function MonolithCard({ service, index }: { service: any, index: number }) {
                 </p>
 
                 <div className="mt-auto pt-8 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                    <span className="w-1.5 h-1.5 bg-accent-action rounded-full animate-ping" />
-                    <span className="font-mono text-[10px] text-accent-action uppercase tracking-widest">System Online</span>
+                    <span className="w-1.5 h-1.5 bg-[var(--gold-primary)] rounded-full animate-ping" />
+                    <span className="font-mono text-[10px] text-[var(--gold-primary)] uppercase tracking-widest">System Online</span>
                 </div>
             </div>
         </motion.div>

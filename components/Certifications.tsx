@@ -26,7 +26,7 @@ const CredentialCard = ({ cert, index }: { cert: any, index: number }) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ delay: index * 0.1, duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-            className="group relative flex flex-col h-full rounded-[2rem] border border-border/10 bg-secondary-bg/20 p-8 overflow-hidden backdrop-blur-xl transition-all duration-500 hover:border-accent-action/40 hover:bg-secondary-bg/40 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(96,165,250,0.15)]"
+            className="group card-metallic flex flex-col h-full p-8 transition-all duration-500 hover:border-[var(--gold-primary)] hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(225,193,122,0.15)]"
         >
             {/* Interactive Spotlight Hover Effect */}
             <motion.div

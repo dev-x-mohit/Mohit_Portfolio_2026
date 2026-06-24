@@ -18,7 +18,7 @@ interface CategoryGroup {
 const gearGroups: CategoryGroup[] = [
     {
         title: "Development Environment",
-        icon: <Code className="w-5 h-5 text-accent-highlight" />,
+        icon: <Code className="w-5 h-5 text-[var(--gold-light)]" />,
         items: [
             { name: 'Cursor', detail: 'AI-first code editor, primary daily driver' },
             { name: 'VS Code', detail: 'Secondary editor with Vim motions' },
@@ -27,7 +27,7 @@ const gearGroups: CategoryGroup[] = [
     },
     {
         title: "AI & Automation",
-        icon: <Cpu className="w-5 h-5 text-accent-highlight" />,
+        icon: <Cpu className="w-5 h-5 text-[var(--gold-light)]" />,
         items: [
             { name: 'Lovable', detail: 'Full-stack natural language development' },
             { name: 'Antigravity', detail: 'Autonomous agentic coding assistant' },
@@ -36,7 +36,7 @@ const gearGroups: CategoryGroup[] = [
     },
     {
         title: "Design & UI",
-        icon: <Dashboard className="w-5 h-5 text-accent-highlight" />,
+        icon: <Dashboard className="w-5 h-5 text-[var(--gold-light)]" />,
         items: [
             { name: 'Figma', detail: 'Wireframes, prototyping, and UI design' },
             { name: 'Canva', detail: 'Quick graphics and presentation assets' },
@@ -45,7 +45,7 @@ const gearGroups: CategoryGroup[] = [
     },
     {
         title: "System & Infrastructure",
-        icon: <Terminal className="w-5 h-5 text-accent-highlight" />,
+        icon: <Terminal className="w-5 h-5 text-[var(--gold-light)]" />,
         items: [
             { name: 'macOS', detail: 'Primary development operating system' },
             { name: 'Ubuntu Linux', detail: 'Server deployment and DevOps' },
@@ -54,7 +54,7 @@ const gearGroups: CategoryGroup[] = [
     },
     {
         title: "Workflow & Utilities",
-        icon: <Wrench className="w-5 h-5 text-accent-highlight" />,
+        icon: <Wrench className="w-5 h-5 text-[var(--gold-light)]" />,
         items: [
             { name: 'Arc Browser', detail: 'Development browser with split views' },
             { name: 'Postman', detail: 'API testing and endpoint documentation' },
@@ -63,7 +63,7 @@ const gearGroups: CategoryGroup[] = [
     },
     {
         title: "Fuel",
-        icon: <CoffeeCup className="w-5 h-5 text-accent-highlight" />,
+        icon: <CoffeeCup className="w-5 h-5 text-[var(--gold-light)]" />,
         items: [
             { name: 'Black Coffee', detail: 'Dark roast, mandatory for deep work' },
             { name: 'Spotify', detail: 'Lo-fi beats and synthwave playlists' },
@@ -78,8 +78,8 @@ const ToolChest = () => {
     return (
         <section ref={ref} className="relative w-full bg-background py-32 px-4 sm:px-8 overflow-hidden transition-colors duration-500">
             {/* Ambient Background Glows */}
-            <div className="pointer-events-none absolute top-0 right-0 w-[600px] h-[600px] rounded-[100%] bg-accent-highlight/5 blur-[150px]" />
-            <div className="pointer-events-none absolute bottom-0 left-0 w-[800px] h-[800px] rounded-[100%] bg-accent-action/5 blur-[150px]" />
+            <div className="pointer-events-none absolute top-0 right-0 w-[600px] h-[600px] rounded-[100%] bg-[var(--gold-light)]/5 blur-[150px]" />
+            <div className="pointer-events-none absolute bottom-0 left-0 w-[800px] h-[800px] rounded-[100%] bg-[var(--gold-primary)]/5 blur-[150px]" />
 
             <div className="max-w-5xl mx-auto relative z-10">
                 {/* Header */}
@@ -89,7 +89,7 @@ const ToolChest = () => {
                             initial={{ opacity: 0, y: 16 }}
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.5 }}
-                            className="inline-block text-[10px] font-bold uppercase tracking-[0.4em] text-accent-highlight bg-accent-highlight/10 px-4 py-1.5 rounded-full border border-accent-highlight/20 mb-4"
+                            className="inline-block text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--gold-light)] bg-[var(--gold-light)]/10 px-4 py-1.5 rounded-full border border-[var(--border)]/20 mb-4"
                         >
                             System Configuration
                         </motion.span>
@@ -99,7 +99,7 @@ const ToolChest = () => {
                             transition={{ duration: 0.6, delay: 0.1 }}
                             className="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-foreground"
                         >
-                            Tool <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-action to-accent-highlight italic pr-2">Chest</span>
+                            Tool <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] italic pr-2">Chest</span>
                         </motion.h2>
                     </div>
 
@@ -124,7 +124,7 @@ const ToolChest = () => {
                             className="relative group"
                         >
                             <div className="flex items-center gap-4 mb-6">
-                                <div className="p-3 rounded-xl bg-secondary-bg border border-border/20 shadow-inner group-hover:border-accent-action/50 transition-colors duration-500">
+                                <div className="p-3 rounded-xl bg-secondary-bg border border-border/20 shadow-inner group-hover:border-[var(--border)]/50 transition-colors duration-500">
                                     {group.icon}
                                 </div>
                                 <h3 className="text-2xl font-bold text-foreground font-display tracking-tight">{group.title}</h3>
@@ -135,9 +135,9 @@ const ToolChest = () => {
                                 {group.items.map((item, itemIdx) => (
                                     <div
                                         key={item.name}
-                                        className="relative p-5 rounded-2xl border border-border/10 bg-secondary-bg/20 backdrop-blur-sm overflow-hidden hover:bg-secondary-bg/50 hover:border-accent-action/30 transition-all duration-300"
+                                        className="card-metallic p-5 group/card"
                                     >
-                                        <div className="absolute top-0 left-0 w-1 h-full bg-accent-action/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                                        <div className="absolute top-0 left-0 w-1 h-full bg-[var(--gold-primary)]/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                                         <h4 className="text-lg font-bold text-foreground mb-1 font-mono tracking-tight">{item.name}</h4>
                                         <p className="text-sm text-text-secondary">{item.detail}</p>
                                     </div>

@@ -48,7 +48,7 @@ const TechScroll = () => {
     };
 
     return (
-        <section id="tech" ref={containerRef} className="relative bg-background py-16 md:py-24 lg:py-32 overflow-hidden">
+        <section id="tech" ref={containerRef} className="relative bg-transparent py-16 md:py-24 lg:py-32 overflow-hidden">
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -56,7 +56,7 @@ const TechScroll = () => {
                     viewport={{ once: true }}
                     className="text-center mb-10 md:mb-16"
                 >
-                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-black font-display mb-4 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-accent-action to-accent-highlight">
+                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-black font-display mb-4 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] pr-2 pb-2">
                         The Tech Tree
                     </h2>
                     <p className="text-muted-foreground font-sans text-sm md:text-lg max-w-2xl mx-auto font-medium">
@@ -171,8 +171,8 @@ const TechScroll = () => {
                                 className="absolute top-[50%] left-[50%]"
                                 style={{ transform: 'translate(-50%, -50%)', zIndex: 60 }}
                             >
-                                <div className="w-24 h-24 md:w-28 md:h-28 rounded-full border-[6px] border-emerald-500/50 flex flex-col items-center justify-center bg-background/95 backdrop-blur-xl shadow-[0_0_50px_rgba(16,185,129,0.4)]">
-                                    <span className="text-sm md:text-base font-black text-center leading-tight px-2 bg-clip-text text-transparent bg-gradient-to-br from-emerald-400 to-teal-600">Core Stack</span>
+                                <div className="w-24 h-24 md:w-28 md:h-28 rounded-full border-[6px] border-[var(--gold-primary)]/50 flex flex-col items-center justify-center bg-background/95 backdrop-blur-xl shadow-[0_0_50px_rgba(225,193,122,0.4)]">
+                                    <span className="text-sm md:text-base font-black text-center leading-tight px-2 bg-clip-text text-transparent bg-gradient-to-br from-[var(--gold-light)] to-[var(--gold-dark)]">Core Stack</span>
                                 </div>
                             </div>
 

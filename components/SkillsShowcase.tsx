@@ -36,7 +36,7 @@ const SkillsShowcase = () => {
                     initial={{ opacity: 0, y: 16 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.5 }}
-                    className="block text-xs font-bold uppercase tracking-[0.5em] text-accent-action mb-3"
+                    className="block text-xs font-bold uppercase tracking-[0.5em] text-[var(--gold-primary)] mb-3"
                 >
                     Full Stack
                 </motion.span>
@@ -46,7 +46,7 @@ const SkillsShowcase = () => {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="text-4xl md:text-6xl font-black font-display tracking-tighter mb-4"
                 >
-                    Cosmic <span className="text-accent-action italic">Core</span>
+                    Cosmic <span className="text-[var(--gold-primary)] italic">Core</span>
                 </motion.h2>
                 <motion.p
                     initial={{ opacity: 0 }}
@@ -66,9 +66,9 @@ const SkillsShowcase = () => {
                 className="relative flex items-center justify-center w-[800px] h-[800px] mt-32 md:mt-10 origin-center scale-[0.45] sm:scale-[0.6] md:scale-[0.8] lg:scale-100"
             >
                 {/* Central Core */}
-                <div className="absolute w-32 h-32 rounded-full bg-accent-action/10 border border-accent-action/30 shadow-[0_0_80px_var(--accent-action)] flex items-center justify-center z-10 backdrop-blur-sm">
-                    <div className="w-20 h-20 rounded-full bg-accent-action/20 border border-accent-action/50 flex items-center justify-center animate-pulse">
-                        <div className="w-10 h-10 rounded-full bg-accent-action shadow-[0_0_30px_var(--accent-action)]" />
+                <div className="absolute w-32 h-32 rounded-full bg-[var(--gold-primary)]/10 border border-[var(--border)]/30 shadow-[0_0_80px_var(--gold-primary)] flex items-center justify-center z-10 backdrop-blur-sm">
+                    <div className="w-20 h-20 rounded-full bg-[var(--gold-primary)]/20 border border-[var(--border)]/50 flex items-center justify-center animate-pulse">
+                        <div className="w-10 h-10 rounded-full bg-[var(--gold-primary)] shadow-[0_0_30px_var(--gold-primary)]" />
                     </div>
                 </div>
 
@@ -174,7 +174,7 @@ const SkillsShowcase = () => {
             </motion.div>
 
             {/* Ambient background glow */}
-            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[120px] bg-accent-action/5 mix-blend-screen" />
+            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[120px] bg-[var(--gold-primary)]/5 mix-blend-screen" />
         </section>
     );
 };

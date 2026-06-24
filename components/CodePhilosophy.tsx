@@ -104,7 +104,7 @@ const TextRow = ({ index, scrollYProgress }: { index: number; scrollYProgress: a
                 }}
             >
                 {[...philosophyTerms, ...philosophyTerms, ...philosophyTerms, ...philosophyTerms].map((term, i) => {
-                    const hoverColors = ["hover:text-accent-action", "hover:text-accent-highlight", "hover:text-foreground"];
+                    const hoverColors = ["hover:text-[var(--gold-primary)]", "hover:text-[var(--gold-light)]", "hover:text-foreground"];
                     const hoverColor = hoverColors[i % hoverColors.length];
                     return (
                         <span

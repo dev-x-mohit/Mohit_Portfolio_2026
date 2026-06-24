@@ -103,7 +103,7 @@ export default function ProjectDirectory() {
                         className="max-w-2xl"
                     >
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight text-foreground mb-4 drop-shadow-sm">
-                            Project <span className="bg-gradient-to-r from-accent-action to-accent-highlight bg-clip-text text-transparent">Directory</span>
+                            Project <span className="bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] bg-clip-text text-transparent pr-2 pb-1">Directory</span>
                         </h1>
                         <p className="text-foreground/60 font-sans text-base md:text-lg leading-relaxed">
                             A comprehensive catalog of engineering works, experiments, and production applications. Exploring the intersection of design, performance, and scalable architecture.
@@ -150,8 +150,8 @@ export default function ProjectDirectory() {
                         <button
                             key={cat}
                             onClick={() => setSelectedCategory(cat)}
-                            className={`px-4 py-2 rounded-lg font-mono text-xs whitespace-nowrap transition-all duration-300 ${selectedCategory === cat
-                                ? 'bg-foreground text-background font-bold shadow-[0_0_15px_rgba(var(--accent-action-rgb),0.3)]'
+                            className={`px-4 py-2 rounded-none font-mono text-xs whitespace-nowrap transition-all duration-300 ${selectedCategory === cat
+                                ? 'bg-foreground text-background font-bold shadow-[0_0_15px_rgba(225,193,122,0.3)]'
                                 : 'bg-foreground/5 text-foreground/60 hover:bg-foreground/10 hover:text-foreground border border-foreground/10 hover:border-foreground/20'
                                 }`}
                         >
@@ -305,7 +305,7 @@ export default function ProjectDirectory() {
                                                         {project.summary}
                                                     </p>
 
-                                                    <div className="prose prose-sm prose-invert prose-p:text-foreground/70 prose-headings:text-foreground prose-a:text-accent-highlight prose-strong:text-foreground max-w-none mb-4 transition-all duration-300">
+                                                    <div className="prose prose-sm prose-invert prose-p:text-foreground/70 prose-headings:text-foreground prose-a:text-[var(--gold-light)] prose-strong:text-foreground max-w-none mb-4 transition-all duration-300">
                                                         <ReactMarkdown>
                                                             {project.description.length > 1000 && expandedDescId !== project.id
                                                                 ? project.description.slice(0, 600) + '...'
@@ -319,7 +319,7 @@ export default function ProjectDirectory() {
                                                                 e.stopPropagation();
                                                                 setExpandedDescId(expandedDescId === project.id ? null : project.id);
                                                             }}
-                                                            className="text-accent-action hover:text-accent-highlight font-mono text-xs uppercase tracking-wider mb-8 transition-colors flex items-center gap-1 font-semibold"
+                                                            className="text-[var(--gold-primary)] hover:text-[var(--gold-light)] font-mono text-xs uppercase tracking-wider mb-8 transition-colors flex items-center gap-1 font-semibold"
                                                         >
                                                             {expandedDescId === project.id ? "Show Less" : "Learn More"}
                                                             <NavArrowDown
@@ -340,17 +340,17 @@ export default function ProjectDirectory() {
 
                                                     <div className="flex flex-wrap items-center gap-4">
                                                         {project.liveLink && (
-                                                            <Link href={project.liveLink} target="_blank" className="w-full sm:w-auto justify-center px-6 py-3.5 bg-foreground text-background text-sm font-bold hover:bg-foreground/90 transition-all hover:scale-105 shadow-lg flex items-center gap-2 rounded-full">
+                                                            <Link href={project.liveLink} target="_blank" className="w-full sm:w-auto justify-center px-6 py-3.5 btn-metallic flex items-center gap-2">
                                                                 Visit Site <OpenNewWindow width={16} height={16} />
                                                             </Link>
                                                         )}
                                                         {project.githubLink && (
-                                                            <Link href={project.githubLink} target="_blank" className="w-full sm:w-auto justify-center px-6 py-3.5 bg-foreground/5 text-foreground text-sm font-bold hover:bg-foreground/10 border border-foreground/10 transition-all hover:scale-105 flex items-center gap-2 rounded-full">
+                                                            <Link href={project.githubLink} target="_blank" className="btn-secondary w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 text-sm">
                                                                 Source Code <Github width={16} height={16} />
                                                             </Link>
                                                         )}
                                                         {project.apkLink && project.apkLink !== '#' && (
-                                                            <Link href={project.apkLink} target="_blank" className="w-full sm:w-auto justify-center px-6 py-3.5 bg-emerald-500/10 text-emerald-500 text-sm font-bold hover:bg-emerald-500/20 border border-emerald-500/30 transition-all hover:scale-105 flex items-center gap-2 rounded-full">
+                                                            <Link href={project.apkLink} target="_blank" className="btn-android w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 text-sm">
                                                                 Download APK <Download width={16} height={16} />
                                                             </Link>
                                                         )}
@@ -359,7 +359,7 @@ export default function ProjectDirectory() {
 
                                                 {/* Visuals / Stats inside accordion */}
                                                 <div className="flex flex-col justify-between relative z-10">
-                                                    <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-foreground/10 shadow-2xl mb-8 group/img">
+                                                    <div className="relative w-full aspect-video rounded-none overflow-hidden border border-foreground/10 shadow-2xl mb-8 group/img">
                                                         <Image
                                                             src={project.coverImage}
                                                             alt={project.title}
@@ -371,15 +371,15 @@ export default function ProjectDirectory() {
                                                     </div>
 
                                                     <div className="grid grid-cols-3 gap-4 border-t border-foreground/10 pt-6">
-                                                        <div className="bg-foreground/5 p-4 rounded-lg border border-foreground/5 text-center transition-colors hover:bg-foreground/10">
+                                                        <div className="bg-foreground/5 p-4 rounded-none border border-foreground/5 text-center transition-colors hover:bg-foreground/10">
                                                             <div className="text-2xl font-bold font-mono" style={{ color: project.accentColor }}>{project.stats.commits}+</div>
                                                             <div className="text-[10px] text-foreground/50 uppercase tracking-widest mt-1 font-semibold">Commits</div>
                                                         </div>
-                                                        <div className="bg-foreground/5 p-4 rounded-lg border border-foreground/5 text-center transition-colors hover:bg-foreground/10">
+                                                        <div className="bg-foreground/5 p-4 rounded-none border border-foreground/5 text-center transition-colors hover:bg-foreground/10">
                                                             <div className="text-2xl font-bold font-mono" style={{ color: project.accentColor }}>{project.stats.stars}</div>
                                                             <div className="text-[10px] text-foreground/50 uppercase tracking-widest mt-1 font-semibold">Stars</div>
                                                         </div>
-                                                        <div className="bg-foreground/5 p-4 rounded-lg border border-foreground/5 text-center transition-colors hover:bg-foreground/10">
+                                                        <div className="bg-foreground/5 p-4 rounded-none border border-foreground/5 text-center transition-colors hover:bg-foreground/10">
                                                             <div className="text-lg md:text-xl font-bold font-mono mt-1" style={{ color: project.accentColor }}>{project.stats.topLanguage}</div>
                                                             <div className="text-[10px] text-foreground/50 uppercase tracking-widest mt-2 font-semibold">Language</div>
                                                         </div>

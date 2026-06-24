@@ -31,13 +31,13 @@ export default function Loading() {
                 <div className="relative w-32 h-32 flex items-center justify-center">
                     {/* Outer Ring */}
                     <motion.div
-                        className="absolute inset-0 rounded-full border-[1px] border-t-accent-highlight border-r-transparent border-b-accent-action border-l-transparent opacity-70"
+                        className="absolute inset-0 rounded-full border-[1px] border-t-[var(--gold-light)] border-r-transparent border-b-[var(--gold-primary)] border-l-transparent opacity-70"
                         animate={{ rotate: 360 }}
                         transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                     />
                     {/* Inner Ring */}
                     <motion.div
-                        className="absolute inset-4 rounded-full border-[1px] border-t-transparent border-r-accent-action border-b-transparent border-l-accent-highlight opacity-50"
+                        className="absolute inset-4 rounded-full border-[1px] border-t-transparent border-r-[var(--gold-primary)] border-b-transparent border-l-[var(--gold-light)] opacity-50"
                         animate={{ rotate: -360 }}
                         transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                     />
@@ -68,7 +68,7 @@ export default function Loading() {
                     <div className="w-48 h-[1px] bg-foreground/10 overflow-hidden relative">
                         {/* Progress Fill */}
                         <motion.div 
-                            className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-accent-highlight to-accent-action"
+                            className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-[var(--gold-light)] to-[var(--gold-dark)]"
                             initial={{ width: "0%" }}
                             animate={{ width: `${Math.min(progress, 100)}%` }}
                             transition={{ duration: 0.3, ease: "easeOut" }}

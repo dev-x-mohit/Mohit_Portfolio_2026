@@ -3,18 +3,28 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #050511;
+  /* Light Mode (Premium Executive Theme) */
+  --background: #F8F7F3;
+  --foreground: #111827;
 
-  /* Light Mode Defaults */
-  --primary-bg: #F8FAFC;
-  --secondary-bg: #F1F5F9;
-  --accent-action: #00F0FF; /* Electric Cyan */
-  --accent-action-rgb: 0, 240, 255;
-  --accent-highlight: #B026FF; /* Neon Purple */
-  --accent-highlight-rgb: 176, 38, 255;
-  --text-primary: #050511;
+  --bg-primary: #F8F7F3;
+  --bg-secondary: #F2EFE8;
+  --bg-surface: #FFFFFF;
+
+  --gold-primary: #C89A3C;
+  --gold-light: #E1C17A;
+  --gold-dark: #A8791D;
+
+  --mint-primary: #5AEBB1;
+
+  --text-primary: #111827;
   --text-secondary: #475569;
+
+  --border: rgba(200,154,60,0.15);
+  
+  --glass-bg-start: rgba(255,255,255,0.95);
+  --glass-bg-end: rgba(248,247,243,0.85);
+  --glass-blur: blur(20px);
 }
 
 @theme inline {
@@ -25,31 +35,43 @@
   --font-display: var(--font-display);
 
   /* Custom Theme Colors */
-  --color-primary-bg: var(--primary-bg);
-  --color-secondary-bg: var(--secondary-bg);
-  --color-accent-action: var(--accent-action);
-  --color-accent-highlight: var(--accent-highlight);
+  --color-primary-bg: var(--bg-primary);
+  --color-secondary-bg: var(--bg-secondary);
+  --color-surface: var(--bg-surface);
+  
+  --color-gold-primary: var(--gold-primary);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-mint: var(--mint-primary);
+  
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border);
 }
 
-/* 
-   Tailwind v4 class-based dark mode strategy:
-   Use :root.dark to ensure variables are applied when the class is on the html element.
-*/
 :root.dark {
-  --background: #050511; /* Deep Midnight */
-  --foreground: #F8FAFC; /* Ice White */
+  /* Dark Mode (Primary Experience) */
+  --background: #071220;
+  --foreground: #FFFFFF;
 
-  /* User Requested Dark Mode Palette */
-  --primary-bg: #050511;
-  --secondary-bg: #0B0B1A; 
-  --accent-action: #00F0FF; /* Electric Cyan */
-  --accent-action-rgb: 0, 240, 255;
-  --accent-highlight: #B026FF; /* Neon Purple */
-  --accent-highlight-rgb: 176, 38, 255;
-  --text-primary: #F8FAFC;
-  --text-secondary: #94A3B8;
+  --bg-primary: #071220;
+  --bg-secondary: #0A1A2F;
+  --bg-surface: #111827;
+
+  --gold-primary: #E1C17A;
+  --gold-light: #F2D89A;
+  --gold-dark: #A8791D;
+
+  --mint-primary: #5AEBB1;
+
+  --text-primary: #FFFFFF;
+  --text-secondary: #B8C1CC;
+
+  --border: rgba(225,193,122,0.15);
+  
+  --glass-bg-start: rgba(10, 26, 47, 0.90);
+  --glass-bg-end: rgba(7, 18, 32, 0.85);
+  --glass-blur: blur(24px);
 }
 
 body {
@@ -63,13 +85,11 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 @keyframes bounce-right {
-
   0%,
   100% {
     transform: translateX(0);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
-
   50% {
     transform: translateX(25%);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -88,16 +108,13 @@ h1, h2, h3, h4, h5, h6, .font-display {
 /* Hide scrollbar for IE, Edge and Firefox */
 * {
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
 @keyframes slideUp {
   from {
     transform: translateY(0);
   }
-
   to {
     transform: translateY(-50%);
   }
@@ -116,9 +133,291 @@ h1, h2, h3, h4, h5, h6, .font-display {
   clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
 }
 
-.glass-refraction {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
-  backdrop-filter: blur(25px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+/* Premium Gradient Utilities */
+.bg-gradient-gold-primary {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 30%, var(--gold-light) 65%, #F4DFA3 100%);
+}
+
+.bg-gradient-gold-metallic {
+  background: linear-gradient(180deg, #9D6F17 0%, var(--gold-primary) 40%, var(--gold-light) 75%, #FFF0C0 100%);
+}
+
+.bg-gradient-space-navy {
+  background: linear-gradient(180deg, #050B15 0%, #071220 45%, #0A1A2F 100%);
+}
+
+.bg-gradient-space-alt {
+  background: linear-gradient(135deg, #050B15, #071220, #10203A);
+}
+
+.bg-gradient-surface {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+}
+
+.bg-gradient-light-surface {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8F7F3 100%);
+}
+
+.text-gradient-gold {
+  background-image: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 30%, var(--gold-light) 65%, #F4DFA3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glassmorphism Upgrade */
+.glass-premium {
+  background: linear-gradient(180deg, var(--glass-bg-start), var(--glass-bg-end));
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+}
+
+/* Glow System */
+.glow-luxury {
+  box-shadow: 0 0 20px rgba(225,193,122,0.12);
+}
+
+.glow-featured {
+  box-shadow: 0 0 35px rgba(225,193,122,0.15);
+}
+
+.bg-hero-gradient {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8F7F3 60%, #F2EFE8 100%);
+}
+
+:root.dark .bg-hero-gradient {
+  background: linear-gradient(180deg, #050B15 0%, #071220 40%, #0A1A2F 100%);
+}
+
+/* Metallic Card System */
+.card-metallic {
+  background: linear-gradient(180deg, var(--glass-bg-start), var(--glass-bg-end));
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 0 !important; /* Hard metallic corners */
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  box-shadow: inset 0 0 0 1px rgba(225,193,122,0.05), 0 4px 20px -10px rgba(0,0,0,0.5); /* Inner bevel */
+}
+
+.card-metallic::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-metallic:hover::before {
+  left: 200%;
+}
+
+.card-metallic:hover {
+  box-shadow: inset 0 0 0 1px rgba(225,193,122,0.1), 0 0 20px var(--border);
+  border-color: var(--gold-primary);
+}
+
+/* Cyber-Plate Premium Button */
+.btn-metallic {
+  background: rgba(5, 11, 21, 0.8);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: var(--gold-light);
+  border: 1px solid rgba(225, 193, 122, 0.3);
+  border-radius: 0 !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+}
+
+.btn-metallic::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(225,193,122,0) 0%, rgba(225,193,122,0.15) 50%, rgba(225,193,122,0) 100%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.btn-metallic::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 15px; right: 15px; height: 2px;
+  background: var(--gold-primary);
+  box-shadow: 0 0 10px var(--gold-primary);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.btn-metallic:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold-primary);
+  background: rgba(225, 193, 122, 0.08);
+  color: #fff;
+  filter: drop-shadow(0 10px 20px rgba(225,193,122,0.3));
+}
+
+.btn-metallic:hover::before {
+  transform: translateX(100%);
+}
+
+.btn-metallic:hover::after {
+  transform: scaleX(1);
+}
+
+/* Cyber Secondary Button (Wireframe Mesh) */
+.btn-secondary {
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid color-mix(in srgb, var(--foreground) 20%, transparent);
+  border-radius: 0 !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  backdrop-filter: blur(4px);
+}
+
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--foreground) 5%, transparent) 0px,
+    color-mix(in srgb, var(--foreground) 5%, transparent) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.btn-secondary:hover {
+  border-color: var(--foreground);
+  color: var(--foreground);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px color-mix(in srgb, var(--foreground) 10%, transparent);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--foreground) 30%, transparent);
+}
+
+.btn-secondary:hover::before {
+  opacity: 1;
+}
+
+/* Cyber Tertiary Button (Console Link) */
+.btn-tertiary {
+  background: transparent;
+  color: color-mix(in srgb, var(--foreground) 60%, transparent);
+  border: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  position: relative;
+  padding: 0.5rem 0.5rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-tertiary::before {
+  content: '//';
+  position: absolute;
+  left: 0.5rem;
+  color: var(--gold-primary);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  font-weight: 900;
+}
+
+.btn-tertiary::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; width: 100%; height: 1px;
+  background: linear-gradient(90deg, var(--gold-primary), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-tertiary:hover {
+  color: var(--foreground);
+  padding-left: 2rem;
+  text-shadow: 0 0 10px color-mix(in srgb, var(--foreground) 30%, transparent);
+}
+
+.btn-tertiary:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.btn-tertiary:hover::after {
+  transform: scaleX(1);
+}
+
+/* Cyber Android Button (For APKs) */
+.btn-android {
+  background: rgba(61, 220, 132, 0.1);
+  color: #3DDC84;
+  border: 1px solid rgba(61, 220, 132, 0.3);
+  border-radius: 0 !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.btn-android::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(61, 220, 132, 0.1) 0px,
+    rgba(61, 220, 132, 0.1) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.btn-android:hover {
+  border-color: #3DDC84;
+  color: var(--background);
+  background: #3DDC84;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(61, 220, 132, 0.4);
+}
+
+.btn-android:hover::before {
+  opacity: 0.2;
+}
+
+/* Metallic Structural Borders */
+.border-metallic {
+  border-color: transparent;
+  background-image: linear-gradient(var(--bg-secondary), var(--bg-secondary)), linear-gradient(180deg, var(--gold-dark), var(--gold-primary), var(--gold-light));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }

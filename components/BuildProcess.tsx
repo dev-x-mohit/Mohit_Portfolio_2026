@@ -135,8 +135,8 @@ const BuildProcess = () => {
         >
             {/* ── Subtle background texture ── */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,var(--accent-action),transparent_70%)] opacity-10" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_100%,var(--accent-highlight),transparent_50%)] opacity-5" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,var(--gold-primary),transparent_70%)] opacity-10" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_100%,var(--gold-light),transparent_50%)] opacity-5" />
             </div>
 
             {/* ── Header ── */}
@@ -146,7 +146,7 @@ const BuildProcess = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={headerInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.5 }}
-                        className="inline-block text-[10px] font-bold uppercase tracking-[0.4em] text-accent-action mb-2 bg-accent-action/10 px-3 py-1 rounded-full border border-accent-action/20"
+                        className="inline-block text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--gold-primary)] mb-2 bg-[var(--gold-primary)]/10 px-3 py-1 rounded-full border border-[var(--border)]/20"
                     >
                         ⚡ The Method
                     </motion.span>
@@ -157,7 +157,7 @@ const BuildProcess = () => {
                         className="text-4xl sm:text-5xl lg:text-7xl font-bold font-display tracking-tight leading-[1.05]"
                     >
                         <span className="text-foreground">Build </span>
-                        <span className="bg-gradient-to-r from-accent-action to-accent-highlight bg-clip-text text-transparent italic">
+                        <span className="bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] bg-clip-text text-transparent italic inline-block pr-4 pb-2">
                             Process
                         </span>
                     </motion.h2>
@@ -178,11 +178,11 @@ const BuildProcess = () => {
                 <div className="w-full h-[3px] bg-border/20 rounded-full overflow-hidden relative">
                     <div
                         ref={progressRef}
-                        className="h-full rounded-full bg-gradient-to-r from-accent-action to-accent-highlight transition-none"
+                        className="h-full rounded-full bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] transition-none"
                         style={{ width: '0%' }}
                     />
                     {/* Glow */}
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent-action to-accent-highlight blur-[8px] opacity-30 transition-opacity" style={{ width: '0%' }} />
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] blur-[8px] opacity-30 transition-opacity" style={{ width: '0%' }} />
                 </div>
                 <div className="flex justify-between mt-1.5 px-0.5">
                     {phases.map((p, i) => (
@@ -211,7 +211,7 @@ const BuildProcess = () => {
 
                     {/* End cap — refined */}
                     <div className="flex-shrink-0 w-56 sm:w-72 flex flex-col items-center justify-center text-center px-4">
-                        <div className="text-5xl sm:text-6xl mb-4 text-accent-highlight opacity-50">✦</div>
+                        <div className="text-5xl sm:text-6xl mb-4 text-[var(--gold-light)] opacity-50">✦</div>
                         <p className="text-xl sm:text-2xl font-bold font-display tracking-tight text-foreground mb-2">
                             That's the loop.
                         </p>
@@ -242,7 +242,7 @@ const BuildProcess = () => {
             <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-20 bg-gradient-to-r from-background via-background/80 to-transparent z-10" />
 
             {/* ── Subtle bottom glow ── */}
-            <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-accent-action/20 to-transparent" />
+            <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-[var(--gold-primary)]/20 to-transparent" />
         </section>
     );
 };
@@ -266,7 +266,7 @@ const PhaseCard = ({
             onMouseLeave={() => setIsHovered(false)}
         >
             <div
-                className="relative flex flex-col h-full rounded-2xl bg-secondary-bg/10 backdrop-blur-xl border border-border/10 p-6 sm:p-7 overflow-visible transition-all duration-500 cursor-default"
+                className="card-metallic !overflow-visible flex flex-col h-full p-6 sm:p-7 cursor-default"
                 style={{
                     boxShadow: isActive
                         ? `0 0 40px -10px ${phase.color}20, inset 0 1px 0 ${phase.color}20`

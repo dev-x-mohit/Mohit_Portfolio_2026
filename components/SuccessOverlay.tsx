@@ -31,7 +31,7 @@ const SuccessOverlay = ({ onClose }: { onClose: () => void }) => {
                                 cx={`${node.x}%`}
                                 cy={`${node.y}%`}
                                 r="2"
-                                fill="var(--accent-action)"
+                                fill="var(--gold-primary)"
                                 animate={{ opacity: [0.2, 0.5, 0.2] }}
                                 transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
                             />
@@ -42,7 +42,7 @@ const SuccessOverlay = ({ onClose }: { onClose: () => void }) => {
                                     y1={`${node.y}%`}
                                     x2={`${target.x}%`}
                                     y2={`${target.y}%`}
-                                    stroke="var(--accent-action)"
+                                    stroke="var(--gold-primary)"
                                     strokeWidth="0.5"
                                     animate={{ opacity: [0.1, 0.3, 0.1] }}
                                     transition={{ duration: 4, repeat: Infinity, delay: (i + j) * 0.3 }}
@@ -64,7 +64,7 @@ const SuccessOverlay = ({ onClose }: { onClose: () => void }) => {
                         initial={{ scale: 0, rotate: -180 }}
                         animate={{ scale: 1, rotate: 0 }}
                         transition={{ type: "spring", damping: 15, stiffness: 200, delay: 0.2 }}
-                        className="w-32 h-32 bg-gradient-to-tr from-[var(--accent-action)] to-[var(--accent-highlight)] rounded-full flex items-center justify-center shadow-[0_0_80px_rgba(var(--accent-action-rgb),0.4)] border-4 border-white/20"
+                        className="w-32 h-32 bg-gradient-to-tr from-[var(--gold-primary)] to-[var(--gold-light)] rounded-full flex items-center justify-center shadow-[0_0_80px_rgba(225,193,122,0.4)] border-4 border-white/20"
                     >
                         <Check width={64} height={64} className="text-white drop-shadow-lg" />
                     </motion.div>
@@ -72,12 +72,12 @@ const SuccessOverlay = ({ onClose }: { onClose: () => void }) => {
                     <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                        className="absolute -inset-8 border-2 border-dashed border-[var(--accent-action)]/20 rounded-full"
+                        className="absolute -inset-8 border-2 border-dashed border-[var(--gold-primary)]/20 rounded-full"
                     />
                     <motion.div
                         animate={{ rotate: -360 }}
                         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                        className="absolute -inset-12 border border-[var(--accent-action)]/10 rounded-full"
+                        className="absolute -inset-12 border border-[var(--gold-primary)]/10 rounded-full"
                     />
                 </div>
 
@@ -87,8 +87,8 @@ const SuccessOverlay = ({ onClose }: { onClose: () => void }) => {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
                     >
-                        <h2 className="text-5xl font-black italic tracking-tighter mb-2">TRANSMISSION <span className="text-transparent" style={{ WebkitTextStroke: '1px var(--accent-action)' }}>SECURED.</span></h2>
-                        <div className="h-0.5 w-24 bg-[var(--accent-action)] mx-auto rounded-full" />
+                        <h2 className="text-5xl font-black italic tracking-tighter mb-2">TRANSMISSION <span className="text-transparent" style={{ WebkitTextStroke: '1px var(--gold-primary)' }}>SECURED.</span></h2>
+                        <div className="h-0.5 w-24 bg-[var(--gold-primary)] mx-auto rounded-full" />
                     </motion.div>
 
                     <p className="text-gray-400 font-light text-xl leading-relaxed max-w-md mx-auto">
@@ -109,7 +109,7 @@ const SuccessOverlay = ({ onClose }: { onClose: () => void }) => {
                             transition={{ delay: 0.6 + (i * 0.1) }}
                             className="flex flex-col items-center gap-2 p-4 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors"
                         >
-                            <item.icon width={20} height={20} className="text-[var(--accent-action)]" />
+                            <item.icon width={20} height={20} className="text-[var(--gold-primary)]" />
                             <span className="text-[9px] font-black tracking-[0.2em] text-gray-400">{item.label}</span>
                         </motion.div>
                     ))}
@@ -119,7 +119,7 @@ const SuccessOverlay = ({ onClose }: { onClose: () => void }) => {
                     whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,1)', color: 'rgba(0,0,0,1)' }}
                     whileTap={{ scale: 0.95 }}
                     onClick={onClose}
-                    className="w-full py-5 text-sm font-black uppercase tracking-[0.6em] text-white border border-[var(--accent-action)]/30 rounded-2xl transition-all shadow-[0_0_20px_var(--accent-action)]"
+                    className="w-full py-5 text-sm font-black uppercase tracking-[0.6em] text-white border border-[var(--gold-primary)]/30 rounded-2xl transition-all shadow-[0_0_20px_var(--gold-primary)]"
                 >
                     RETURN TO INTERFACE
                 </motion.button>

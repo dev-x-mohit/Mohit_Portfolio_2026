@@ -12,21 +12,21 @@ const storyChapters = [
         subtitle: "BCA Graduate",
         description: "During my BCA at Lachoo Memorial College, I delved deep into the fundamentals. This is where I built my logical core and embraced the rigor of computer science.",
         year: "2023-26",
-        color: "#8B5CF6" // accent color for this chapter
+        color: "#E1C17A" // gold-primary
     },
     {
         title: "The Real World",
         subtitle: "4 Months at Fudode",
         description: "Stepping into professional development as a Full-stack Developer at Fudode, I bridged the gap between theory and industry-grade solutions, architecting full-stack applications.",
         year: "Jan '26 - May '26",
-        color: "#3B82F6"
+        color: "#B8C1CC" // silver
     },
     {
         title: "The Evolution",
         subtitle: "Freelance & MCA",
         description: "Currently pursuing an MCA in Cloud Computing at JECRC University, Jaipur. I am now engineering high-performance SaaS solutions and cinematic user interfaces as a Freelance Developer.",
         year: "2026 - Ongoing",
-        color: "#EC4899"
+        color: "#A8791D" // gold-dark
     }
 ];
 
@@ -128,10 +128,10 @@ const StoryFlow = () => {
         >
             {/* Decorative background elements */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-accent-action/30 to-transparent" />
-                <div className="float-shape absolute top-[10%] left-[5%] w-20 h-20 rounded-full border border-accent-action/10" />
-                <div className="float-shape absolute bottom-[15%] right-[5%] w-32 h-32 rounded-full bg-accent-highlight/5 blur-2xl" />
-                <div className="float-shape absolute top-[30%] right-[10%] w-12 h-12 rotate-45 border-2 border-accent-action/10" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-[var(--gold-primary)]/30 to-transparent" />
+                <div className="float-shape absolute top-[10%] left-[5%] w-20 h-20 border border-[var(--gold-primary)]/20 rotate-12" />
+                <div className="float-shape absolute bottom-[15%] right-[5%] w-32 h-32 border border-[var(--gold-light)]/10 rotate-45" />
+                <div className="float-shape absolute top-[30%] right-[10%] w-12 h-12 rotate-45 border-2 border-[var(--gold-dark)]/20" />
             </div>
 
             {/* Header */}
@@ -139,7 +139,7 @@ const StoryFlow = () => {
                 <motion.span
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    className="text-xs font-bold uppercase tracking-[0.4em] text-accent-action mb-4"
+                    className="text-xs font-bold uppercase tracking-[0.4em] text-[var(--gold-primary)] mb-4"
                 >
                     The Narrative
                 </motion.span>
@@ -149,7 +149,7 @@ const StoryFlow = () => {
                     transition={{ delay: 0.1 }}
                     className="text-4xl md:text-6xl font-bold font-display"
                 >
-                    Developer <span className="text-accent-action italic">Arc</span>
+                    Developer <span className="text-[var(--gold-primary)] italic">Arc</span>
                 </motion.h2>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -173,10 +173,10 @@ const StoryFlow = () => {
                                 {/* Left: Title & year */}
                                 <div className="text-block space-y-6">
                                     <div
-                                        className="inline-block px-4 py-1.5 rounded-full border text-sm font-bold"
+                                        className="inline-block px-4 py-1.5 border text-sm font-bold tracking-widest uppercase"
                                         style={{
                                             borderColor: chapter.color + '40',
-                                            backgroundColor: chapter.color + '15',
+                                            backgroundColor: chapter.color + '10',
                                             color: chapter.color
                                         }}
                                     >
@@ -189,15 +189,14 @@ const StoryFlow = () => {
                                         {chapter.subtitle}
                                     </p>
                                     {/* Timeline connector line */}
-                                    <div className="hidden md:block w-16 h-0.5 bg-gradient-to-r from-accent-action to-transparent" />
+                                    <div className="hidden md:block w-16 h-0.5 bg-gradient-to-r from-[var(--gold-dark)] to-transparent" />
                                 </div>
 
-                                {/* Right: Description card with glass effect */}
+                                {/* Right: Description card with metallic effect */}
                                 <div
-                                    className="card-block p-8 md:p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-xl transition-all duration-500 hover:shadow-2xl hover:border-opacity-30"
+                                    className="card-block card-metallic p-8 md:p-10"
                                     style={{
-                                        boxShadow: `0 8px 30px -10px ${chapter.color}30`,
-                                        borderColor: chapter.color + '20'
+                                        borderTopColor: chapter.color
                                     }}
                                 >
                                     <p className="text-lg md:text-xl text-foreground/80 leading-relaxed font-sans">
@@ -205,7 +204,7 @@ const StoryFlow = () => {
                                     </p>
                                     {/* Decorative accent line */}
                                     <div
-                                        className="mt-6 h-1 w-12 rounded-full"
+                                        className="mt-6 h-1 w-12"
                                         style={{ backgroundColor: chapter.color }}
                                     />
                                 </div>
@@ -215,12 +214,12 @@ const StoryFlow = () => {
                 </div>
             </div>
 
-            {/* Progress dots */}
+            {/* Progress bars */}
             <div className="flex justify-center mt-8 gap-3">
                 {storyChapters.map((chapter, i) => (
-                    <div key={i} className="progress-dot w-16 h-1.5 rounded-full bg-foreground/10 overflow-hidden">
+                    <div key={i} className="progress-dot w-16 h-1 bg-foreground/10 overflow-hidden">
                         <div
-                            className="progress-bar h-full w-0 rounded-full transition-all"
+                            className="progress-bar h-full w-0 transition-all"
                             style={{ backgroundColor: chapter.color }}
                         />
                     </div>

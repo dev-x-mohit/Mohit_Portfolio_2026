@@ -50,8 +50,8 @@ const ResumePulse = () => {
         >
             {/* Background ambient glow */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60%] h-[60%] bg-accent-action/5 blur-[120px] rounded-full" />
-                <div className="absolute bottom-1/3 right-0 w-1/3 h-1/3 bg-accent-highlight/5 blur-[100px] rounded-full" />
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60%] h-[60%] bg-[var(--gold-primary)]/5 blur-[120px] rounded-full" />
+                <div className="absolute bottom-1/3 right-0 w-1/3 h-1/3 bg-[var(--gold-light)]/5 blur-[100px] rounded-full" />
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border/30 to-transparent" />
             </div>
 
@@ -63,12 +63,12 @@ const ResumePulse = () => {
                     viewport={{ once: true }}
                     className="text-center mb-20"
                 >
-                    <span className="inline-block text-[10px] font-bold uppercase tracking-[0.4em] text-accent-highlight bg-accent-highlight/10 px-4 py-1.5 rounded-full border border-accent-highlight/20 mb-4">
+                    <span className="inline-block text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--gold-light)] bg-[var(--gold-light)]/10 px-4 py-1.5 rounded-full border border-[var(--border)]/20 mb-4">
                         My Journey
                     </span>
                     <h2 className="text-4xl md:text-6xl font-bold font-display tracking-tight">
                         <span className="text-foreground">Resume </span>
-                        <span className="bg-gradient-to-r from-accent-action to-accent-highlight bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] bg-clip-text text-transparent">
                             Pulse
                         </span>
                     </h2>
@@ -84,7 +84,7 @@ const ResumePulse = () => {
 
                     {/* The Spark (Scroll-driven line) */}
                     <motion.div
-                        className="absolute top-0 bottom-0 left-6 md:left-1/2 w-[2px] bg-gradient-to-b from-accent-action via-accent-highlight to-accent-action -translate-x-1/2 origin-top"
+                        className="absolute top-0 bottom-0 left-6 md:left-1/2 w-[2px] bg-gradient-to-b from-[var(--gold-dark)] via-[var(--gold-light)] to-[var(--gold-dark)] -translate-x-1/2 origin-top"
                         style={{ scaleY }}
                     >
                         <motion.div
@@ -151,7 +151,7 @@ const ResumePulse = () => {
                                         className={`w-full md:w-[calc(50%-40px)] ${isEven ? 'text-left md:text-right' : 'text-left'}`}
                                     >
                                         <div
-                                            className={`relative overflow-hidden group p-6 rounded-3xl bg-secondary-bg/20 backdrop-blur-xl border border-border/10 transition-all duration-300 hover:border-border/30 hover:bg-secondary-bg/40 ${isEven ? 'md:mr-0' : 'md:ml-0'}`}
+                                            className={`card-metallic group p-6 ${isEven ? 'md:mr-0' : 'md:ml-0'}`}
                                             style={{
                                                 boxShadow: hoveredId === item.id ? `0 8px 40px -8px ${nodeColor}20` : '0 4px 20px -10px rgba(0,0,0,0.1)',
                                                 transform: hoveredId === item.id ? 'translateY(-2px)' : 'none'

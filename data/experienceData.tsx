@@ -22,9 +22,9 @@ export const timelineData: TimelineItem[] = [
         subtitle: 'Lachoo Memorial College',
         description: 'Built a strong foundation in software engineering, algorithms, and system design. My academic journey fueled a deep passion for solving complex problems with code.',
         icon: <Code width={16} height={16} />,
-        color: 'text-accent-action',
-        borderColor: 'border-accent-action',
-        bgColor: 'bg-accent-action',
+        color: 'text-[var(--gold-primary)]',
+        borderColor: 'border-[var(--border)]',
+        bgColor: 'bg-[var(--gold-primary)]',
         details: [
             { label: 'Degree', value: 'BCA' },
             { label: 'Focus', value: 'Software Engineering' }
@@ -37,9 +37,9 @@ export const timelineData: TimelineItem[] = [
         subtitle: 'Fudode',
         description: 'Architected scalable full-stack applications over an impactful 4-month period. Responsible for the entire development lifecycle, from database design to frontend implementation and deployment.',
         icon: <Zap width={16} height={16} />,
-        color: 'text-accent-highlight',
-        borderColor: 'border-accent-highlight',
-        bgColor: 'bg-accent-highlight',
+        color: 'text-[var(--gold-light)]',
+        borderColor: 'border-[var(--border)]',
+        bgColor: 'bg-[var(--gold-light)]',
         details: [
             { label: 'Role', value: 'Full Stack Dev' },
             { label: 'Duration', value: '4 Months' }
@@ -52,9 +52,9 @@ export const timelineData: TimelineItem[] = [
         subtitle: 'JECRC University & Various Clients',
         description: 'Currently pursuing an MCA in Cloud Computing at JECRC University, Jaipur. After an impactful stint at Fudode, I am now engineering high-performance SaaS solutions and cinematic UIs as a Freelance Developer.',
         icon: <Briefcase width={16} height={16} />,
-        color: 'text-accent-action',
-        borderColor: 'border-accent-action',
-        bgColor: 'bg-accent-action',
+        color: 'text-[var(--gold-primary)]',
+        borderColor: 'border-[var(--border)]',
+        bgColor: 'bg-[var(--gold-primary)]',
         details: [
             { label: 'Education', value: 'MCA Cloud Computing' },
             { label: 'Role', value: 'Freelance Developer' }
