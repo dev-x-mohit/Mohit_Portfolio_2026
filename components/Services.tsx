@@ -29,7 +29,7 @@ export default function Services() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.6, delay: 0.1 }}
-                            className="text-4xl md:text-6xl font-bold font-orbitron tracking-tighter text-primary-text"
+                            className="text-4xl md:text-6xl font-bold font-display tracking-tighter text-primary-text"
                         >
                             THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-action to-accent-highlight">DATA VAULT</span>
                         </motion.h2>
@@ -46,7 +46,7 @@ export default function Services() {
                         initial={{ opacity: 0 }}
                         animate={isInView ? { opacity: 1 } : {}}
                         transition={{ duration: 0.6, delay: 0.3 }}
-                        className="text-secondary-text font-exo text-sm max-w-xs text-right hidden md:block"
+                        className="text-secondary-text font-sans text-sm max-w-xs text-right hidden md:block"
                     >
                         // SCROLL TO INSPECT <br />
                         // PROTOCOLS ACTIVE
@@ -98,11 +98,11 @@ function MonolithCard({ service, index }: { service: any, index: number }) {
                     </span>
                 </div>
 
-                <h3 className="text-2xl font-bold font-orbitron mb-4 text-primary-text group-hover:text-accent-action transition-colors duration-300 tracking-wide">
+                <h3 className="text-2xl font-bold font-display mb-4 text-primary-text group-hover:text-accent-action transition-colors duration-300 tracking-wide">
                     {service.title.toUpperCase()}
                 </h3>
 
-                <p className="text-secondary-text font-exo text-sm leading-relaxed group-hover:text-primary-text/90 transition-colors duration-300 border-l border-white/10 pl-4">
+                <p className="text-secondary-text font-sans text-sm leading-relaxed group-hover:text-primary-text/90 transition-colors duration-300 border-l border-white/10 pl-4">
                     {service.description}
                 </p>
 

@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5 Portfolio Architectures · Choose Your Vibe</title>
+  <!-- Fonts (only for non‑brutalist themes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet" />
+  <style>
+    /* –––––––––––––– RESET & BASE –––––––––––––– */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0b0b0b;
+      color: #eee;
+    }
+
+    /* –––––––––––––– NAV (sticky) –––––––––––––– */
+    .theme-nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      background: rgba(11, 11, 11, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 60px;
+      padding: 10px 22px;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+      pointer-events: none;
+    }
+    .theme-nav a {
+      pointer-events: auto;
+      color: #999;
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 40px;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+    }
+    .theme-nav a:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+    .theme-nav a.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* –––––––––––––– SECTIONS (full-screen snaps) –––––––––––––– */
+    section {
+      height: 100vh;
+      width: 100%;
+      scroll-snap-align: start;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    /* container inside each section to hold the mockup */
+    .demo-container {
+      width: 100%;
+      max-width: 1300px;
+      height: 90vh;
+      max-height: 800px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      transition: transform 0.2s ease;
+    }
+
+    /* each mockup fills its container */
+    .mockup {
+      width: 100%;
+      height: 100%;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      /* custom scrollbar hiding for cleanliness */;
+    }
+    .mockup::-webkit-scrollbar {
+      width: 4px;
+    }
+    .mockup::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+    }
+
+    /* theme label (floating badge) */
+    .theme-badge {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #aaa;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 10;
+      pointer-events: none;
+    }
+    .theme-badge strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* –––––––––––––– THEME 1 · EDITORIAL –––––––––––––– */
+    .theme-editorial .mockup {
+      background: #f6f4f0;
+      color: #1f1b17;
+      font-family: 'Inter', sans-serif;
+      padding: 0;
+      flex-direction: row;
+    }
+    .theme-editorial .sidebar {
+      width: 200px;
+      background: #eae6df;
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      flex-shrink: 0;
+      border-right: 1px solid #d6d0c6;
+    }
+    .theme-editorial .sidebar .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+    }
+    .theme-editorial .sidebar nav a {
+      display: block;
+      color: #3d352e;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 8px 0;
+      border-bottom: 1px solid transparent;
+      transition: 0.15s;
+    }
+    .theme-editorial .sidebar nav a:hover {
+      border-bottom-color: #b8a99a;
+      color: #000;
+    }
+    .theme-editorial .main-content {
+      flex: 1;
+      padding: 40px 48px;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 40px;
+      align-content: start;
+    }
+    .theme-editorial .main-content h1 {
+      grid-column: 1 / -1;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      line-height: 1.1;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .theme-editorial .main-content .meta {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 30px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6e6257;
+      border-bottom: 1px solid #ddd6cc;
+      padding-bottom: 18px;
+      margin-bottom: 10px;
+    }
+    .theme-editorial .main-content .col {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #2d2620;
+    }
+    .theme-editorial .main-content .col strong {
+      font-weight: 600;
+      color: #000;
+    }
+    .theme-editorial .main-content .img-placeholder {
+      background: #d6cec2;
+      border-radius: 4px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: #5f5548;
+      letter-spacing: 0.04em;
+    }
+
+    /* –––––––––––––– THEME 2 · PLAYGROUND –––––––––––––– */
+    .theme-playground .mockup {
+      background: #18151a;
+      color: #efe9f0;
+      padding: 30px 40px;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+    .theme-playground .play-items {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .theme-playground .play-item {
+      position: absolute;
+      padding: 18px 24px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 100px 20px 100px 20px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: default;
+      font-weight: 400;
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+    .theme-playground .play-item:hover {
+      transform: scale(1.08) rotate(2deg) !important;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .theme-playground .play-item.circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: rgba(180, 130, 255, 0.12);
+      border-color: rgba(180, 130, 255, 0.2);
+      font-size: 0.7rem;
+      padding: 10px;
+    }
+    .theme-playground .play-item.circle:hover {
+      background: rgba(180, 130, 255, 0.2);
+    }
+    /* scattered positions */
+    .play-item.p1 {
+      top: 5%;
+      left: 5%;
+      transform: rotate(-6deg);
+    }
+    .play-item.p2 {
+      top: 20%;
+      right: 8%;
+      transform: rotate(12deg);
+      border-radius: 30px 0 30px 0;
+    }
+    .play-item.p3 {
+      bottom: 25%;
+      left: 12%;
+      transform: rotate(-3deg);
+      border-radius: 0 40px 0 40px;
+    }
+    .play-item.p4 {
+      bottom: 10%;
+      right: 15%;
+      transform: rotate(8deg);
+    }
+    .play-item.p5 {
+      top: 50%;
+      left: 40%;
+      transform: rotate(-10deg);
+      background: rgba(255, 200, 100, 0.08);
+      border-color: rgba(255, 200, 100, 0.15);
+    }
+    .theme-playground .custom-cursor-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #6a6270;
+      border: 1px dashed #3d3642;
+      padding: 6px 18px;
+      border-radius: 40px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
+      pointer-events: none;
+    }
+
+    /* –––––––––––––– THEME 3 · BRUTALIST –––––––––––––– */
+    .theme-brutalist .mockup {
+      background: #f2efe8;
+      color: #111;
+      font-family: 'Times New Roman', Times, serif;
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+    .theme-brutalist .brutal-content {
+      width: 100%;
+      height: 100%;
+      padding: 30px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border: 3px solid #111;
+    }
+    .theme-brutalist .brutal-content h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-family: 'Times New Roman', Times, serif;
+      margin-bottom: 4px;
+    }
+    .theme-brutalist .brutal-content .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 1rem;
+      border-bottom: 2px solid #111;
+      padding-bottom: 12px;
+      margin-bottom: 8px;
+    }
+    .theme-brutalist .brutal-content .nav-links a {
+      color: #0066cc;
+      text-decoration: underline;
+      font-family: 'Times New Roman', Times, serif;
+    }
+    .theme-brutalist .brutal-content .nav-links a:hover {
+      color: #111;
+    }
+    .theme-brutalist .brutal-content .grid-raw {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      flex: 1;
+    }
+    .theme-brutalist .brutal-content .grid-raw div {
+      border: 2px solid #111;
+      padding: 14px 16px;
+      font-size: 0.85rem;
+      background: #e8e4db;
+    }
+    .theme-brutalist .brutal-content .grid-raw div:nth-child(2) {
+      background: #d9d4c9;
+    }
+    .theme-brutalist .brutal-content .grid-raw div:nth-child(3) {
+      background: #cbc5b8;
+    }
+    .theme-brutalist .brutal-content .footer-raw {
+      border-top: 2px solid #111;
+      padding-top: 12px;
+      font-size: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .theme-brutalist .brutal-content .footer-raw a {
+      color: #0066cc;
+    }
+
+    /* –––––––––––––– THEME 4 · CINEMATIC –––––––––––––– */
+    .theme-cinematic .mockup {
+      background: #0c0b0e;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+    }
+    .theme-cinematic .cinematic-stack {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
+    .theme-cinematic .cinematic-stack .chap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      transition: 0.2s;
+      overflow: hidden;
+    }
+    .theme-cinematic .cinematic-stack .chap:last-child {
+      border-bottom: none;
+    }
+    .theme-cinematic .cinematic-stack .chap .overlay {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 10px 20px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .theme-cinematic .cinematic-stack .chap .overlay h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #fff;
+    }
+    .theme-cinematic .cinematic-stack .chap .overlay p {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9a8f9f;
+      margin-top: 2px;
+    }
+    .theme-cinematic .chap-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.35;
+      background: radial-gradient(circle at 30% 40%, #3e2c4a, #0c0b0e 70%);
+    }
+    .theme-cinematic .chap-bg.two {
+      background: radial-gradient(circle at 70% 60%, #2a3d4a, #0c0b0e 70%);
+    }
+    .theme-cinematic .chap-bg.three {
+      background: radial-gradient(circle at 50% 30%, #4a3d2a, #0c0b0e 70%);
+    }
+    .theme-cinematic .progress-rail {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 60%;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 6px 0;
+    }
+    .theme-cinematic .progress-rail .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: 0.2s;
+    }
+    .theme-cinematic .progress-rail .dot.active {
+      background: #b898c9;
+      border-color: #b898c9;
+      box-shadow: 0 0 20px rgba(184, 152, 201, 0.3);
+    }
+
+    /* –––––––––––––– THEME 5 · SANDBOX –––––––––––––– */
+    .theme-sandbox .mockup {
+      background: #14161a;
+      color: #e8edf2;
+      font-family: 'Inter', sans-serif;
+      padding: 20px 28px;
+    }
+    .theme-sandbox .sandbox-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 22px;
+    }
+    .theme-sandbox .sandbox-header .cmd {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 40px;
+      padding: 6px 18px;
+      font-size: 0.7rem;
+      color: #8a8f96;
+      font-family: 'SF Mono', 'JetBrains Mono', monospace;
+      letter-spacing: 0.02em;
+    }
+    .theme-sandbox .sandbox-header .cmd kbd {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0 8px;
+      border-radius: 4px;
+      color: #c8cdd4;
+      margin: 0 4px;
+    }
+    .theme-sandbox .sandbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      flex: 1;
+    }
+    .theme-sandbox .sandbox-grid .widget {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+    }
+    .theme-sandbox .sandbox-grid .widget:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    .theme-sandbox .sandbox-grid .widget .w-header {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6b737c;
+      margin-bottom: 6px;
+    }
+    .theme-sandbox .sandbox-grid .widget .w-title {
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .theme-sandbox .sandbox-grid .widget .w-desc {
+      font-size: 0.7rem;
+      color: #88909a;
+      line-height: 1.4;
+    }
+    .theme-sandbox .sandbox-grid .widget.wide {
+      grid-column: span 2;
+    }
+    .theme-sandbox .sandbox-grid .widget.tall {
+      grid-row: span 2;
+    }
+    .theme-sandbox .view-toggle {
+      display: flex;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 30px;
+      padding: 3px;
+    }
+    .theme-sandbox .view-toggle span {
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.6rem;
+      color: #6b737c;
+      cursor: default;
+      border: 1px solid transparent;
+    }
+    .theme-sandbox .view-toggle span.active {
+      background: rgba(255, 255, 255, 0.06);
+      color: #e8edf2;
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    /* –––––––––––––– RESPONSIVE –––––––––––––– */
+    @media (max-width: 900px) {
+      .demo-container {
+        height: 85vh;
+        max-height: none;
+        border-radius: 12px;
+      }
+      .mockup {
+        padding: 18px 16px;
+      }
+      .theme-editorial .mockup {
+        flex-direction: column;
+      }
+      .theme-editorial .sidebar {
+        width: 100%;
+        flex-direction: row;
+        padding: 12px 20px;
+        gap: 20px;
+        border-right: none;
+        border-bottom: 1px solid #d6d0c6;
+      }
+      .theme-editorial .sidebar .logo {
+        font-size: 1rem;
+      }
+      .theme-editorial .sidebar nav {
+        display: flex;
+        gap: 16px;
+      }
+      .theme-editorial .sidebar nav a {
+        padding: 4px 0;
+      }
+      .theme-editorial .main-content {
+        padding: 20px 20px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .theme-editorial .main-content h1 {
+        font-size: 1.8rem;
+      }
+      .theme-playground .play-item {
+        position: relative !important;
+        transform: none !important;
+        margin: 8px 0;
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 12px !important;
+      }
+      .theme-playground .play-items {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        overflow-y: auto;
+      }
+      .theme-playground .play-item.circle {
+        width: 100% !important;
+        height: 60px !important;
+        border-radius: 12px !important;
+      }
+      .theme-brutalist .brutal-content .grid-raw {
+        grid-template-columns: 1fr 1fr;
+      }
+      .theme-sandbox .sandbox-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .theme-sandbox .sandbox-grid .widget.wide {
+        grid-column: span 1;
+      }
+      .theme-sandbox .sandbox-grid .widget.tall {
+        grid-row: span 1;
+      }
+      .theme-nav {
+        top: 10px;
+        padding: 6px 12px;
+        gap: 6px;
+        border-radius: 40px;
+        width: 92%;
+      }
+      .theme-nav a {
+        font-size: 0.55rem;
+        padding: 3px 8px;
+      }
+      .theme-cinematic .progress-rail {
+        right: 8px;
+        height: 40%;
+      }
+      .theme-cinematic .cinematic-stack .chap .overlay h3 {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .theme-brutalist .brutal-content .grid-raw {
+        grid-template-columns: 1fr;
+      }
+      .theme-sandbox .sandbox-grid {
+        grid-template-columns: 1fr;
+      }
+      .theme-editorial .main-content .meta {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ––– FLOATING NAV ––– -->
+  <nav class="theme-nav" aria-label="Jump to theme">
+    <a href="#theme-editorial">Editorial</a>
+    <a href="#theme-playground">Playground</a>
+    <a href="#theme-brutalist">Brutalist</a>
+    <a href="#theme-cinematic">Cinematic</a>
+    <a href="#theme-sandbox">Sandbox</a>
+  </nav>
+
+  <!-- ––––––––––– THEME 1 · EDITORIAL ––––––––––– -->
+  <section id="theme-editorial" class="theme-editorial">
+    <div class="demo-container">
+      <div class="mockup">
+        <div class="sidebar">
+          <div class="logo">Archivist</div>
+          <nav>
+            <a href="#">Work</a>
+            <a href="#">About</a>
+            <a href="#">Journal</a>
+            <a href="#">Contact</a>
+          </nav>
+          <div style="margin-top:auto;font-size:0.6rem;color:#7a6f63;letter-spacing:0.04em;border-top:1px solid #d6d0c6;padding-top:16px;">© 2026</div>
+        </div>
+        <div class="main-content">
+          <h1>Editorial Archivist</h1>
+          <div class="meta">
+            <span>Client: Studio B</span>
+            <span>Year: 2026</span>
+            <span>Role: Lead Design</span>
+            <span>Tools: InDesign · Figma</span>
+          </div>
+          <div class="col">
+            <strong>Grid‑driven narrative</strong><br />
+            Asymmetric columns, baseline alignment. Content dictates layout. Each project tells a story through typographic hierarchy and carefully placed pull‑quotes.
+          </div>
+          <div class="col">
+            <strong>Print‑first logic</strong><br />
+            Sidebar TOC, page‑flip transitions, and a permanent metadata rail. Built for readers, not scrollers.
+          </div>
+          <div class="img-placeholder">📸 Hero visual (full‑bleed)</div>
+          <div class="img-placeholder" style="background:#cbc2b4;">📸 Secondary image</div>
+        </div>
+        <span class="theme-badge"><strong>#1</strong> Editorial</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ––––––––––– THEME 2 · PLAYGROUND ––––––––––– -->
+  <section id="theme-playground" class="theme-playground">
+    <div class="demo-container">
+      <div class="mockup">
+        <div class="play-items">
+          <div class="play-item p1">✦ drag‑me</div>
+          <div class="play-item p2 circle">cursor<br />physics</div>
+          <div class="play-item p3">↻ rotate on hover</div>
+          <div class="play-item p4">elastic spring</div>
+          <div class="play-item p5">stretch &amp; squish</div>
+          <div class="custom-cursor-hint">⬤ cursor = UI</div>
+        </div>
+        <span class="theme-badge"><strong>#2</strong> Playground</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ––––––––––– THEME 3 · BRUTALIST ––––––––––– -->
+  <section id="theme-brutalist" class="theme-brutalist">
+    <div class="demo-container" style="border-radius:0;box-shadow:none;">
+      <div class="mockup" style="padding:0;border-radius:0;">
+        <div class="brutal-content">
+          <h1>Brutalist Raw‑Dog</h1>
+          <div class="nav-links">
+            <a href="#">work</a>
+            <a href="#">info</a>
+            <a href="#">contact</a>
+            <a href="#">shop</a>
+          </div>
+          <div class="grid-raw">
+            <div><strong>Project A</strong><br />2026 · full‑bleed</div>
+            <div><strong>Project B</strong><br />2025 · no padding</div>
+            <div><strong>Project C</strong><br />2024 · default font</div>
+            <div><strong>Project D</strong><br />2023 · raw image</div>
+            <div><strong>Project E</strong><br />2022 · no shadows</div>
+            <div><strong>Project F</strong><br />2021 · blue links</div>
+          </div>
+          <div class="footer-raw">
+            <span>© 2026 · no css frameworks</span>
+            <span><a href="#">default scrollbar</a> · <a href="#">ugly selection</a></span>
+          </div>
+        </div>
+        <span class="theme-badge" style="background:rgba(17,17,17,0.7);color:#bbb;"><strong>#3</strong> Brutalist</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ––––––––––– THEME 4 · CINEMATIC ––––––––––– -->
+  <section id="theme-cinematic" class="theme-cinematic">
+    <div class="demo-container">
+      <div class="mockup" style="padding:0;">
+        <div class="cinematic-stack">
+          <div class="chap">
+            <div class="chap-bg"></div>
+            <div class="overlay">
+              <h3>Chapter 01 · Origin</h3>
+              <p>full‑bleed · parallax depth</p>
+            </div>
+          </div>
+          <div class="chap">
+            <div class="chap-bg two"></div>
+            <div class="overlay">
+              <h3>Chapter 02 · Process</h3>
+              <p>ken‑burns · ambient audio</p>
+            </div>
+          </div>
+          <div class="chap">
+            <div class="chap-bg three"></div>
+            <div class="overlay">
+              <h3>Chapter 03 · Outcome</h3>
+              <p>scroll‑triggered transitions</p>
+            </div>
+          </div>
+          <div class="progress-rail">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <span class="theme-badge"><strong>#4</strong> Cinematic</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ––––––––––– THEME 5 · SANDBOX ––––––––––– -->
+  <section id="theme-sandbox" class="theme-sandbox">
+    <div class="demo-container">
+      <div class="mockup">
+        <div class="sandbox-header">
+          <div class="cmd"><kbd>⌘ K</kbd> · command bar</div>
+          <div class="view-toggle">
+            <span class="active">Grid</span>
+            <span>List</span>
+            <span>Masonry</span>
+          </div>
+        </div>
+        <div class="sandbox-grid">
+          <div class="widget wide">
+            <div class="w-header">Project · 2026</div>
+            <div class="w-title">Modular Dashboard</div>
+            <div class="w-desc">Resizable cards · drag to reorder</div>
+          </div>
+          <div class="widget tall">
+            <div class="w-header">Widget</div>
+            <div class="w-title">Analytics</div>
+            <div class="w-desc">Live metrics snapshot</div>
+          </div>
+          <div class="widget">
+            <div class="w-header">Quick</div>
+            <div class="w-title">Profile</div>
+            <div class="w-desc">Edit your info</div>
+          </div>
+          <div class="widget">
+            <div class="w-header">Insights</div>
+            <div class="w-title">Activity</div>
+            <div class="w-desc">Recent views</div>
+          </div>
+          <div class="widget wide">
+            <div class="w-header">Project · 2025</div>
+            <div class="w-title">Sandbox UI Kit</div>
+            <div class="w-desc">Configurable components</div>
+          </div>
+        </div>
+        <span class="theme-badge"><strong>#5</strong> Sandbox</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ––– micro JS to highlight active nav link ––– -->
+  <script>
+    (function() {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.theme-nav a');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            navLinks.forEach(link => {
+              link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+            });
+          }
+        });
+      }, { threshold: 0.5 });
+
+      sections.forEach(section => observer.observe(section));
+    })();
+  </script>
+
+</body>
+</html>

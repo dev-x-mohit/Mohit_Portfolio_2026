@@ -62,7 +62,7 @@ const BackgroundScene = () => {
             <group ref={shapesRef}>
                 {Array.from({ length: 12 }).map((_, i) => {
                     const isOcta = i % 2 === 0;
-                    const color = i % 3 === 0 ? 'var(--accent-highlight, #00ffff)' : 'var(--accent-action, #a855f7)';
+                    const color = i % 3 === 0 ? 'var(--accent-highlight, #00F0FF)' : 'var(--accent-action, #B026FF)';
                     return (
                         <Float key={i} speed={0.8 + i * 0.1} rotationIntensity={0.6} floatIntensity={0.5}>
                             <mesh scale={[0.12, 0.12, 0.12]}>
@@ -111,20 +111,24 @@ const Title3D = () => {
                 position={[0, 0.65, 0]}
                 fontSize={1.6}
                 letterSpacing={-0.05}
+                outlineWidth={0.03}
+                outlineColor="#000000"
             >
-                PRODUCT
+                CREATIVE
                 <meshBasicMaterial>
-                    <GradientTexture stops={[0, 0.5, 1]} colors={['#00ffff', '#ffffff', '#a855f7']} />
+                    <GradientTexture stops={[0, 0.5, 1]} colors={['#00F0FF', '#ffffff', '#B026FF']} />
                 </meshBasicMaterial>
             </Text>
             <Text
                 position={[0, -0.65, 0]}
                 fontSize={1.6}
                 letterSpacing={-0.05}
+                outlineWidth={0.03}
+                outlineColor="#000000"
             >
-                BUILDER
+                DEVELOPER
                 <meshBasicMaterial>
-                    <GradientTexture stops={[0, 0.5, 1]} colors={['#a855f7', '#ffffff', '#00ffff']} />
+                    <GradientTexture stops={[0, 0.5, 1]} colors={['#B026FF', '#ffffff', '#00F0FF']} />
                 </meshBasicMaterial>
             </Text>
         </group>
@@ -136,8 +140,8 @@ const Title3D = () => {
 // ──────────────────────────────────────────────────────────────
 
 const coreSkills = [
-    'B2B SaaS Architecture', 'End-to-End Development', 'Solving Business Problems',
-    'Scalable Web Applications', 'Cross-Platform Mobile Apps'
+    'Cinematic User Interfaces', 'Cloud-Native Architecture', 'High-Performance SaaS',
+    'Mobile App Development', 'Next.js & MERN Stack'
 ];
 
 // ──────────────────────────────────────────────────────────────
@@ -187,7 +191,7 @@ const Hero = () => {
     return (
         <section
             id="home"
-            className="relative min-h-screen w-full bg-background flex items-center justify-center overflow-hidden"
+            className="relative min-h-[100svh] w-full bg-background flex flex-col items-center justify-center overflow-hidden pt-24"
         >
             {/* ─── 3D Canvas ─── */}
             <div className="absolute inset-0 z-0 pointer-events-none">
@@ -202,9 +206,12 @@ const Hero = () => {
                 )}
             </div>
 
-            {/* ─── Overlay Gradients ─── */}
-            <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_40%,var(--background)_95%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.04] z-0 pointer-events-none mix-blend-overlay" />
+            {/* ─── Overlay Gradients & Grid ─── */}
+            <div className="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] bg-accent-highlight/30 blur-[120px] rounded-full pointer-events-none opacity-50 animate-pulse" />
+            <div className="absolute bottom-[-10%] left-[-5%] w-[800px] h-[800px] bg-accent-action/30 blur-[120px] rounded-full pointer-events-none opacity-50 animate-pulse" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+            <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_20%,var(--background)_100%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] z-0 pointer-events-none mix-blend-overlay" />
 
             {/* ─── UI Overlay ─── */}
             <div className="relative z-10 w-full h-full max-w-5xl mx-auto flex flex-col items-center justify-center py-16 px-6 pointer-events-none">
@@ -218,14 +225,14 @@ const Hero = () => {
                     {/* ─── Top Badge ─── */}
                     <motion.div
                         variants={itemVariants}
-                        className="px-5 py-2 rounded-full border border-border/20 bg-background/30 backdrop-blur-md shadow-2xl flex items-center gap-3 pointer-events-auto"
+                        className="px-5 py-2 rounded-full border border-white/10 bg-background/60 backdrop-blur-md shadow-2xl flex items-center gap-3 pointer-events-auto"
                     >
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-action opacity-80" />
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground" />
                         </span>
-                        <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-foreground/70 font-mono font-semibold">
-                            Mohit Lakhara // Full Stack Developer
+                        <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-foreground font-mono font-bold drop-shadow-md">
+                            Mohit Lakhara // Software Developer
                         </span>
                     </motion.div>
 
@@ -247,7 +254,7 @@ const Hero = () => {
                                     animate={{ y: 0, opacity: 1 }}
                                     exit={{ y: -20, opacity: 0 }}
                                     transition={{ duration: 0.4, ease: 'easeOut' }}
-                                    className="text-lg sm:text-xl md:text-2xl font-light tracking-[0.3em] text-foreground/60 uppercase"
+                                    className="text-lg sm:text-xl md:text-2xl font-semibold tracking-[0.3em] text-foreground uppercase drop-shadow-lg"
                                 >
                                     {coreSkills[skillIndex]}
                                 </motion.span>
@@ -261,9 +268,9 @@ const Hero = () => {
                     {/* ─── Subtitle ─── */}
                     <motion.p
                         variants={itemVariants}
-                        className="text-sm sm:text-base md:text-lg font-light tracking-wide text-foreground/60 max-w-xl bg-background/20 backdrop-blur-sm p-3 rounded-xl border border-white/5"
+                        className="text-sm sm:text-base md:text-lg font-medium tracking-wide text-foreground max-w-xl bg-background/50 backdrop-blur-md p-4 rounded-xl border border-white/10 shadow-lg"
                     >
-                        I don't just write code—I build scalable, end-to-end products that solve real business problems and drive growth.
+                        Engineering high-performance SaaS solutions and cinematic user interfaces that blend aesthetic design with robust, scalable architecture.
                     </motion.p>
 
                     {/* ─── Actions ─── */}
@@ -278,7 +285,7 @@ const Hero = () => {
                             <span className="relative z-10 flex items-center gap-2">
                                 VIEW PROJECTS <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent-highlight,#00ffff)] to-[var(--accent-action,#a855f7)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent-highlight)] to-[var(--accent-action)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
                         </button>
 
                         <button
@@ -286,7 +293,7 @@ const Hero = () => {
                             className="group relative px-8 py-3.5 bg-transparent border border-foreground/20 text-foreground font-bold tracking-widest uppercase text-xs rounded-sm hover:bg-foreground/5 transition-colors backdrop-blur-sm flex items-center justify-center gap-2"
                         >
                             GET IN TOUCH
-                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-action,#a855f7)] group-hover:scale-150 transition-transform" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent-action group-hover:scale-150 transition-transform" />
                         </button>
                     </motion.div>
 
@@ -299,7 +306,7 @@ const Hero = () => {
                         <motion.div
                             animate={{ y: [0, 10, 0] }}
                             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                            className="w-[1px] h-10 bg-gradient-to-b from-[var(--accent-highlight,#00ffff)] to-transparent"
+                            className="w-[1px] h-10 bg-gradient-to-b from-[var(--accent-highlight)] to-transparent"
                         />
                     </motion.div>
                 </motion.div>

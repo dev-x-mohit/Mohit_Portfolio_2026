@@ -20,6 +20,16 @@ const SkillsShowcase = () => {
 
     return (
         <section ref={ref} className="relative w-full bg-background py-24 px-4 overflow-hidden min-h-[700px] md:min-h-[900px] flex flex-col items-center justify-center">
+            <style>{`
+                @keyframes spin-forward {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                @keyframes spin-backward {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(-360deg); }
+                }
+            `}</style>
             {/* Header */}
             <div className="absolute top-12 md:top-24 left-1/2 -translate-x-1/2 text-center z-20 w-full px-4">
                 <motion.span
@@ -66,6 +76,7 @@ const SkillsShowcase = () => {
                 {skillCategories.map((category, catIndex) => {
                     const orbitConf = orbits[catIndex % orbits.length];
                     const numSkills = category.skills.length;
+                    const isOrbitHovered = category.skills.some(s => s.name === hoveredSkill);
 
                     return (
                         <div
@@ -83,16 +94,14 @@ const SkillsShowcase = () => {
                             />
 
                             {/* Orbiting Container */}
-                            <motion.div
+                            <div
                                 className="absolute w-full h-full flex items-center justify-center"
-                                animate={{ rotate: 360 * orbitConf.direction }}
-                                transition={{
-                                    repeat: Infinity,
-                                    duration: orbitConf.duration,
-                                    ease: "linear"
-                                }}
                                 style={{
-                                    animationPlayState: hoveredSkill ? 'paused' : 'running'
+                                    animationName: orbitConf.direction === 1 ? 'spin-forward' : 'spin-backward',
+                                    animationDuration: `${orbitConf.duration}s`,
+                                    animationTimingFunction: 'linear',
+                                    animationIterationCount: 'infinite',
+                                    animationPlayState: isOrbitHovered ? 'paused' : 'running'
                                 }}
                             >
                                 {category.skills.map((skill, skillIndex) => {
@@ -112,15 +121,13 @@ const SkillsShowcase = () => {
                                             onMouseLeave={() => setHoveredSkill(null)}
                                         >
                                             {/* Counter-rotate to keep nodes upright */}
-                                            <motion.div
-                                                animate={{ rotate: -360 * orbitConf.direction }}
-                                                transition={{
-                                                    repeat: Infinity,
-                                                    duration: orbitConf.duration,
-                                                    ease: "linear"
-                                                }}
+                                            <div
                                                 style={{
-                                                    animationPlayState: hoveredSkill ? 'paused' : 'running'
+                                                    animationName: orbitConf.direction === 1 ? 'spin-backward' : 'spin-forward',
+                                                    animationDuration: `${orbitConf.duration}s`,
+                                                    animationTimingFunction: 'linear',
+                                                    animationIterationCount: 'infinite',
+                                                    animationPlayState: isOrbitHovered ? 'paused' : 'running'
                                                 }}
                                                 className="relative group cursor-pointer"
                                             >
@@ -156,11 +163,11 @@ const SkillsShowcase = () => {
                                                         <span className="text-xs font-mono text-muted-foreground">{skill.level}%</span>
                                                     </div>
                                                 </div>
-                                            </motion.div>
+                                            </div>
                                         </div>
                                     );
                                 })}
-                            </motion.div>
+                            </div>
                         </div>
                     );
                 })}

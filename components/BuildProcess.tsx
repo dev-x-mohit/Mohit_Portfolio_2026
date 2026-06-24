@@ -1,8 +1,10 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
+
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, useInView } from 'framer-motion';
+import { FiSearch, FiLayout, FiSettings, FiCheckCircle, FiSend, FiRefreshCw } from 'react-icons/fi';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,10 +15,10 @@ const phases = [
         label: 'Discovery',
         title: 'Understand the Vision',
         description:
-            'Before a single line of code, I map the problem space. User research, competitor analysis, and constraint scoping. Great software starts with crystal-clear requirements.',
-        icon: '🔭',
+            'Before a single line of code, I map the problem space. User research, competitor analysis, and understanding project limits. Great software starts with crystal-clear requirements.',
+        icon: <FiSearch />,
         color: '#60A5FA',
-        tech: ['Notion', 'Figma', 'User Interviews', 'MoSCoW Prioritisation'],
+        tech: ['Notion', 'Figma', 'User Interviews', 'Prioritization'],
         output: 'Product Brief + Feature Scope',
     },
     {
@@ -24,10 +26,10 @@ const phases = [
         label: 'Design',
         title: 'Blueprint the Architecture',
         description:
-            'System design, database schemas, API contracts, and UI wireframes — all resolved before coding. Architecture debt is 10× harder to fix later.',
-        icon: '📐',
+            'System design, database structures, interface planning, and visual layouts — all resolved before coding. Bad structural choices are 10× harder to fix later.',
+        icon: <FiLayout />,
         color: '#A78BFA',
-        tech: ['Figma', 'Excalidraw', 'ERD Design', 'REST / GraphQL contracts'],
+        tech: ['Figma', 'Excalidraw', 'Database Planning', 'API Design'],
         output: 'Hi-Fi Designs + System Diagram',
     },
     {
@@ -35,10 +37,10 @@ const phases = [
         label: 'Engineering',
         title: 'Build with Precision',
         description:
-            'Feature-branch workflow, atomic commits, and trunk-based CI. I write component-first front-ends and domain-driven back-ends that are readable by the next engineer.',
-        icon: '⚙️',
+            'Organized coding, small reliable updates, and continuous testing. I write reusable front-end pieces and logic built around business needs that are readable by the next engineer.',
+        icon: <FiSettings />,
         color: '#34D399',
-        tech: ['React / Next.js', 'Node.js', 'Cursor', 'Lovable', 'Antigravity', 'Docker'],
+        tech: ['React / Next.js', 'Node.js', 'Cursor', 'Lovable', 'Docker'],
         output: 'Functional Application',
     },
     {
@@ -46,10 +48,10 @@ const phases = [
         label: 'Testing',
         title: 'Verify & Harden',
         description:
-            'Unit tests, integration tests, and manual edge-case hunting. Accessibility audits and cross-browser checks. Bugs found here cost nothing; bugs found in prod cost everything.',
-        icon: '🧪',
+            'Automated tests, manual testing, and finding rare issues. Accessibility checks and testing on different browsers. Bugs found here cost nothing; bugs found in production cost everything.',
+        icon: <FiCheckCircle />,
         color: '#FBBF24',
-        tech: ['Jest', 'Playwright', 'Postman', 'Lighthouse / Axe'],
+        tech: ['Jest', 'Playwright', 'Postman', 'Lighthouse'],
         output: 'Test Report + Bug-Free Build',
     },
     {
@@ -57,10 +59,10 @@ const phases = [
         label: 'Deployment',
         title: 'Ship with Confidence',
         description:
-            'CI/CD pipelines push every merge to staging automatically. Zero-downtime deploys, environment secrets locked in vaults, and rollback strategies ready before go-live.',
-        icon: '🚀',
+            'Automated systems publish every update instantly. Updates without going offline, secure handling of passwords, and safety nets ready before launch.',
+        icon: <FiSend />,
         color: '#F472B6',
-        tech: ['Vercel / AWS', 'GitHub Actions', 'Docker Compose', 'PM2'],
+        tech: ['Vercel / AWS', 'GitHub Actions', 'Docker', 'PM2'],
         output: 'Live Production System',
     },
     {
@@ -69,28 +71,29 @@ const phases = [
         title: 'Observe, Learn, Evolve',
         description:
             'Post-launch isn\'t the end — it\'s the beginning of the feedback loop. Analytics, user sessions, and error tracking inform the next sprint. Software is never "done".',
-        icon: '🔄',
+        icon: <FiRefreshCw />,
         color: '#FB923C',
-        tech: ['Sentry', 'PostHog / GA4', 'Hotjar', 'Agile Sprint Reviews'],
+        tech: ['Sentry', 'PostHog', 'Hotjar', 'Agile Sprints'],
         output: 'Continuous Improvement',
     },
 ];
 
-// ── Component ─────────────────────────────────────────────────────────────────
+// ── Main Component ────────────────────────────────────────────────────────────
 const BuildProcess = () => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const progressRef = useRef<HTMLDivElement>(null);
-    const headerInViewRef = useRef<HTMLDivElement>(null);
-    const headerInView = useInView(headerInViewRef, { once: true });
+    const headerRef = useRef<HTMLDivElement>(null);
+    const headerInView = useInView(headerRef, { once: true, amount: 0.3 });
+    const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
             const track = trackRef.current;
             if (!track) return;
 
-            // How far the track needs to scroll horizontally
-            const getScrollAmount = () => -(track.scrollWidth - window.innerWidth + 200); // Added padding so the last item is fully visible
+            const getScrollAmount = () =>
+                -(track.scrollWidth - window.innerWidth + 200);
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -102,9 +105,16 @@ const BuildProcess = () => {
                     anticipatePin: 1,
                     invalidateOnRefresh: true,
                     onUpdate: (self) => {
+                        const pct = self.progress * 100;
                         if (progressRef.current) {
-                            progressRef.current.style.width = `${self.progress * 100}%`;
+                            progressRef.current.style.width = `${pct}%`;
                         }
+                        // Update active index based on progress
+                        const idx = Math.min(
+                            Math.floor((self.progress * phases.length)),
+                            phases.length - 1
+                        );
+                        setActiveIndex(idx);
                     },
                 },
             });
@@ -121,50 +131,66 @@ const BuildProcess = () => {
     return (
         <section
             ref={wrapperRef}
-            className="relative h-screen w-full overflow-hidden bg-background flex flex-col"
+            className="relative h-screen w-full overflow-hidden bg-background flex flex-col transition-colors duration-500"
         >
+            {/* ── Subtle background texture ── */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,var(--accent-action),transparent_70%)] opacity-10" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_100%,var(--accent-highlight),transparent_50%)] opacity-5" />
+            </div>
+
             {/* ── Header ── */}
-            <div ref={headerInViewRef} className="flex-shrink-0 px-8 sm:px-16 pt-16 pb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <div ref={headerRef} className="relative z-10 flex-shrink-0 px-6 sm:px-12 lg:px-20 pt-12 pb-6 flex flex-col md:flex-row md:items-end md:justify-between gap-3">
                 <div>
                     <motion.span
-                        initial={{ opacity: 0, y: 14 }}
+                        initial={{ opacity: 0, y: 10 }}
                         animate={headerInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.5 }}
-                        className="block text-xs font-bold uppercase tracking-[0.5em] text-accent-action mb-2"
+                        className="inline-block text-[10px] font-bold uppercase tracking-[0.4em] text-accent-action mb-2 bg-accent-action/10 px-3 py-1 rounded-full border border-accent-action/20"
                     >
-                        How I Build
+                        ⚡ The Method
                     </motion.span>
                     <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 16 }}
                         animate={headerInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.6, delay: 0.1 }}
-                        className="text-4xl md:text-6xl font-black font-display tracking-tighter"
+                        transition={{ duration: 0.6, delay: 0.08 }}
+                        className="text-4xl sm:text-5xl lg:text-7xl font-bold font-display tracking-tight leading-[1.05]"
                     >
-                        The Build <span className="text-accent-action italic">Process</span>
+                        <span className="text-foreground">Build </span>
+                        <span className="bg-gradient-to-r from-accent-action to-accent-highlight bg-clip-text text-transparent italic">
+                            Process
+                        </span>
                     </motion.h2>
                 </div>
                 <motion.p
                     initial={{ opacity: 0 }}
                     animate={headerInView ? { opacity: 1 } : {}}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-text-secondary text-base md:text-lg max-w-sm md:text-right"
+                    className="text-text-secondary text-sm sm:text-base max-w-xs md:text-right font-light leading-relaxed"
                 >
-                    From raw idea to live product — every phase, every discipline.
+                    From raw idea to live product — <br className="hidden sm:block" />
+                    every phase, every discipline.
                 </motion.p>
             </div>
 
             {/* ── Progress bar ── */}
-            <div className="flex-shrink-0 px-8 sm:px-16 mb-6">
-                <div className="w-full h-px bg-border/15 rounded-full overflow-hidden">
+            <div className="relative z-10 flex-shrink-0 px-6 sm:px-12 lg:px-20 mb-4">
+                <div className="w-full h-[3px] bg-border/20 rounded-full overflow-hidden relative">
                     <div
                         ref={progressRef}
-                        className="h-full rounded-full bg-gradient-to-r from-accent-action to-indigo-400 transition-none"
+                        className="h-full rounded-full bg-gradient-to-r from-accent-action to-accent-highlight transition-none"
                         style={{ width: '0%' }}
                     />
+                    {/* Glow */}
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent-action to-accent-highlight blur-[8px] opacity-30 transition-opacity" style={{ width: '0%' }} />
                 </div>
-                <div className="flex justify-between mt-1">
-                    {phases.map((p) => (
-                        <span key={p.id} className="text-[10px] font-bold uppercase text-text-secondary/40 tracking-widest">
+                <div className="flex justify-between mt-1.5 px-0.5">
+                    {phases.map((p, i) => (
+                        <span
+                            key={p.id}
+                            className={`text-[9px] font-bold uppercase tracking-[0.15em] transition-colors duration-500 ${i <= activeIndex ? 'text-foreground' : 'text-text-secondary/40'
+                                }`}
+                        >
                             {p.label}
                         </span>
                     ))}
@@ -172,111 +198,152 @@ const BuildProcess = () => {
             </div>
 
             {/* ── Horizontal scroll track ── */}
-            <div className="flex-1 flex items-center px-8 sm:px-16 py-4">
-                <div ref={trackRef} className="flex gap-6 will-change-transform">
+            <div className="relative z-10 flex-1 flex items-center px-6 sm:px-12 lg:px-20 py-2 overflow-visible">
+                <div ref={trackRef} className="flex gap-5 md:gap-6 will-change-transform">
                     {phases.map((phase, i) => (
-                        <PhaseCard key={phase.id} phase={phase} index={i} />
+                        <PhaseCard
+                            key={phase.id}
+                            phase={phase}
+                            index={i}
+                            isActive={i === activeIndex}
+                        />
                     ))}
 
-                    {/* End cap */}
-                    <div className="flex-shrink-0 w-64 flex flex-col items-center justify-center text-center px-8">
-                        <div className="text-6xl mb-4">✨</div>
-                        <p className="text-2xl font-black font-display tracking-tight text-foreground mb-2">
+                    {/* End cap — refined */}
+                    <div className="flex-shrink-0 w-56 sm:w-72 flex flex-col items-center justify-center text-center px-4">
+                        <div className="text-5xl sm:text-6xl mb-4 text-accent-highlight opacity-50">✦</div>
+                        <p className="text-xl sm:text-2xl font-bold font-display tracking-tight text-foreground mb-2">
                             That's the loop.
                         </p>
-                        <p className="text-text-secondary text-sm leading-relaxed">
-                            Repeat, refine, ship better software — every single time.
+                        <p className="text-text-secondary text-xs sm:text-sm leading-relaxed max-w-xs">
+                            Repeat, refine, ship better software —<br />every single time.
                         </p>
                     </div>
                 </div>
             </div>
 
-            {/* Scroll hint */}
+            {/* ── Scroll hint ── */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={headerInView ? { opacity: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex-shrink-0 flex items-center justify-end gap-2 px-8 sm:px-16 pb-6 text-xs font-bold text-text-secondary/40 uppercase tracking-widest"
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="relative z-10 flex-shrink-0 flex items-center justify-end gap-3 px-6 sm:px-12 lg:px-20 pb-5 text-[10px] font-medium text-text-secondary/60 uppercase tracking-[0.2em]"
             >
-                Scroll to explore
-                <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
-                    <path d="M1 6h18M13 1l6 5-6 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                <span className="flex items-center gap-2">
+                    Scroll to explore
+                    <svg width="18" height="10" viewBox="0 0 18 10" fill="none" className="stroke-accent-action animate-pulse">
+                        <path d="M1 5h14M11 1l4 4-4 4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </span>
             </motion.div>
 
-            {/* Edge fades */}
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
+            {/* ── Edge fades ── */}
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-background via-background/80 to-transparent z-10" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-20 bg-gradient-to-r from-background via-background/80 to-transparent z-10" />
+
+            {/* ── Subtle bottom glow ── */}
+            <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-accent-action/20 to-transparent" />
         </section>
     );
 };
 
-// ── Individual phase card ─────────────────────────────────────────────────────
-// Uses pure CSS group-hover — React synthetic events are unreliable
-// on elements inside GSAP-transformed containers.
+// ── Individual Phase Card ────────────────────────────────────────────────────
 const PhaseCard = ({
     phase,
     index,
+    isActive,
 }: {
     phase: (typeof phases)[0];
     index: number;
+    isActive: boolean;
 }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
         <div
-            className="bp-card group flex-shrink-0 w-[85vw] sm:w-[460px] md:w-[520px] h-full flex flex-col"
+            className="bp-card group flex-shrink-0 w-[80vw] sm:w-[400px] md:w-[460px] lg:w-[500px] h-full flex flex-col"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
             <div
-                className="relative flex flex-col h-full rounded-2xl border border-border/10 bg-secondary-bg/40 backdrop-blur-md p-5 overflow-visible transition-all duration-300 group-hover:border-border/30 cursor-default"
+                className="relative flex flex-col h-full rounded-2xl bg-secondary-bg/10 backdrop-blur-xl border border-border/10 p-6 sm:p-7 overflow-visible transition-all duration-500 cursor-default"
                 style={{
-                    boxShadow: `0 0 0px 0 ${phase.color}00`,
-                    transition: 'box-shadow 0.4s ease, border-color 0.3s ease',
+                    boxShadow: isActive
+                        ? `0 0 40px -10px ${phase.color}20, inset 0 1px 0 ${phase.color}20`
+                        : '0 4px 24px -12px rgba(0,0,0,0.1)',
+                    borderColor: isActive ? `${phase.color}40` : 'var(--border)',
+                    transform: isActive ? 'scale(1.02)' : 'scale(1)',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.boxShadow = `0 0 40px 0 ${phase.color}28`)}
-                onMouseLeave={e => (e.currentTarget.style.boxShadow = `0 0 0px 0 ${phase.color}00`)}
             >
-                {/* Top-right ambient glow */}
+                {/* ── Ambient glow ── */}
                 <div
-                    className="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl opacity-[0.05] group-hover:opacity-[0.18] transition-opacity duration-500"
-                    style={{ background: phase.color }}
+                    className="pointer-events-none absolute -top-20 -right-20 w-48 h-48 rounded-full blur-[80px] transition-opacity duration-700"
+                    style={{
+                        background: phase.color,
+                        opacity: isHovered || isActive ? 0.15 : 0.02,
+                    }}
                 />
 
-                {/* Phase ID */}
+                {/* ── Top-left accent line ── */}
                 <div
-                    className="text-[10px] font-black uppercase tracking-[0.5em] mb-2"
-                    style={{ color: phase.color }}
-                >
-                    Phase {phase.id}
+                    className="absolute top-0 left-6 h-[2px] w-12 rounded-full transition-all duration-500"
+                    style={{
+                        background: phase.color,
+                        opacity: isHovered || isActive ? 1 : 0.3,
+                        width: isHovered || isActive ? '48px' : '24px',
+                    }}
+                />
+
+                {/* ── Phase number ── */}
+                <div className="flex items-center gap-3 mb-3">
+                    <span
+                        className="text-[9px] font-black uppercase tracking-[0.3em] transition-colors duration-300"
+                        style={{ color: phase.color }}
+                    >
+                        Phase {phase.id}
+                    </span>
+                    <span className="flex-1 h-px bg-border/20" />
                 </div>
 
-                {/* Icon + Title row */}
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="text-3xl leading-none transition-transform duration-300 group-hover:scale-110 origin-left flex-shrink-0">
+                {/* ── Icon + Title ── */}
+                <div className="flex items-start gap-4 mb-3">
+                    <div
+                        className="text-3xl sm:text-4xl transition-all duration-500 flex-shrink-0"
+                        style={{
+                            color: isHovered || isActive ? phase.color : 'var(--text-secondary)',
+                            transform: isHovered || isActive ? 'scale(1.12) rotate(-4deg)' : 'scale(1) rotate(0deg)',
+                        }}
+                    >
                         {phase.icon}
                     </div>
                     <div>
-                        <h3 className="text-lg font-black font-display tracking-tight text-foreground leading-tight">
+                        <h3
+                            className="text-xl sm:text-2xl font-bold font-display tracking-tight text-foreground transition-colors duration-300"
+                        >
                             {phase.label}
                         </h3>
-                        <p className="text-xs font-bold italic text-text-secondary leading-tight">
+                        <p className="text-xs sm:text-sm font-medium text-text-secondary leading-tight mt-0.5">
                             {phase.title}
                         </p>
                     </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-text-secondary text-xs leading-relaxed flex-1 mb-3">
+                {/* ── Description ── */}
+                <p className="text-text-secondary text-xs sm:text-sm leading-relaxed flex-1 mb-4">
                     {phase.description}
                 </p>
 
-                {/* Tech pills */}
-                <div className="flex flex-wrap gap-1.5 mb-3">
+                {/* ── Tech pills ── */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
                     {phase.tech.map((t) => (
                         <span
                             key={t}
-                            className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
+                            className="text-[8px] sm:text-[9px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full transition-all duration-300"
                             style={{
                                 color: phase.color,
-                                background: `${phase.color}14`,
-                                border: `1px solid ${phase.color}28`,
+                                background: `${phase.color}15`,
+                                border: `1px solid ${phase.color}30`,
+                                boxShadow: isHovered || isActive ? `0 0 16px -4px ${phase.color}20` : 'none',
                             }}
                         >
                             {t}
@@ -284,17 +351,36 @@ const PhaseCard = ({
                     ))}
                 </div>
 
-                {/* Output tag */}
-                <div className="pt-3 border-t border-border/10 flex items-center gap-2">
-                    <span className="text-[9px] font-bold uppercase tracking-widest text-text-secondary/50">Output</span>
-                    <span className="text-[10px] font-bold" style={{ color: phase.color }}>{phase.output}</span>
+                {/* ── Output ── */}
+                <div className="pt-3.5 border-t border-border/20 flex items-center gap-3">
+                    <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-text-secondary/60">
+                        Output
+                    </span>
+                    <span
+                        className="text-[9px] sm:text-[10px] font-bold transition-colors duration-300"
+                        style={{ color: phase.color }}
+                    >
+                        {phase.output}
+                    </span>
                 </div>
 
-                {/* Connector arrow */}
+                {/* ── Active indicator dot ── */}
+                {isActive && (
+                    <div
+                        className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full animate-pulse"
+                        style={{ background: phase.color }}
+                    />
+                )}
+
+                {/* ── Connector ── */}
                 {index < phases.length - 1 && (
                     <div
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full w-6 h-px"
-                        style={{ background: `linear-gradient(to right, ${phase.color}50, transparent)` }}
+                        className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-px hidden sm:block"
+                        style={{
+                            background: `linear-gradient(to right, ${phase.color}40, transparent)`,
+                            opacity: isHovered || isActive ? 0.6 : 0.2,
+                            transition: 'opacity 0.4s ease',
+                        }}
                     />
                 )}
             </div>

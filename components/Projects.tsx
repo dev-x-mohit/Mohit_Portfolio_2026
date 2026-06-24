@@ -92,7 +92,7 @@ const HeaderContent = ({ progress, totalCards }: { progress: MotionValue<number>
                 Featured Works
             </div>
 
-            <h2 className="mb-6 font-display text-5xl font-bold leading-[1.1] md:text-7xl text-foreground">
+            <h2 className="mb-6 font-display text-5xl font-bold md:text-7xl text-foreground">
                 Selected <br />
                 <span className="bg-gradient-to-r from-accent-action to-accent-highlight bg-clip-text text-transparent">
                     Projects
@@ -162,7 +162,7 @@ const Card = ({
                 {/* Overlay for when it stacks behind */}
                 <motion.div
                     style={{ opacity: overlayOpacity }}
-                    className="absolute inset-0 bg-black z-50 pointer-events-none"
+                    className="absolute inset-0 bg-background z-50 pointer-events-none"
                 />
 
                 {/* Left/Foreground Content - 45% */}

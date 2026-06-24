@@ -7,7 +7,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-export default async function Home() {
-  await new Promise(resolve => setTimeout(resolve, 5000)); // Enforce minimum 5s loading screen visibility
+export default function Home() {
   return <HomeClient />;
 }

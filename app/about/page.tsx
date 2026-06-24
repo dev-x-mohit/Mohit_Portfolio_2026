@@ -2,13 +2,12 @@ import type { Metadata } from 'next';
 import AboutHero from '@/components/AboutHero';
 import StoryFlow from '@/components/StoryFlow';
 import CodePhilosophy from '@/components/CodePhilosophy';
-import EthosTunnel from '@/components/EthosTunnel';
+
 import ResumePulse from '@/components/ResumePulse';
 import SkillsShowcase from '@/components/SkillsShowcase';
 import Certifications from '@/components/Certifications';
 import BuildProcess from '@/components/BuildProcess';
 import ToolChest from '@/components/ToolChest';
-import BeyondTheCode from '@/components/BeyondTheCode';
 export const metadata: Metadata = {
     title: 'About Mohit Lakhara | Full-Stack Developer Story & Skills',
     description: 'Learn about Mohit Lakhara — a MERN Stack Developer with a passion for crafting cinematic digital experiences. Explore his skills, philosophy, toolset, and development process.',
@@ -39,17 +38,16 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
     return (
-        <main className="relative min-h-screen w-full bg-transparent text-foreground overflow-hidden">
+        <main className="relative min-h-[100svh] w-full bg-transparent text-foreground overflow-hidden">
             <div className="relative z-10">
                 <AboutHero />
                 <StoryFlow />
                 <SkillsShowcase />
                 <CodePhilosophy />
                 <BuildProcess />
-                <EthosTunnel />
+
                 <ResumePulse />
                 <Certifications />
-                <BeyondTheCode />
                 <ToolChest />
             </div>
         </main>

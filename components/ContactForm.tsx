@@ -1,10 +1,7 @@
 'use client';
-import { Send, Refresh } from 'iconoir-react';
-
-
-
+import { Send, Refresh, Check } from 'iconoir-react';
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import SuccessOverlay from './SuccessOverlay';
 
@@ -40,7 +37,6 @@ const ContactForm = () => {
                 setFormData({ name: '', email: '', message: '' });
             } else {
                 setStatus('error');
-                // Auto revert status on error
                 setTimeout(() => setStatus('idle'), 3000);
             }
         } catch (error) {
@@ -49,73 +45,92 @@ const ContactForm = () => {
         }
     };
 
-    const inputClasses = "w-full bg-secondary-bg/50 border border-border/10 rounded-xl px-4 py-3 outline-none focus:border-accent-action/50 focus:bg-secondary-bg/80 transition-all duration-300 placeholder:text-text-secondary/60 text-foreground font-light";
+    const inputClasses = "w-full bg-transparent border-b border-border/20 py-4 outline-none focus:border-accent-action transition-all duration-300 placeholder:text-text-secondary/40 text-2xl font-light text-foreground focus:ring-0";
 
     return (
-        <div className="relative">
-            {status === 'success' && <SuccessOverlay onClose={() => setStatus('idle')} />}
+        <div className="relative z-10 w-full">
+            <AnimatePresence>
+                {status === 'success' && <SuccessOverlay onClose={() => setStatus('idle')} />}
+            </AnimatePresence>
 
             <motion.form
                 onSubmit={handleSubmit}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="space-y-6 bg-secondary-bg/20 backdrop-blur-xl p-8 rounded-3xl border border-border/10 shadow-2xl relative overflow-hidden"
+                className="space-y-12"
             >
-                <div className="absolute inset-0 bg-gradient-to-br from-accent-action/5 via-transparent to-accent-highlight/5 pointer-events-none" />
-
-                <div className="space-y-2 relative z-10">
-                    <label className="text-sm font-medium text-text-secondary ml-1">Name</label>
-                    <input
-                        required
-                        type="text"
-                        placeholder="John Doe"
-                        className={inputClasses}
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    />
+                <div className="space-y-2 group relative">
+                    <label className="text-xs font-bold uppercase tracking-widest text-text-secondary block group-focus-within:text-accent-action transition-colors">
+                        01 / What's your name?
+                    </label>
+                    <div className="relative">
+                        <input
+                            required
+                            type="text"
+                            placeholder="John Doe"
+                            className={inputClasses}
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        />
+                        <div className="absolute bottom-0 left-0 h-[2px] bg-accent-action w-0 group-focus-within:w-full transition-all duration-500 ease-out" />
+                    </div>
                 </div>
 
-                <div className="space-y-2 relative z-10">
-                    <label className="text-sm font-medium text-text-secondary ml-1">Email</label>
-                    <input
-                        required
-                        type="email"
-                        placeholder="john@example.com"
-                        className={inputClasses}
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    />
+                <div className="space-y-2 group relative">
+                    <label className="text-xs font-bold uppercase tracking-widest text-text-secondary block group-focus-within:text-accent-action transition-colors">
+                        02 / What's your email address?
+                    </label>
+                    <div className="relative">
+                        <input
+                            required
+                            type="email"
+                            placeholder="john@example.com"
+                            className={inputClasses}
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        />
+                        <div className="absolute bottom-0 left-0 h-[2px] bg-accent-action w-0 group-focus-within:w-full transition-all duration-500 ease-out" />
+                    </div>
                 </div>
 
-                <div className="space-y-2 relative z-10">
-                    <label className="text-sm font-medium text-text-secondary ml-1">Message</label>
-                    <textarea
-                        required
-                        rows={5}
-                        placeholder="Tell me about your project..."
-                        className={`${inputClasses} resize-none`}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    />
+                <div className="space-y-2 group relative">
+                    <label className="text-xs font-bold uppercase tracking-widest text-text-secondary block group-focus-within:text-accent-action transition-colors">
+                        03 / Tell me about your project
+                    </label>
+                    <div className="relative">
+                        <textarea
+                            required
+                            rows={3}
+                            placeholder="I need help with..."
+                            className={`${inputClasses} resize-none`}
+                            value={formData.message}
+                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        />
+                        <div className="absolute bottom-1 left-0 h-[2px] bg-accent-action w-0 group-focus-within:w-full transition-all duration-500 ease-out" />
+                    </div>
                 </div>
 
-                <button
+                <motion.button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="w-full py-4 mt-4 bg-accent-action text-background font-bold rounded-xl hover:bg-accent-highlight transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed group relative overflow-hidden"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full md:w-auto px-10 py-5 mt-4 bg-foreground text-background font-bold text-lg rounded-full hover:bg-accent-action transition-colors duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed group"
                 >
-                    <span className="relative z-10 flex items-center gap-2">
+                    <span className="flex items-center gap-2">
                         {status === 'loading' ? (
-                            <Refresh className="animate-spin" width={20} height={20} />
+                            <Refresh className="animate-spin" width={24} height={24} />
+                        ) : status === 'success' ? (
+                            <>
+                                Sent <Check width={24} height={24} />
+                            </>
+                        ) : status === 'error' ? (
+                            'Error! Try Again'
                         ) : (
                             <>
-                                Send Message <Send width={18} height={18} className="group-hover:translate-x-1 transition-transform" />
+                                Send Message <Send width={22} height={22} className="group-hover:translate-x-1 transition-transform" />
                             </>
                         )}
                     </span>
-                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                </button>
+                </motion.button>
             </motion.form>
         </div>
     );

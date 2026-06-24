@@ -1,9 +1,113 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { NavArrowRight, NavArrowLeft, OpenNewWindow } from 'iconoir-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useMotionTemplate, useMotionValue } from 'framer-motion';
+import { NavArrowRight, NavArrowLeft, OpenNewWindow, CheckCircle, Trophy } from 'iconoir-react';
 import { useGlobalData } from '@/context/GlobalContext';
+
+// A single credential card with a spotlight hover effect
+const CredentialCard = ({ cert, index }: { cert: any, index: number }) => {
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+        const { left, top } = currentTarget.getBoundingClientRect();
+        mouseX.set(clientX - left);
+        mouseY.set(clientY - top);
+    }
+
+    return (
+        <motion.a
+            href={cert.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseMove={handleMouseMove}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ delay: index * 0.1, duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+            className="group relative flex flex-col h-full rounded-[2rem] border border-border/10 bg-secondary-bg/20 p-8 overflow-hidden backdrop-blur-xl transition-all duration-500 hover:border-accent-action/40 hover:bg-secondary-bg/40 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(96,165,250,0.15)]"
+        >
+            {/* Interactive Spotlight Hover Effect */}
+            <motion.div
+                className="pointer-events-none absolute -inset-px rounded-[2rem] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{
+                    background: useMotionTemplate`
+                        radial-gradient(
+                            400px circle at ${mouseX}px ${mouseY}px,
+                            var(--accent-action) 0%,
+                            transparent 20%
+                        )
+                    `,
+                    opacity: 0.15
+                }}
+            />
+
+            <div className="relative z-10 flex flex-col h-full gap-6">
+                {/* Header: Logo & Badge */}
+                <div className="flex items-start justify-between">
+                    <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-background/50 p-3 shadow-inner border border-border/10 transition-transform duration-500 group-hover:scale-110 group-hover:border-accent-action/30 group-hover:shadow-[0_0_20px_rgba(96,165,250,0.2)]">
+                        <img
+                            src={cert.logo}
+                            alt={cert.issuer}
+                            className="h-full w-full object-contain drop-shadow-md transition-all duration-500 group-hover:brightness-125"
+                        />
+                    </div>
+                    
+                    <div className="flex items-center gap-1.5 rounded-full border border-border/10 bg-background/30 px-3 py-1.5 backdrop-blur-md transition-all duration-500 group-hover:bg-accent-action/10 group-hover:border-accent-action/30">
+                        <CheckCircle className="text-accent-highlight w-4 h-4" />
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-text-secondary group-hover:text-foreground">Verified</span>
+                    </div>
+                </div>
+
+                {/* Content */}
+                <div className="space-y-3 flex-grow">
+                    <h3 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-foreground/90 transition-colors duration-300 group-hover:text-foreground">
+                        {cert.title}
+                    </h3>
+                    <div className="flex items-center gap-3 text-sm font-medium">
+                        <span className="text-accent-action font-semibold">{cert.issuer}</span>
+                        {cert.date && <span className="h-1 w-1 rounded-full bg-border/40" />}
+                        {cert.date && <span className="text-text-secondary/80 font-mono text-xs">{cert.date}</span>}
+                    </div>
+                </div>
+
+                {/* Skills Pills */}
+                {cert.skills && cert.skills.length > 0 && (
+                    <div className="flex flex-wrap gap-2 pt-2">
+                        {cert.skills.slice(0, 3).map((skill: string, sIdx: number) => (
+                            <span 
+                                key={sIdx} 
+                                className="rounded-lg border border-border/10 bg-background/50 px-3 py-1.5 text-[11px] font-bold tracking-wide text-text-secondary/80 transition-all duration-300 group-hover:border-accent-action/30 group-hover:bg-accent-action/5 group-hover:text-foreground"
+                            >
+                                {skill}
+                            </span>
+                        ))}
+                        {cert.skills.length > 3 && (
+                            <span className="rounded-lg border border-border/10 bg-background/30 px-3 py-1.5 text-[11px] font-bold text-text-secondary/50">
+                                +{cert.skills.length - 3}
+                            </span>
+                        )}
+                    </div>
+                )}
+
+                {/* Bottom Footer - Credential ID & Link Icon */}
+                <div className="mt-4 pt-4 border-t border-border/10 flex items-center justify-between transition-colors duration-500 group-hover:border-accent-action/20">
+                    <div className="flex-1 overflow-hidden pr-4">
+                        {cert.credential && (
+                            <p className="font-mono text-[10px] text-text-secondary/40 truncate transition-colors duration-500 group-hover:text-text-secondary/80">
+                                ID: {cert.credential}
+                            </p>
+                        )}
+                    </div>
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-background/50 text-text-secondary/40 transition-all duration-500 group-hover:bg-accent-action group-hover:text-white group-hover:-translate-y-1">
+                        <OpenNewWindow width={14} height={14} strokeWidth={2.5} />
+                    </div>
+                </div>
+            </div>
+        </motion.a>
+    );
+};
 
 const Certifications = () => {
     const { certifications } = useGlobalData();
@@ -27,51 +131,47 @@ const Certifications = () => {
         if (currentPage > 1) setCurrentPage((prev) => prev - 1);
     };
 
+    // Keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowRight' && currentPage < totalPages) {
+                setCurrentPage((prev) => prev + 1);
+            } else if (e.key === 'ArrowLeft' && currentPage > 1) {
+                setCurrentPage((prev) => prev - 1);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [currentPage, totalPages]);
+
     if (!mounted) return null;
-
-    // Card animation variants
-    const cardVariants = {
-        hidden: { opacity: 0, y: 30, scale: 0.95 },
-        visible: (i: number) => ({
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            transition: { delay: i * 0.08, duration: 0.5, ease: [0.25, 1, 0.5, 1] },
-        }),
-    };
-
-    const pageTransition = {
-        initial: { opacity: 0, filter: 'blur(10px)' },
-        animate: { opacity: 1, filter: 'blur(0px)' },
-        exit: { opacity: 0, filter: 'blur(10px)' },
-        transition: { duration: 0.4 },
-    };
 
     return (
         <section
-            className="relative w-full overflow-hidden bg-transparent py-24"
+            className="relative w-full overflow-hidden bg-background py-32 transition-colors duration-500"
             id="certifications"
         >
             {/* Ambient background orbs */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 left-10 h-96 w-96 rounded-full bg-accent-highlight/5 blur-[120px]" />
-                <div className="absolute bottom-1/4 right-10 h-96 w-96 rounded-full bg-accent-action/5 blur-[120px]" />
+                <div className="absolute top-1/4 left-10 h-[500px] w-[500px] rounded-full bg-accent-highlight/5 blur-[150px]" />
+                <div className="absolute bottom-1/4 right-10 h-[500px] w-[500px] rounded-full bg-accent-action/5 blur-[150px]" />
             </div>
 
-            <div className="container relative mx-auto max-w-6xl px-6">
-                {/* Header */}
-                <div className="mb-14 flex flex-wrap items-end justify-between gap-6 border-b border-foreground/5 pb-8">
-                    <div className="max-w-xl">
+            <div className="container relative mx-auto max-w-7xl px-6">
+                {/* Header Section */}
+                <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-border/20 pb-8">
+                    <div className="max-w-2xl">
                         <motion.div 
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5 }}
-                            className="mb-3 flex items-center gap-2"
+                            className="mb-4 flex items-center gap-3"
                         >
-                            <span className="h-px w-8 bg-accent-action"></span>
-                            <span className="font-mono text-sm font-semibold tracking-wider text-accent-action uppercase">
-                                Verified Credentials
+                            <Trophy className="text-accent-highlight w-5 h-5" />
+                            <span className="font-mono text-sm font-bold tracking-[0.3em] text-accent-highlight uppercase">
+                                Verified Mastery
                             </span>
                         </motion.div>
                         <motion.h2 
@@ -79,9 +179,9 @@ const Certifications = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-4xl font-bold tracking-tight text-foreground md:text-5xl"
+                            className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight font-display text-foreground"
                         >
-                            Certifications <span className="text-foreground/30">& Training</span>
+                            Certifications <span className="text-transparent bg-clip-text bg-gradient-to-r from-text-secondary/50 to-text-secondary/20">& Training</span>
                         </motion.h2>
                     </div>
 
@@ -92,123 +192,48 @@ const Certifications = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: 0.2 }}
-                            className="flex items-center gap-2 rounded-2xl border border-foreground/10 bg-foreground/5 p-1.5 backdrop-blur-md"
+                            className="flex items-center gap-2 rounded-full border border-border/20 bg-secondary-bg/30 p-1.5 backdrop-blur-xl shadow-sm"
                         >
                             <button
                                 onClick={handlePrev}
                                 disabled={currentPage === 1}
-                                className="flex h-11 w-11 items-center justify-center rounded-xl bg-transparent text-foreground/50 transition-all hover:bg-foreground/10 hover:text-foreground disabled:opacity-30 disabled:hover:bg-transparent disabled:cursor-not-allowed"
+                                className="flex h-12 w-12 items-center justify-center rounded-full bg-transparent text-foreground/50 transition-all hover:bg-background hover:text-foreground disabled:opacity-20 disabled:hover:bg-transparent disabled:cursor-not-allowed"
                                 aria-label="Previous page"
                             >
-                                <NavArrowLeft width={22} height={22} strokeWidth={2} />
+                                <NavArrowLeft width={24} height={24} strokeWidth={2.5} />
                             </button>
 
-                            <div className="flex px-3 items-center gap-2 font-mono text-sm font-medium tracking-widest">
+                            <div className="flex px-4 items-center gap-2 font-mono text-sm font-bold tracking-widest">
                                 <span className="text-accent-action">{String(currentPage).padStart(2, '0')}</span>
-                                <span className="text-foreground/20">/</span>
-                                <span className="text-foreground/50">{String(totalPages).padStart(2, '0')}</span>
+                                <span className="text-text-secondary/30">/</span>
+                                <span className="text-text-secondary/60">{String(totalPages).padStart(2, '0')}</span>
                             </div>
 
                             <button
                                 onClick={handleNext}
                                 disabled={currentPage === totalPages}
-                                className="flex h-11 w-11 items-center justify-center rounded-xl bg-transparent text-foreground/50 transition-all hover:bg-foreground/10 hover:text-foreground disabled:opacity-30 disabled:hover:bg-transparent disabled:cursor-not-allowed"
+                                className="flex h-12 w-12 items-center justify-center rounded-full bg-transparent text-foreground/50 transition-all hover:bg-background hover:text-foreground disabled:opacity-20 disabled:hover:bg-transparent disabled:cursor-not-allowed"
                                 aria-label="Next page"
                             >
-                                <NavArrowRight width={22} height={22} strokeWidth={2} />
+                                <NavArrowRight width={24} height={24} strokeWidth={2.5} />
                             </button>
                         </motion.div>
                     )}
                 </div>
 
                 {/* Grid */}
-                <div className="relative min-h-[400px]">
+                <div className="relative min-h-[500px]">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={currentPage}
-                            initial={pageTransition.initial}
-                            animate={pageTransition.animate}
-                            exit={pageTransition.exit}
-                            transition={pageTransition.transition}
-                            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                            initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+                            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                            exit={{ opacity: 0, y: -20, filter: 'blur(8px)' }}
+                            transition={{ duration: 0.4, ease: "easeInOut" }}
+                            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
                         >
                             {currentCertificates.map((cert, index) => (
-                                <motion.a
-                                    key={`${cert.title}-${index}`}
-                                    href={cert.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    custom={index}
-                                    variants={cardVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    whileHover={{ y: -6, scale: 1.01 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="group relative flex flex-col h-full rounded-[2rem] border border-foreground/10 bg-background/40 p-7 overflow-hidden backdrop-blur-xl transition-all duration-500 hover:border-accent-action/30 hover:bg-foreground/5 hover:shadow-[0_0_40px_-15px_rgba(0,0,0,0.5)]"
-                                >
-                                    {/* Verified Seal Glow */}
-                                    <div className="absolute top-0 right-0 -mr-8 -mt-8 h-32 w-32 rounded-full bg-accent-action/20 blur-3xl transition-opacity duration-500 opacity-0 group-hover:opacity-100 pointer-events-none" />
-
-                                    <div className="relative z-10 flex flex-col h-full gap-6">
-                                        {/* Header: Logo and Link Icon */}
-                                        <div className="flex items-start justify-between">
-                                            <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-foreground/5 to-foreground/10 p-3 shadow-inner ring-1 ring-foreground/10 transition-transform duration-500 group-hover:scale-110 group-hover:ring-accent-action/30">
-                                                <img
-                                                    src={cert.logo}
-                                                    alt={cert.issuer}
-                                                    className="h-full w-full object-contain drop-shadow-md transition-all duration-500 group-hover:brightness-125"
-                                                />
-                                            </div>
-                                            
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground/5 text-foreground/40 backdrop-blur-sm transition-all duration-500 group-hover:bg-accent-action/20 group-hover:text-accent-action group-hover:-translate-y-1 group-hover:translate-x-1">
-                                                <OpenNewWindow width={18} height={18} strokeWidth={2.5} />
-                                            </div>
-                                        </div>
-
-                                        {/* Content: Title, Issuer, Date */}
-                                        <div className="space-y-3 flex-grow">
-                                            <h3 className="text-xl font-bold leading-tight text-foreground/90 transition-colors duration-300 group-hover:text-foreground">
-                                                {cert.title}
-                                            </h3>
-                                            <div className="flex items-center gap-2 text-sm font-medium text-foreground/50">
-                                                <span className="text-accent-action">{cert.issuer}</span>
-                                                {cert.date && <span className="h-1 w-1 rounded-full bg-foreground/20" />}
-                                                {cert.date && <span>{cert.date}</span>}
-                                            </div>
-                                        </div>
-
-                                        {/* Skills Pills */}
-                                        {cert.skills && cert.skills.length > 0 && (
-                                            <div className="flex flex-wrap gap-2">
-                                                {cert.skills.slice(0, 3).map((skill, sIdx) => (
-                                                    <span 
-                                                        key={sIdx} 
-                                                        className="rounded-lg border border-foreground/10 bg-foreground/5 px-2.5 py-1 text-xs font-medium text-foreground/60 transition-all duration-300 group-hover:border-accent-action/30 group-hover:bg-accent-action/10 group-hover:text-accent-action"
-                                                    >
-                                                        {skill}
-                                                    </span>
-                                                ))}
-                                                {cert.skills.length > 3 && (
-                                                    <span className="rounded-lg border border-foreground/10 bg-foreground/5 px-2.5 py-1 text-xs font-medium text-foreground/50 transition-colors duration-300 group-hover:border-foreground/20 group-hover:text-foreground/70">
-                                                        +{cert.skills.length - 3}
-                                                    </span>
-                                                )}
-                                            </div>
-                                        )}
-
-                                        {/* Credential ID Terminal Panel */}
-                                        {cert.credential && (
-                                            <div className="mt-2 w-full rounded-xl bg-black/60 px-3.5 py-2.5 border border-foreground/5 shadow-inner transition-colors duration-500 group-hover:border-accent-action/20">
-                                                <p className="font-mono text-[11px] sm:text-xs text-foreground/40 truncate transition-colors duration-500 group-hover:text-foreground/70">
-                                                    {cert.credential}
-                                                </p>
-                                            </div>
-                                        )}
-                                        
-                                        {/* Animated Bottom Line */}
-                                        <div className="absolute inset-x-8 bottom-0 h-0.5 scale-x-0 rounded-full bg-gradient-to-r from-transparent via-accent-action to-transparent opacity-50 transition-transform duration-500 group-hover:scale-x-100" />
-                                    </div>
-                                </motion.a>
+                                <CredentialCard key={`${cert.title}-${index}`} cert={cert} index={index} />
                             ))}
                         </motion.div>
                     </AnimatePresence>
@@ -216,8 +241,13 @@ const Certifications = () => {
 
                 {/* Empty state (if no certifications) */}
                 {certifications.length === 0 && (
-                    <div className="py-24 text-center text-foreground/30 font-mono">
-                        System.out.println("No certifications to display");
+                    <div className="py-32 flex flex-col items-center justify-center text-center">
+                        <div className="h-24 w-24 rounded-full bg-secondary-bg/30 flex items-center justify-center mb-6 border border-border/10">
+                            <Trophy className="text-text-secondary/30 w-10 h-10" />
+                        </div>
+                        <p className="text-text-secondary/50 font-mono text-lg">
+                            System.out.println("No certifications to display");
+                        </p>
                     </div>
                 )}
             </div>

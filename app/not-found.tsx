@@ -7,8 +7,8 @@ export default function NotFound() {
         <main className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0a0a0a] text-white select-none px-6">
 
             {/* 404 Number */}
-            <h1 className="text-[120px] md:text-[180px] leading-none font-black text-white/5 tracking-tight pointer-events-none"
-                style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+            <h1 className="text-[120px] md:text-[180px] font-black text-white/5 tracking-tight pointer-events-none"
+                style={{ fontFamily: 'var(--font-syne)' }}>
                 404
             </h1>
 
@@ -17,7 +17,7 @@ export default function NotFound() {
                 <div className="w-8 h-px bg-white/20 mb-6" />
 
                 <h2 className="text-lg md:text-xl font-semibold tracking-wide mb-2 text-white/90"
-                    style={{ fontFamily: 'var(--font-outfit)' }}>
+                    style={{ fontFamily: 'var(--font-inter)' }}>
                     Page not found
                 </h2>
 

@@ -1,21 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Space_Grotesk, JetBrains_Mono, Orbitron } from "next/font/google";
+import { Outfit, Space_Grotesk, Fira_Code, Orbitron } from "next/font/google";
 import "./globals.css";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-sans",
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-display",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const firaCode = Fira_Code({
   subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
+  variable: "--font-mono",
 });
 
 const orbitron = Orbitron({
@@ -70,9 +70,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-  themeColor: '#0d1117',
-};
+// Removed hardcoded viewport themeColor to allow theme switching
 
 import Navbar from "@/components/Navbar";
 import { GlobalProvider } from "@/context/GlobalContext";
@@ -106,7 +104,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${orbitron.variable} antialiased transition-colors duration-300`}
+        className={`${outfit.variable} ${spaceGrotesk.variable} ${firaCode.variable} ${orbitron.variable} antialiased transition-colors duration-300 overflow-x-hidden`}
       >
         <Script
           strategy="afterInteractive"

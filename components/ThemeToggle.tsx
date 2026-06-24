@@ -19,10 +19,7 @@ export function ThemeToggle() {
         return null
     }
 
-    // Hide on /projects route where ProjectIDE is active
-    if (pathname?.startsWith('/projects')) {
-        return null;
-    }
+
 
     return (
         <div className="fixed bottom-8 right-8 z-50 flex gap-2 p-1 rounded-full bg-white/80 dark:bg-black/80 border border-gray-200 dark:border-gray-800 shadow-lg backdrop-blur-sm">

@@ -114,7 +114,7 @@ const ProjectSection = ({ project, index }: { project: Project; index: number })
                             <div className="h-[1px] flex-1 bg-gradient-to-r from-white/20 to-transparent" />
                         </div>
                         
-                        <h2 className="text-5xl md:text-7xl font-bold mb-6 font-display leading-[1.1]">
+                        <h2 className="text-5xl md:text-7xl font-bold mb-6 font-display">
                             {project.title}
                         </h2>
                         
@@ -221,7 +221,7 @@ export default function CinematicScroll() {
                         <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                         <span className="text-sm font-mono tracking-widest text-white/80 uppercase">Selected Works</span>
                     </div>
-                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter mb-6 leading-none">
+                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter mb-6">
                         THE <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600">
                             ARCHIVE

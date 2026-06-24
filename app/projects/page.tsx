@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
     return (
-        <main className="w-full bg-[#050505] text-white">
+        <main className="w-full bg-primary-bg text-foreground min-h-[100svh]">
             <ProjectDirectory />
         </main>
     );

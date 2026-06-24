@@ -3,16 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import Script from 'next/script';
-
-// Type declaration to support the lord-icon web component in React
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'lord-icon': any;
-    }
-  }
-}
+import { ArrowRight } from 'iconoir-react';
 
 const About = () => {
     return (
@@ -20,9 +11,6 @@ const About = () => {
             id="about"
             className="relative w-full min-h-screen bg-background text-foreground overflow-hidden flex items-center justify-center py-20 px-4 md:px-8"
         >
-            {/* Load Lordicon Script */}
-            <Script src="https://cdn.lordicon.com/lordicon.js" strategy="lazyOnload" />
-
             {/* Subtle Ambient Glow */}
             <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[30vw] h-[50vh] bg-accent-action/5 blur-[120px] rounded-full pointer-events-none" />
             
@@ -59,16 +47,11 @@ const About = () => {
                         className="w-full lg:w-1/2 flex flex-col items-start text-left order-2 lg:order-2"
                     >
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
-                            <lord-icon
-                                src="https://cdn.lordicon.com/puvaffet.json"
-                                trigger="loop"
-                                colors="primary:#00ffff"
-                                style={{ width: '16px', height: '16px' }}
-                            />
+                            <span className="w-2 h-2 rounded-full bg-accent-highlight animate-pulse shadow-[0_0_8px_var(--accent-highlight)]" />
                             <span className="text-[10px] font-mono tracking-widest uppercase text-text-secondary">System Online</span>
                         </div>
 
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-display tracking-tighter leading-[1.1] mb-4 md:mb-6">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-display tracking-tighter mb-4 md:mb-6">
                             Bridging the gap between <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-action to-accent-highlight italic">
                                 design & engineering.
@@ -96,12 +79,7 @@ const About = () => {
                             <span className="relative z-10 flex items-center gap-3 group-hover:text-white transition-colors">
                                 READ MY FULL STORY 
                                 <div className="w-5 h-5 flex items-center justify-center bg-background/10 rounded-full group-hover:bg-white/20 transition-colors">
-                                    <lord-icon
-                                        src="https://cdn.lordicon.com/vduvxizq.json"
-                                        trigger="hover"
-                                        colors="primary:#000000"
-                                        style={{ width: '16px', height: '16px' }}
-                                    />
+                                    <ArrowRight width={14} height={14} />
                                 </div>
                             </span>
                         </Link>

@@ -1,10 +1,12 @@
 'use client';
+
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 
 const philosophyTerms = [
-    "Clean Code", "Pixel Perfect", "User Centric", "Scalable",
-    "Secure", "Optimized", "Modern", "Accessible"
+    "Clean Architecture", "Type Safe", "Event-Driven", "Zero Trust Security",
+    "SOLID Principles", "Test-Driven", "Micro-Frontends", "Performance First",
+    "CI/CD Native", "Serverless", "Edge Computing", "A11y First"
 ];
 
 const CodePhilosophy = () => {
@@ -17,102 +19,102 @@ const CodePhilosophy = () => {
         offset: ["start end", "end start"]
     });
 
-    // 3D Rotation based on scroll
-    const rotateX = useTransform(scrollYProgress, [0, 1], [45, -45]);
-    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+    // Keep the same transform logic, but with smaller magnitude?
+    const rotateX = useTransform(scrollYProgress, [0, 1], [15, -15]);
+    const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
 
-    // Mouse Spotlight - Optimized with useMotionValue to prevent re-renders
+    const springX = useSpring(mouseX, { stiffness: 150, damping: 20 });
+    const springY = useSpring(mouseY, { stiffness: 150, damping: 20 });
+    const maskImage = useMotionTemplate`radial-gradient(350px circle at ${springX}px ${springY}px, rgba(255,255,255,0.15) 0%, transparent 70%)`;
+
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        const { clientX, clientY } = e;
-        const { left, top } = e.currentTarget.getBoundingClientRect();
-        mouseX.set(clientX - left);
-        mouseY.set(clientY - top);
+        const rect = e.currentTarget.getBoundingClientRect();
+        mouseX.set(e.clientX - rect.left);
+        mouseY.set(e.clientY - rect.top);
     };
-
-    const maskImage = useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, black, transparent)`;
 
     return (
         <section
             ref={containerRef}
-            className="relative w-full h-[150vh] bg-background text-foreground overflow-hidden flex items-center justify-center perspective-[1000px] transition-colors duration-300"
+            className="relative h-[80vh] w-full overflow-hidden bg-transparent"
             onMouseMove={handleMouseMove}
         >
-            {/* Spotlight Effect - Using mask instead of changing background directly for better perf */}
+            {/* Same subtle grid, but maybe smaller pattern */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div
+                    className="absolute inset-0 opacity-[0.03]"
+                    style={{
+                        backgroundImage: `
+                            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+                        `,
+                        backgroundSize: '40px 40px'
+                    }}
+                />
+            </div>
+
             <motion.div
-                className="absolute inset-0 z-10 bg-accent-action/5 pointer-events-none"
-                style={{
-                    maskImage,
-                    WebkitMaskImage: maskImage
-                }}
+                className="absolute inset-0 pointer-events-none"
+                style={{ maskImage, WebkitMaskImage: maskImage }}
             />
 
-            {/* Background Grid - Optimized with CSS Patterns */}
-            <div
-                className="absolute inset-0 opacity-[0.05] pointer-events-none"
-                style={{
-                    backgroundImage: `
-                        linear-gradient(to right, var(--accent-highlight) 1px, transparent 1px),
-                        linear-gradient(to bottom, var(--accent-highlight) 1px, transparent 1px)
-                    `,
-                    backgroundSize: '40px 40px',
-                    maskImage: 'linear-gradient(to bottom, transparent, black, transparent)'
-                }}
-            />
-
-            {/* 3D Cylindrical Text Container */}
             <motion.div
                 style={{ rotateX, opacity }}
-                className="relative z-0 flex flex-col items-center justify-center gap-2 md:gap-4 transform-style-3d will-change-transform"
+                className="relative z-10 flex h-full flex-col items-center justify-center gap-2 md:gap-3"
             >
-                {/* Render multiple rows for the cylinder effect */}
-                {[...Array(7)].map((_, i) => (
+                {[...Array(5)].map((_, i) => (
                     <TextRow key={i} index={i} scrollYProgress={scrollYProgress} />
                 ))}
             </motion.div>
 
-            {/* Overlay Vignette */}
-            <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background pointer-events-none z-20" />
-
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center text-[10px] font-mono uppercase tracking-[0.3em] text-foreground/20 pointer-events-none">
+                Philosophy
+            </div>
         </section>
     );
 };
 
-// Optimized row component
-const TextRow = ({ index, scrollYProgress }: { index: number, scrollYProgress: any }) => {
-    // Parallax speed varies by row index to create depth/cylinder feel
+const TextRow = ({ index, scrollYProgress }: { index: number; scrollYProgress: any }) => {
     const direction = index % 2 === 0 ? 1 : -1;
 
-    // Simplified scaling logic
-    const scale = index === 3 ? 1.5 : index === 2 || index === 4 ? 1.2 : 1;
-    const blur = index === 3 ? 0 : index === 2 || index === 4 ? 2 : 4;
-    const rowOpacity = index === 3 ? 1 : index === 2 || index === 4 ? 0.6 : 0.3;
-    const color = index === 3 ? 'var(--foreground)' : 'var(--text-secondary)';
+    const center = index === 2;
+    const nearCenter = index === 1 || index === 3;
+    const scale = center ? 1.2 : nearCenter ? 1.05 : 0.85;
+    const blur = center ? 0 : nearCenter ? 1 : 2.5;
+    const rowOpacity = center ? 1 : nearCenter ? 0.7 : 0.35;
+    const textColor = center ? 'text-foreground' : 'text-foreground/40';
 
-    // Using will-change transform
-    const x = useTransform(scrollYProgress, [0, 1], [`${-50 * direction}%`, `${50 * direction}%`]);
+    const x = useTransform(
+        scrollYProgress,
+        [0, 1],
+        [`${-20 * direction}%`, `${20 * direction}%`]
+    );
 
     return (
         <motion.div
             style={{ x }}
-            className="flex gap-12 whitespace-nowrap will-change-transform"
+            className="flex w-full justify-center will-change-transform"
         >
             <motion.div
-                className="flex gap-12"
+                className="flex gap-4 whitespace-nowrap md:gap-8"
                 style={{
                     scale,
                     filter: `blur(${blur}px)`,
                     opacity: rowOpacity,
-                    color
                 }}
             >
-                {[...philosophyTerms, ...philosophyTerms].map((term, tIndex) => (
-                    <span
-                        key={tIndex}
-                        className="text-4xl md:text-8xl font-black uppercase tracking-tighter cursor-default hover:text-accent-action transition-colors duration-200"
-                    >
-                        {term}
-                    </span>
-                ))}
+                {[...philosophyTerms, ...philosophyTerms, ...philosophyTerms, ...philosophyTerms].map((term, i) => {
+                    const hoverColors = ["hover:text-accent-action", "hover:text-accent-highlight", "hover:text-foreground"];
+                    const hoverColor = hoverColors[i % hoverColors.length];
+                    return (
+                        <span
+                            key={i}
+                            className={`text-2xl font-bold uppercase tracking-tighter md:text-4xl lg:text-5xl ${textColor} transition-colors duration-300 ${hoverColor}`}
+                        >
+                            {term}
+                        </span>
+                    );
+                })}
             </motion.div>
         </motion.div>
     );

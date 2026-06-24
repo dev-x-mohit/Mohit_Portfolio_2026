@@ -56,10 +56,10 @@ const TechScroll = () => {
                     viewport={{ once: true }}
                     className="text-center mb-10 md:mb-16"
                 >
-                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500">
+                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-black font-display mb-4 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-accent-action to-accent-highlight">
                         The Tech Tree
                     </h2>
-                    <p className="text-muted-foreground text-sm md:text-lg max-w-2xl mx-auto font-medium">
+                    <p className="text-muted-foreground font-sans text-sm md:text-lg max-w-2xl mx-auto font-medium">
                         A singular ecosystem of interconnected skills branching out from a core engineering foundation.
                     </p>
                 </motion.div>

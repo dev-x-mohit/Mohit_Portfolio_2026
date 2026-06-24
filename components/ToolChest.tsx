@@ -1,179 +1,153 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion, useInView, Variants } from 'framer-motion';
-import Image from 'next/image';
-
-// Simple Icons CDN helper: https://cdn.simpleicons.org/[slug]/[color]
-const SI = ({ slug, color, size = 32 }: { slug: string; color: string; size?: number }) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-        src={`https://cdn.simpleicons.org/${slug}/${color.replace('#', '')}`}
-        alt={slug}
-        width={size}
-        height={size}
-        style={{ width: size, height: size, objectFit: 'contain' }}
-    />
-);
-
-// Inline SVGs for icons not reliably on Simple Icons CDN
-const VSCodeIcon = ({ size = 32 }: { size?: number }) => (
-    <Image src="https://res.cloudinary.com/dhjkbcdfm/image/upload/v1775661889/portfolio_assets/vscode.svg" alt="VS Code" width={size} height={size} style={{ width: size, height: size, objectFit: 'contain' }} />
-);
-
-const WinTerminalIcon = ({ size = 32 }: { size?: number }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill="#A855F7">
-        <path d="M 0 4 L 0 20 L 24 20 L 24 4 Z M 1 5 L 23 5 L 23 19 L 1 19 Z" />
-        <path d="M 2 7 L 2 8.5 L 8 11.5 L 2 14.5 L 2 16 L 10 12 L 10 11 Z" />
-        <rect x="11" y="14" width="9" height="1.5" rx="0.75" />
-    </svg>
-);
-
-const Win11Icon = ({ size = 32 }: { size?: number }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill="#0078D4">
-        <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
-    </svg>
-);
-
-const CanvaIcon = ({ size = 32 }: { size?: number }) => (
-    <Image src="https://res.cloudinary.com/dhjkbcdfm/image/upload/v1775661903/portfolio_assets/canva.svg" alt="Canva" width={size} height={size} style={{ width: size, height: size, objectFit: 'contain' }} />
-);
+import { motion, useInView } from 'framer-motion';
+import { Terminal, Cpu, Dashboard, Code, Wrench, CoffeeCup } from 'iconoir-react';
 
 interface GearItem {
-    category: string;
     name: string;
     detail: string;
-    icon: React.ReactNode;
-    accent: string;
 }
 
-const gear: GearItem[] = [
-    { category: 'AI IDE', name: 'Cursor', detail: 'AI-first code editor', icon: <Image src="https://res.cloudinary.com/dhjkbcdfm/image/upload/v1775661875/portfolio_assets/cursor.svg" alt="Cursor" width={32} height={32} className="dark:invert object-contain" />, accent: '#ffffff' },
-    { category: 'AI Builder', name: 'Lovable', detail: 'full-stack natural language dev', icon: <Image src="https://res.cloudinary.com/dhjkbcdfm/image/upload/v1775661877/portfolio_assets/lovable.svg" alt="Lovable" width={32} height={32} className="object-contain" />, accent: '#F59E0B' },
-    { category: 'AI Agent', name: 'Antigravity', detail: 'autonomous coding assistant', icon: <Image src="https://res.cloudinary.com/dhjkbcdfm/image/upload/v1775661880/portfolio_assets/Google_Antigravity.svg" alt="Antigravity" width={32} height={32} className="object-contain" />, accent: '#60A5FA' },
-    { category: 'Editor', name: 'VS Code', detail: 'with Vim motions + custom theme', icon: <VSCodeIcon size={32} />, accent: '#007ACC' },
-    { category: 'Terminal', name: 'Windows Terminal', detail: 'Oh My Zsh + Starship prompt', icon: <WinTerminalIcon size={32} />, accent: '#A855F7' },
-    { category: 'OS', name: 'macOS', detail: 'daily driver for development', icon: <SI slug="apple" color="#A2AAAD" />, accent: '#A2AAAD' },
-    { category: 'OS', name: 'Linux', detail: 'Ubuntu for server & DevOps', icon: <SI slug="linux" color="#FCC624" />, accent: '#FCC624' },
-    { category: 'OS', name: 'Windows 11', detail: 'WSL2 testing & gaming', icon: <Win11Icon size={32} />, accent: '#0078D4' },
-    { category: 'Browser', name: 'Arc', detail: 'Dev tools always open 😅', icon: <SI slug="arc" color="#FCBFBD" />, accent: '#FCBFBD' },
-    { category: 'Design', name: 'Figma', detail: 'wireframes → hi-fi in one place', icon: <SI slug="figma" color="#F24E1E" />, accent: '#F24E1E' },
-    { category: 'Design', name: 'Canva', detail: 'quick graphics & presentations', icon: <CanvaIcon size={32} />, accent: '#00C4CC' },
-    { category: 'Frontend', name: 'Next.js', detail: 'for building dynamic interfaces', icon: <SI slug="nextdotjs" color="ffffff" />, accent: '#FFFFFF' },
-    { category: 'API Testing', name: 'Postman', detail: '+ Thunder Client for quick tests', icon: <SI slug="postman" color="#FF6C37" />, accent: '#FF6C37' },
-    { category: 'Notes', name: 'Notion', detail: 'architecture docs & ideas dump', icon: <SI slug="notion" color="ffffff" />, accent: '#FFFFFF' },
-    { category: 'Music', name: 'Spotify', detail: 'lo-fi beats while deep in code', icon: <SI slug="spotify" color="#1DB954" />, accent: '#1DB954' },
-    { category: 'Beverage', name: 'Black Coffee', detail: 'dark roast fueled coding sessions ☕', icon: <span style={{ fontSize: 28 }}>☕</span>, accent: '#FBBF24' },
+interface CategoryGroup {
+    title: string;
+    icon: React.ReactNode;
+    items: GearItem[];
+}
+
+const gearGroups: CategoryGroup[] = [
+    {
+        title: "Development Environment",
+        icon: <Code className="w-5 h-5 text-accent-highlight" />,
+        items: [
+            { name: 'Cursor', detail: 'AI-first code editor, primary daily driver' },
+            { name: 'VS Code', detail: 'Secondary editor with Vim motions' },
+            { name: 'Windows Terminal', detail: 'Zsh + Starship prompt configuration' },
+        ]
+    },
+    {
+        title: "AI & Automation",
+        icon: <Cpu className="w-5 h-5 text-accent-highlight" />,
+        items: [
+            { name: 'Lovable', detail: 'Full-stack natural language development' },
+            { name: 'Antigravity', detail: 'Autonomous agentic coding assistant' },
+            { name: 'GitHub Copilot', detail: 'Inline code generation and autocomplete' },
+        ]
+    },
+    {
+        title: "Design & UI",
+        icon: <Dashboard className="w-5 h-5 text-accent-highlight" />,
+        items: [
+            { name: 'Figma', detail: 'Wireframes, prototyping, and UI design' },
+            { name: 'Canva', detail: 'Quick graphics and presentation assets' },
+            { name: 'Tailwind CSS', detail: 'Utility-first styling framework' },
+        ]
+    },
+    {
+        title: "System & Infrastructure",
+        icon: <Terminal className="w-5 h-5 text-accent-highlight" />,
+        items: [
+            { name: 'macOS', detail: 'Primary development operating system' },
+            { name: 'Ubuntu Linux', detail: 'Server deployment and DevOps' },
+            { name: 'Next.js', detail: 'React framework for production applications' },
+        ]
+    },
+    {
+        title: "Workflow & Utilities",
+        icon: <Wrench className="w-5 h-5 text-accent-highlight" />,
+        items: [
+            { name: 'Arc Browser', detail: 'Development browser with split views' },
+            { name: 'Postman', detail: 'API testing and endpoint documentation' },
+            { name: 'Notion', detail: 'Architecture documentation and planning' },
+        ]
+    },
+    {
+        title: "Fuel",
+        icon: <CoffeeCup className="w-5 h-5 text-accent-highlight" />,
+        items: [
+            { name: 'Black Coffee', detail: 'Dark roast, mandatory for deep work' },
+            { name: 'Spotify', detail: 'Lo-fi beats and synthwave playlists' },
+        ]
+    }
 ];
-
-const containerVariants: Variants = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.07 } },
-};
-
-const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-};
 
 const ToolChest = () => {
     const ref = useRef<HTMLDivElement>(null);
     const inView = useInView(ref, { once: true, margin: '-100px' });
 
     return (
-        <section ref={ref} className="relative w-full bg-background py-24 px-6 sm:px-12 overflow-hidden">
-            {/* Section header */}
-            <div className="max-w-6xl mx-auto">
-                <motion.span
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5 }}
-                    className="block text-xs font-bold uppercase tracking-[0.5em] text-accent-action mb-3"
-                >
-                    My Arsenal
-                </motion.span>
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-4xl md:text-6xl font-black font-display tracking-tighter mb-4"
-                >
-                    Tool <span className="text-accent-action italic">Chest</span>
-                </motion.h2>
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.18 }}
-                    className="text-text-secondary text-lg max-w-xl mb-16"
-                >
-                    The stack of tools I reach for every day — editor to beverage.
-                </motion.p>
+        <section ref={ref} className="relative w-full bg-background py-32 px-4 sm:px-8 overflow-hidden transition-colors duration-500">
+            {/* Ambient Background Glows */}
+            <div className="pointer-events-none absolute top-0 right-0 w-[600px] h-[600px] rounded-[100%] bg-accent-highlight/5 blur-[150px]" />
+            <div className="pointer-events-none absolute bottom-0 left-0 w-[800px] h-[800px] rounded-[100%] bg-accent-action/5 blur-[150px]" />
 
-                {/* Grid */}
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate={inView ? 'show' : 'hidden'}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-                >
-                    {gear.map((item) => (
-                        <GearCard key={item.name} item={item} />
+            <div className="max-w-5xl mx-auto relative z-10">
+                {/* Header */}
+                <div className="mb-20 text-center md:text-left flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-b border-border/20 pb-10">
+                    <div>
+                        <motion.span
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={inView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 0.5 }}
+                            className="inline-block text-[10px] font-bold uppercase tracking-[0.4em] text-accent-highlight bg-accent-highlight/10 px-4 py-1.5 rounded-full border border-accent-highlight/20 mb-4"
+                        >
+                            System Configuration
+                        </motion.span>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={inView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            className="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-foreground"
+                        >
+                            Tool <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-action to-accent-highlight italic pr-2">Chest</span>
+                        </motion.h2>
+                    </div>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6, delay: 0.18 }}
+                        className="text-text-secondary text-base sm:text-lg max-w-sm"
+                    >
+                        The elite stack of software and hardware I rely on daily to craft high-performance digital experiences.
+                    </motion.p>
+                </div>
+
+                {/* List Layout */}
+                <div className="space-y-12">
+                    {gearGroups.map((group, groupIdx) => (
+                        <motion.div
+                            key={group.title}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={inView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 0.5, delay: 0.2 + (groupIdx * 0.1) }}
+                            className="relative group"
+                        >
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="p-3 rounded-xl bg-secondary-bg border border-border/20 shadow-inner group-hover:border-accent-action/50 transition-colors duration-500">
+                                    {group.icon}
+                                </div>
+                                <h3 className="text-2xl font-bold text-foreground font-display tracking-tight">{group.title}</h3>
+                                <div className="flex-1 h-px bg-gradient-to-r from-border/40 to-transparent ml-4" />
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {group.items.map((item, itemIdx) => (
+                                    <div
+                                        key={item.name}
+                                        className="relative p-5 rounded-2xl border border-border/10 bg-secondary-bg/20 backdrop-blur-sm overflow-hidden hover:bg-secondary-bg/50 hover:border-accent-action/30 transition-all duration-300"
+                                    >
+                                        <div className="absolute top-0 left-0 w-1 h-full bg-accent-action/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                                        <h4 className="text-lg font-bold text-foreground mb-1 font-mono tracking-tight">{item.name}</h4>
+                                        <p className="text-sm text-text-secondary">{item.detail}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
                     ))}
-                </motion.div>
+                </div>
             </div>
-
-            {/* Ambient glow */}
-            <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-accent-action/5 blur-3xl" />
         </section>
-    );
-};
-
-const GearCard = ({ item }: { item: GearItem }) => {
-    const [hovered, setHovered] = React.useState(false);
-
-    return (
-        <motion.div
-            variants={cardVariants}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            className="relative group rounded-2xl border border-border/10 bg-secondary-bg/40 backdrop-blur-md p-5 overflow-hidden cursor-default transition-all duration-300 hover:border-border/30"
-            style={{ boxShadow: hovered ? `0 0 28px 0 ${item.accent}22` : 'none' }}
-        >
-            {/* Spotlight */}
-            {hovered && (
-                <div
-                    className="pointer-events-none absolute inset-0 rounded-2xl"
-                    style={{ background: `radial-gradient(circle at 50% 0%, ${item.accent}18 0%, transparent 70%)` }}
-                />
-            )}
-
-            {/* Category badge */}
-            <span
-                className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full mb-3 inline-block"
-                style={{ color: item.accent, background: `${item.accent}18`, border: `1px solid ${item.accent}30` }}
-            >
-                {item.category}
-            </span>
-
-            {/* Icon */}
-            <div className="mb-4 transition-transform duration-300 group-hover:scale-110 origin-left flex items-center justify-start h-8 w-8">
-                {item.icon}
-            </div>
-
-            {/* Name */}
-            <h3 className="text-xl font-bold font-display tracking-tight text-foreground mb-1">
-                {item.name}
-            </h3>
-
-            {/* Detail */}
-            <p className="text-sm text-text-secondary leading-relaxed">{item.detail}</p>
-
-            {/* Bottom accent line */}
-            <div
-                className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-500 ease-out rounded-b-2xl"
-                style={{ background: `linear-gradient(to right, transparent, ${item.accent}, transparent)` }}
-            />
-        </motion.div>
     );
 };
 

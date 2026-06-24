@@ -31,7 +31,7 @@ export const projects: Project[] = [
     "year": "2026",
     "category": "Web Platforms",
     "summary": "An AI-powered freelancer client portal and billing SaaS with Razorpay integration and GPT-4o proposal generation.",
-    "description": "# Soloflow 🧾\n\n![Soloflow Banner](https://res.cloudinary.com/dhjkbcdfm/image/upload/v1781679012/portfolio_projects/soloflow/dashboard_dark.png)\n\n> **AI-Powered Freelancer Client Portal & Billing SaaS**\n\nA production-ready SaaS application for freelancers to manage clients, projects, time logs, and invoices — with Razorpay payment integration and GPT-4o AI proposal generation.\n\n**Live Demo:** [soloflow-invoice.vercel.app](https://soloflow-invoice.vercel.app) *(deploy link here)*\n\n---\n\n## 🎯 Problem Statement\n\nFreelancers lose an average of **15% of their revenue** to late or unpaid invoices. Existing tools (FreshBooks, Zoho) are expensive and over-engineered for solo developers. Soloflow is a lean, developer-friendly billing tool that covers everything you need.\n\n---\n\n## 📸 Screenshots\n\nHere is a look at Soloflow across different pages in both Light and Dark modes.\n\n### 🖥️ Desktop (1440px)\n\n#### Landing & Authentication\n| Dark Mode | Light Mode |\n|-----------|------------|\n| ![Landing ...",
+    "description": "# Soloflow\n\n> **An AI-powered freelancer client portal and billing SaaS with Razorpay integration and GPT-4o proposal generation.**\n\nA production-ready SaaS application for freelancers to manage clients, projects, time logs, and invoices — with Razorpay payment integration and GPT-4o AI proposal generation.\n\n---\n\n## ✨ Key Highlights\n- **AI Proposal Generation**\n- **Razorpay Payments**\n- **Time Tracking**\n- **Client Portal**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **Next.js 15, Prisma, PostgreSQL, NextAuth, Razorpay, OpenAI API**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "Next.js 15",
       "Prisma",
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     "year": "2026",
     "category": "Web & Mobile Apps",
     "summary": "AI-powered multi-platform expense splitter with receipt OCR, Splitwise OAuth migration, and graph-based debt simplification.",
-    "description": "# Splitwiser — Smart Group Expense Manager\n\n> Built by [Mohit Lakhara](https://github.com/mohitlakhara-ind) | React Native / Expo · TypeScript · FastAPI\n\nA modern, dark-themed expense splitting app with AI-powered bill scanning, expense analytics, and one-tap settlement reminders. Built for friend groups, roommates, and travel squads.\n\n---\n\n## ✨ Features\n\n### Core\n- **Group Expense Tracking** — Create groups, add members, log expenses with equal/percentage/custom splits\n- **Debt Simplification** — Graph algorithm minimizes transactions to settle group debts\n- **Multi-Currency Support** — Handle expenses in INR, USD, EUR and more\n- **Receipt Management** — Attach images to expenses for reference\n\n### 🆕 Unique Features (Added by Mohit)\n1. **🤖 AI Bill Scanner** — Point your camera at any receipt. OCR extracts the merchant name, date, line items, and total amount — auto-fills the expense form in seconds.\n2. **📊 Expense Insights** — Monthly/weekly analytics dashboard showing category-wis...",
+    "description": "# Splitwiser\n\n> **AI-powered multi-platform expense splitter with receipt OCR, Splitwise OAuth migration, and graph-based debt simplification.**\n\nA modern, dark-themed expense splitting app with AI-powered bill scanning, expense analytics, and one-tap settlement reminders. Built for friend groups, roommates, and travel squads.\n\n---\n\n## ✨ Key Highlights\n- **React 19 Web App & Expo Mobile**\n- **Splitwise OAuth Data Import**\n- **OCR Receipt Auto-Parsing**\n- **Debt Minimization Graph**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **React Native, React 19, Tailwind CSS v4, Vite, Node.js, Express, MongoDB, Firebase Auth, Splitwise API**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "React Native",
       "React 19",
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Web Platforms",
     "summary": "A privacy-focused, local-first PWA note-taking app with real-time Firebase synchronization and offline capabilities.",
-    "description": "# React + Vite\n\nThis template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.\n\nCurrently, two official plugins are available:\n\n- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh\n- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh\n\n## Expanding the ESLint configuration\n\nIf you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.\n",
+    "description": "# NotemeNow\n\n> **A privacy-focused, local-first PWA note-taking app with real-time Firebase synchronization and offline capabilities.**\n\nThis template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.\n\n---\n\n## ✨ Key Highlights\n- **Offline-First Architecture**\n- **Markdown Rendering**\n- **Cross-Device Sync**\n- **PWA Installability**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **React, Firebase, PWA, Vercel**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "React",
       "Firebase",
@@ -142,7 +142,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "A state-of-the-art news aggregator featuring SSR, infinite scrolling, and intelligent category filtering for global headlines.",
-    "description": "# Getting Started with Create React App\n\nThis project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\n\n## Available Scripts\n\nIn the project directory, you can run:\n\n### `npm start`\n\nRuns the app in the development mode.\\\nOpen [http://localhost:3000](http://localhost:3000) to view it in your browser.\n\nThe page will reload when you make changes.\\\nYou may also see any lint errors in the console.\n\n### `npm test`\n\nLaunches the test runner in the interactive watch mode.\\\nSee the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.\n\n### `npm run build`\n\nBuilds the app for production to the `build` folder.\\\nIt correctly bundles React in production mode and optimizes the build for the best performance.\n\nThe build is minified and the filenames include the hashes.\\\nYour app is ready to be deployed!\n\nSee the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) f...",
+    "description": "# SnapNews\n\n> **A state-of-the-art news aggregator featuring SSR, infinite scrolling, and intelligent category filtering for global headlines.**\n\nThis project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\n\n---\n\n## ✨ Key Highlights\n- **Advanced Category Filtering**\n- **Infinite Scroll & Lazy Loading**\n- **Responsive Grid Layout**\n- **Dark Mode Support**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **Next.js, NewsAPI, Framer Motion**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "Next.js",
       "NewsAPI",
@@ -173,7 +173,7 @@ export const projects: Project[] = [
     "year": "2023",
     "category": "Algorithms & Utilities",
     "summary": "A purely client-side text analysis suite featuring sentiment scoring, readability auditing, and a regex debugging sandbox.",
-    "description": "# React + TypeScript + Vite\n\nThis template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.\n\nWhile this project uses React, Vite supports many popular JS frameworks. [See all the supported frameworks](https://vitejs.dev/guide/#scaffolding-your-first-vite-project).\n\n## Deploy Your Own\n\nDeploy your own Vite project with Vercel.\n\n[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/vite-react&template=vite-react)\n\n_Live Example: https://vite-react-example.vercel.app_\n\n### Deploying From Your Terminal\n\nYou can deploy your new Vite project with a single command from your terminal using [Vercel CLI](https://vercel.com/download):\n\n```shell\n$ vercel\n```\n",
+    "description": "# TxtXpert\n\n> **A purely client-side text analysis suite featuring sentiment scoring, readability auditing, and a regex debugging sandbox.**\n\nThis template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.\n\n---\n\n## ✨ Key Highlights\n- **Sentiment Analysis Algo**\n- **Readability Scoring**\n- **Keyword Extraction**\n- **Regex Testing Sandbox**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **JavaScript, NLP.js, Regex**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "JavaScript",
       "NLP.js",
@@ -204,7 +204,7 @@ export const projects: Project[] = [
     "year": "2023",
     "category": "Frontend Projects",
     "summary": "An elite automotive rental template with interactive 360° previews, a custom booking calendar, and modular SASS architecture.",
-    "description": "An elite automotive rental template with interactive 360° previews, a custom booking calendar, and modular SASS architecture.",
+    "description": "# CarBook\n\n> **An elite automotive rental template with interactive 360° previews, a custom booking calendar, and modular SASS architecture.**\n\nAn elite automotive rental template with interactive 360° previews, a custom booking calendar, and modular SASS architecture.\n\n---\n\n## ✨ Key Highlights\n- **Dynamic Booking Calendar**\n- **Interactive Vehicle 360**\n- **Payment Gateway Mockup**\n- **Responsive Dashboard**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML5, SASS, Bootstrap, JS**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML5",
       "SASS",
@@ -236,7 +236,7 @@ export const projects: Project[] = [
     "year": "2023",
     "category": "Algorithms & Utilities",
     "summary": "A secure, client-side utility for creating highly customizable and branded QR codes with high-fidelity styling options.",
-    "description": "\n# QRGenie\n\nQRGenie is an interactive web application that allows users to generate customizable QR codes directly from their browser. It provides options to input text or URLs, customize foreground and background colors, and download the generated QR code.\n\n## Features\n\n- **Generate QR Codes:** Enter a URL or text to create a QR code.\n- **Customize Colors:** Choose foreground and background colors for the QR code.\n- **Download QR Code:** Save the generated QR code as an image file.\n\n## How It Works\n\n1. **Input Text or URL:** Enter the URL or text that you want to encode into a QR code in the input field.\n2. **Select Colors:** Choose your preferred foreground and background colors using the color pickers.\n3. **Generate QR Code:** Click the \"Generate QR Code\" button to create the QR code.\n4. **Download QR Code:** Once generated, the QR code will be displayed. You can download it using the \"Download QR Code\" button.\n\n## Technologies Used\n\n- **HTML:** For the structure of the page.\n- **CS...",
+    "description": "# QRGenie\n\n> **A secure, client-side utility for creating highly customizable and branded QR codes with high-fidelity styling options.**\n\nQRGenie is an interactive web application that allows users to generate customizable QR codes directly from their browser. It provides options to input text or URLs, customize foreground and background colors, and download the generated QR code.\n\n---\n\n## ✨ Key Highlights\n- **Custom QR Generation**\n- **Color Customization**\n- **Instant Download**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS3, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS3",
@@ -266,7 +266,7 @@ export const projects: Project[] = [
     "year": "2023",
     "category": "Games",
     "summary": "An interactive brain-training game featuring complex state logic, smooth 3D flip animations, and dynamic difficulty scaling.",
-    "description": "# memorygame",
+    "description": "# Memory Game\n\n> **An interactive brain-training game featuring complex state logic, smooth 3D flip animations, and dynamic difficulty scaling.**\n\nAn interactive brain-training game featuring complex state logic, smooth 3D flip animations, and dynamic difficulty scaling.\n\n---\n\n## ✨ Key Highlights\n- **Level System**\n- **Timer Integration**\n- **Responsive Design**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -296,7 +296,7 @@ export const projects: Project[] = [
     "year": "2023",
     "category": "Games",
     "summary": "A professional-grade typing speed diagnostic tool with real-time WPM calculation and byte-level accuracy tracking.",
-    "description": "# Typecheckyy\n<h1>Typecheckyy: Typing Speed Test</h1>\nWelcome to the Typing Speed Test! This web application allows you to test and improve your typing speed and accuracy with different levels of difficulty. It's an engaging way to practice typing by using stories at various difficulty levels, with customizable themes and more!\n\nFeatures\nMultiple Difficulty Levels: Choose from Easy, Medium, or Hard stories to challenge your typing skills.\nLive Timer: Track your typing speed in real-time with a built-in timer.\nWPM and Accuracy: Measure your Words Per Minute (WPM) and accuracy after each test.\nCustomizable Themes: Switch between light and dark themes for a personalized experience.\nLeaderboard: Compete with others by tracking your scores on the leaderboard.\nResponsive Design: Works seamlessly on both desktop and mobile devices.\nTable of Contents\nDemo\nInstallation\nUsage\nContributing\nLicense\nDemo\nYou can check out the live version of the Typing Speed Test here: Live Demo\n\nInstallation\nTo ru...",
+    "description": "# Typechecky\n\n> **A professional-grade typing speed diagnostic tool with real-time WPM calculation and byte-level accuracy tracking.**\n\nWelcome to the Typing Speed Test! This web application allows you to test and improve your typing speed and accuracy with different levels of difficulty. It's an engaging way to practice typing by using stories at various difficulty levels, with customizable themes and more!\n\n---\n\n## ✨ Key Highlights\n- **WPM Calculation**\n- **Accuracy Tracking**\n- **Real-time Feedback**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -326,7 +326,7 @@ export const projects: Project[] = [
     "year": "2023",
     "category": "Frontend Projects",
     "summary": "A streamlined, mobile-first productivity dashboard with local persistence and high-performance DOM reconciliation.",
-    "description": "# project1",
+    "description": "# Task Management App\n\n> **A streamlined, mobile-first productivity dashboard with local persistence and high-performance DOM reconciliation.**\n\nA streamlined, mobile-first productivity dashboard with local persistence and high-performance DOM reconciliation.\n\n---\n\n## ✨ Key Highlights\n- **Task Filtering**\n- **Priority Management**\n- **LocalStorage Sync**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML5, CSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML5",
       "CSS",
@@ -356,7 +356,7 @@ export const projects: Project[] = [
     "year": "2023",
     "category": "Frontend Projects",
     "summary": "A high-density discovery hub for anime enthusiasts featuring masonry layouts and interactive content discovery.",
-    "description": "﻿\r\n# Anime Universe - Anime Comics & Shows Blog Listing\r\n\r\n**Anime Universe** is a front-end web application designed to provide anime lovers with a simple and intuitive platform to explore and discover their favorite anime comics and shows. Built using HTML, CSS, and JavaScript, this website offers an engaging user experience with categorized listings, detailed show descriptions, and a fully responsive design to cater to all device types.\r\n\r\nThe platform is designed with a sleek, modern look and optimized navigation to make discovering anime content fun and easy. Whether you're a long-time anime fan or just starting your anime journey, **Anime Universe** provides an immersive and interactive space to explore the world of anime.\r\n\r\n## Features\r\n\r\n- **Categorized Listings**: Anime content is organized into various genres such as action, adventure, romance, mystery, and more, allowing users to easily find shows they love.\r\n- **Anime Show Details**: Each anime title comes with a descripti...",
+    "description": "# Anime Universe\n\n> **A high-density discovery hub for anime enthusiasts featuring masonry layouts and interactive content discovery.**\n\n\u0000#\u0000 \u0000A\u0000n\u0000i\u0000m\u0000e\u0000 \u0000U\u0000n\u0000i\u0000v\u0000e\u0000r\u0000s\u0000e\u0000 \u0000-\u0000 \u0000A\u0000n\u0000i\u0000m\u0000e\u0000 \u0000C\u0000o\u0000m\u0000i\u0000c\u0000s\u0000 \u0000&\u0000 \u0000S\u0000h\u0000o\u0000w\u0000s\u0000 \u0000B\u0000l\u0000o\u0000g\u0000 \u0000L\u0000i\u0000s\u0000t\u0000i\u0000n\u0000g\u0000\r\u0000\n\n---\n\n## ✨ Key Highlights\n- **Responsive Grid**\n- **Hover Effects**\n- **Category Sorting**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -386,7 +386,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "A premium financial services landing page designed for corporate consulting and wealth management with executive minimalism.",
-    "description": "# Cial-Finance\n\nCial-Finance is a demo website designed for financial clients, providing them with an intuitive and user-friendly platform to explore financial services, investment plans, and other related offerings. The website focuses on delivering a professional and modern design with a seamless user experience.\n\n## 🚀 Features\n- **Responsive Design** - Fully optimized for desktops, tablets, and mobile devices.\n- **Financial Service Showcase** - Displays various financial services offered to clients.\n- **Interactive UI/UX** - Clean and engaging interface for enhanced user interaction.\n- **Secure and Scalable** - Built with modern web technologies ensuring security and scalability.\n\n## 🛠️ Technologies Used\n- **Frontend:** HTML, CSS, JavaScript, Bootstrap, React.js\n- **Backend:** Node.js, Express.js (if applicable)\n- **Database:** MongoDB / MySQL (if applicable)\n- **Version Control:** Git & GitHub\n- **Deployment:** Vercel / Netlify (if applicable)\n\n## 📌 Installation & Setup\nTo run t...",
+    "description": "# Cial Finance\n\n> **A premium financial services landing page designed for corporate consulting and wealth management with executive minimalism.**\n\nCial-Finance is a demo website designed for financial clients, providing them with an intuitive and user-friendly platform to explore financial services, investment plans, and other related offerings. The website focuses on delivering a professional and modern design with a seamless user experience.\n\n---\n\n## ✨ Key Highlights\n- **Professional UI**\n- **Responsive Design**\n- **Contact Form**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -416,7 +416,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "A visual-first digital café experience featuring artisanal branding, interactive menus, and smooth transition animations.",
-    "description": "﻿# coffee-master\r\n",
+    "description": "# Coffee Master\n\n> **A visual-first digital café experience featuring artisanal branding, interactive menus, and smooth transition animations.**\n\nA visual-first digital café experience featuring artisanal branding, interactive menus, and smooth transition animations.\n\n---\n\n## ✨ Key Highlights\n- **Interactive Menu**\n- **Gallery Section**\n- **Blog integration**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -446,7 +446,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "A sophisticated fashion storefront showcasing high-conversion UX architecture and premium minimalist design.",
-    "description": "﻿# Famms-temp\r\n",
+    "description": "# Famms Ecommerce\n\n> **A sophisticated fashion storefront showcasing high-conversion UX architecture and premium minimalist design.**\n\nA sophisticated fashion storefront showcasing high-conversion UX architecture and premium minimalist design.\n\n---\n\n## ✨ Key Highlights\n- **Product Carousel**\n- **Cart UI**\n- **Newsletter Signup**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, SCSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -477,7 +477,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "A technical dashboard for e-sports intelligence featuring tournament brackets, news feeds, and community modules.",
-    "description": "# game-warrior--temp\n",
+    "description": "# Game Warrior\n\n> **A technical dashboard for e-sports intelligence featuring tournament brackets, news feeds, and community modules.**\n\nA technical dashboard for e-sports intelligence featuring tournament brackets, news feeds, and community modules.\n\n---\n\n## ✨ Key Highlights\n- **Tournament Brackets**\n- **Review Section**\n- **Blog Layout**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -507,7 +507,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "An educational landing page for technology training featuring granular course catalogs and conversion-driven UI.",
-    "description": "﻿# grad-school-temp\r\n",
+    "description": "# Coder School\n\n> **An educational landing page for technology training featuring granular course catalogs and conversion-driven UI.**\n\nAn educational landing page for technology training featuring granular course catalogs and conversion-driven UI.\n\n---\n\n## ✨ Key Highlights\n- **Course Catalog**\n- **Registration Form**\n- **Virtual Classroom UI**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, Bootstrap**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -537,7 +537,7 @@ export const projects: Project[] = [
     "year": "2025",
     "category": "Frontend Projects",
     "summary": "A professional foundation for wealth architecture featuring investment calculators and high-impact service showcases.",
-    "description": "﻿# growing-temp\r\n# growing-temp\r\n",
+    "description": "# Growing Finance\n\n> **A professional foundation for wealth architecture featuring investment calculators and high-impact service showcases.**\n\nA professional foundation for wealth architecture featuring investment calculators and high-impact service showcases.\n\n---\n\n## ✨ Key Highlights\n- **Service Showcase**\n- **Client Testimonials**\n- **Investment Calculator UI**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS"
@@ -566,7 +566,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "A modern portfolio template for software firms featuring filterable project grids and high-fidelity agency branding.",
-    "description": "﻿# Hightech-template\r\n# Hightech-template\r\n",
+    "description": "# Hightech Agency\n\n> **A modern portfolio template for software firms featuring filterable project grids and high-fidelity agency branding.**\n\nA modern portfolio template for software firms featuring filterable project grids and high-fidelity agency branding.\n\n---\n\n## ✨ Key Highlights\n- **Portfolio Grid**\n- **Service Icons**\n- **Team Section**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS"
@@ -595,7 +595,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "A luxury e-commerce experience for high-end apparel featuring interactive product zoom and premium retail UX.",
-    "description": "﻿# karl\r\n# karl\r\n",
+    "description": "# Karl Fashion\n\n> **A luxury e-commerce experience for high-end apparel featuring interactive product zoom and premium retail UX.**\n\nA luxury e-commerce experience for high-end apparel featuring interactive product zoom and premium retail UX.\n\n---\n\n## ✨ Key Highlights\n- **Category Navigation**\n- **Product Zoom**\n- **Shopping Cart Mockup**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS"
@@ -624,7 +624,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "A typography-first journalism platform optimized for readability, deep content exploration, and SEO dominance.",
-    "description": "A typography-first journalism platform optimized for readability, deep content exploration, and SEO dominance.",
+    "description": "# Meranda Blog\n\n> **A typography-first journalism platform optimized for readability, deep content exploration, and SEO dominance.**\n\nA typography-first journalism platform optimized for readability, deep content exploration, and SEO dominance.\n\n---\n\n## ✨ Key Highlights\n- **Blog Layout**\n- **Related Posts**\n- **Comment Section UI**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -654,7 +654,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "An authoritative fintech and consulting portal featuring crypto ticker mockups and global reach visualization.",
-    "description": "An authoritative fintech and consulting portal featuring crypto ticker mockups and global reach visualization.",
+    "description": "# Mexant Business\n\n> **An authoritative fintech and consulting portal featuring crypto ticker mockups and global reach visualization.**\n\nAn authoritative fintech and consulting portal featuring crypto ticker mockups and global reach visualization.\n\n---\n\n## ✨ Key Highlights\n- **Crypto Ticker Mockup**\n- **Service Cards**\n- **Contact Map**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, Bootstrap 5, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -685,7 +685,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "An elite digital portfolio for design pioneers featuring grand-scale galleries and technical design precision.",
-    "description": "An elite digital portfolio for design pioneers featuring grand-scale galleries and technical design precision.",
+    "description": "# Mosaic Architecture\n\n> **An elite digital portfolio for design pioneers featuring grand-scale galleries and technical design precision.**\n\nAn elite digital portfolio for design pioneers featuring grand-scale galleries and technical design precision.\n\n---\n\n## ✨ Key Highlights\n- **Project Gallery**\n- **Architect Profiles**\n- **Testimonial Slider**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -715,7 +715,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "A high-velocity intelligence hub for digital publishers featuring breaking news tickers and multi-modal reporting.",
-    "description": "A high-velocity intelligence hub for digital publishers featuring breaking news tickers and multi-modal reporting.",
+    "description": "# NewsBox\n\n> **A high-velocity intelligence hub for digital publishers featuring breaking news tickers and multi-modal reporting.**\n\nA high-velocity intelligence hub for digital publishers featuring breaking news tickers and multi-modal reporting.\n\n---\n\n## ✨ Key Highlights\n- **Breaking News Ticker**\n- **Video Gallery**\n- **Category Tabs**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -745,7 +745,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "A data-driven agency landing page featuring influencer campaign metrics and conversion-engineered funnel UI.",
-    "description": "﻿# nubis\r\n# nubis\r\n",
+    "description": "# Nubis Marketing\n\n> **A data-driven agency landing page featuring influencer campaign metrics and conversion-engineered funnel UI.**\n\nA data-driven agency landing page featuring influencer campaign metrics and conversion-engineered funnel UI.\n\n---\n\n## ✨ Key Highlights\n- **Influencer Cards**\n- **Service Pricing**\n- **Hero Animation**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -775,7 +775,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "A professional broadcasting hub featuring integrated audio players, episode management, and listener engagement tools.",
-    "description": "﻿# podcast-template\r\n",
+    "description": "# Podcast Pro\n\n> **A professional broadcasting hub featuring integrated audio players, episode management, and listener engagement tools.**\n\nA professional broadcasting hub featuring integrated audio players, episode management, and listener engagement tools.\n\n---\n\n## ✨ Key Highlights\n- **Audio Player UI**\n- **Episode List**\n- **Subscription Form**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, Bootstrap, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -806,7 +806,7 @@ export const projects: Project[] = [
     "year": "2024",
     "category": "Frontend Projects",
     "summary": "A high-octane footwear retail template featuring quick-view modals and mobile-optimized purchase paths.",
-    "description": "A high-octane footwear retail template featuring quick-view modals and mobile-optimized purchase paths.",
+    "description": "# Shooe Store\n\n> **A high-octane footwear retail template featuring quick-view modals and mobile-optimized purchase paths.**\n\nA high-octane footwear retail template featuring quick-view modals and mobile-optimized purchase paths.\n\n---\n\n## ✨ Key Highlights\n- **Product Quick View**\n- **Filter by Size**\n- **Cart Dropdown**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **HTML, CSS, JavaScript**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "HTML",
       "CSS",
@@ -836,7 +836,7 @@ export const projects: Project[] = [
     "year": "2026",
     "category": "Web Platforms",
     "summary": "A next-generation collaborative mind-mapping platform powered by React 19, React Flow, and Gemini AI integration.",
-    "description": "# 🌌 Nexus - Visual Mind Mapping & Intelligent Diagramming\n\n> Nexus is a premium, full-stack collaborative platform designed to transform complex thoughts into structured visual intelligence. Build, analyze, and scale your ideas on an infinite canvas with real-time multiplayer support.\n\n[![Vercel Deployment](https://img.shields.io/badge/Deployed%20on-Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://nexus-delta.vercel.app)\n[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)\n\n---\n\n## ✨ Core Features\n\n| Feature | Description |\n| :--- | :--- |\n| 🧠 **Infinite Canvas** | Powered by **React Flow**, providing a limitless workspace for node-based architecture. |\n| 👥 **Real-Time Sync** | **Socket.io** integration allows seamless collaboration with live cursor tracking. |\n| 🛠️ **Semantic Nodes** | Specialized nodes for **SWOT**, **5 Whys**, and custom decision trees. |\n| 🌓 **Premium UI** | Implement...",
+    "description": "# Nexus\n\n> **A next-generation collaborative mind-mapping platform powered by React 19, React Flow, and Gemini AI integration.**\n\n| 🧠 **Infinite Canvas** | Powered by **React Flow**, providing a limitless workspace for node-based architecture. |\n\n---\n\n## ✨ Key Highlights\n- **Infinite Visual Canvas**\n- **Real-time Collaboration**\n- **AI Idea Expansion**\n- **Command Palette Control**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **React 19, React Flow, Tailwind v4, Socket.io, Gemini AI**, engineered for high performance and responsive user experience.\n",
     "techStack": [
       "React 19",
       "React Flow",
