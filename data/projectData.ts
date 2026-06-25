@@ -84,61 +84,6 @@ export const projects: Project[] = [
     ]
   },
   {
-    "id": "feat-11",
-    "title": "Stitch",
-    "year": "2026",
-    "category": "Mobile Apps",
-    "summary": "Premium luxury real estate mobile app with offline demo mode, interactive FinTech mortgage calculator, and Indian property listings across Jodhpur & Jaipur.",
-    "description": "# Stitch\n\n> **A premium, full-stack Real Estate mobile app with offline demo mode, luxury UI, and an interactive mortgage calculator.**\n\nA redesigned real estate platform featuring curated property listings, category-based search, agent booking, and a live EMI calculator — all rendered with a Midnight & Amber Gold luxury design system.\n\n---\n\n## ✨ Key Highlights\n- **Offline Demo Mode**\n- **FinTech Mortgage Calculator**\n- **Indian Property Listings**\n- **Glassmorphic Tab Bar**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **React Native, Expo SDK 52, TypeScript, NativeWind, Appwrite, React Native Reanimated**, engineered for premium aesthetics and seamless UX.\n",
-    "techStack": [
-      "React Native",
-      "Expo SDK 52",
-      "TypeScript",
-      "NativeWind",
-      "Appwrite",
-      "React Native Reanimated"
-    ],
-    "accentColor": "#D97706",
-    "githubLink": "https://github.com/mohitlakhara-ind/stitch",
-    "liveLink": "",
-    "coverImage": "/portfolio_projects/stitch/banner.png",
-    "type": "mobile",
-    "stats": {
-      "commits": 48,
-      "stars": 0,
-      "topLanguage": "TypeScript",
-      "issues": 0
-    },
-    "features": [
-      "Offline Demo Mode",
-      "Mortgage EMI Calculator",
-      "Favorites Management",
-      "Booking System"
-    ],
-    "screenshots": [
-      "/portfolio_projects/stitch/banner.png"
-    ],
-    "codeSnippet": "// Offline demo mode — auto-fallback\nconst isMockMode = !process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID;\nconst [user, setUser] = useState<MockUser | null>(\n  isMockMode ? mockUser : null\n);",
-    "learned": [
-      "Expo Router v4 file-based navigation with nested tab and stack layouts",
-      "NativeWind v4 integration with custom Tailwind theme tokens for luxury design",
-      "expo-blur BlurView for frosted glassmorphic floating tab bar",
-      "Appwrite SDK with React Native for auth, database, and file storage"
-    ],
-    "challenges": [
-      "BlurView rendering differences between iOS, Android, and web — used fallback solid bg for web",
-      "Custom font loading order caused FOUT on first launch — fixed with SplashScreen.preventAutoHideAsync",
-      "NativeWind dynamic class generation for active tab indicator — used inline style fallback",
-      "Mortgage calculator precision — used toFixed(2) and Math.pow for accurate amortization"
-    ],
-    "techEvolution": [
-      "Started with default Expo template teal theme — pivoted to Midnight & Amber Gold luxury design",
-      "Replaced all custom PNG icons with @expo/vector-icons for scalability and clarity",
-      "Switched from Rubik to Plus Jakarta Sans for a more premium geometric feel",
-      "Added full offline mock data layer after realizing portfolio reviewers won't have Appwrite credentials"
-    ]
-  },
-  {
     "id": "feat-9",
     "title": "Splitwiser",
     "year": "2026",
@@ -1249,6 +1194,61 @@ export const projects: Project[] = [
     "techEvolution": [
       "Replaced JavaScript modal with CSS :target pseudo-class approach for simplicity",
       "Added size filter after getting user feedback that browsing all products at once was overwhelming"
+    ]
+  },
+  {
+    "id": "feat-11",
+    "title": "Stitch",
+    "year": "2026",
+    "category": "Mobile Apps",
+    "summary": "Premium luxury real estate mobile app with offline demo mode, interactive FinTech mortgage calculator, and Indian property listings across Jodhpur & Jaipur.",
+    "description": "# Stitch\n\n> **A premium, full-stack Real Estate mobile app with offline demo mode, luxury UI, and an interactive mortgage calculator.**\n\nA redesigned real estate platform featuring curated property listings, category-based search, agent booking, and a live EMI calculator — all rendered with a Midnight & Amber Gold luxury design system.\n\n---\n\n## ✨ Key Highlights\n- **Offline Demo Mode**\n- **FinTech Mortgage Calculator**\n- **Indian Property Listings**\n- **Glassmorphic Tab Bar**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **React Native, Expo SDK 52, TypeScript, NativeWind, Appwrite, React Native Reanimated**, engineered for premium aesthetics and seamless UX.\n",
+    "techStack": [
+      "React Native",
+      "Expo SDK 52",
+      "TypeScript",
+      "NativeWind",
+      "Appwrite",
+      "React Native Reanimated"
+    ],
+    "accentColor": "#D97706",
+    "githubLink": "https://github.com/mohitlakhara-ind/stitch",
+    "liveLink": "",
+    "coverImage": "/portfolio_projects/stitch/banner.png",
+    "type": "mobile",
+    "stats": {
+      "commits": 48,
+      "stars": 0,
+      "topLanguage": "TypeScript",
+      "issues": 0
+    },
+    "features": [
+      "Offline Demo Mode",
+      "Mortgage EMI Calculator",
+      "Favorites Management",
+      "Booking System"
+    ],
+    "screenshots": [
+      "/portfolio_projects/stitch/banner.png"
+    ],
+    "codeSnippet": "// Offline demo mode — auto-fallback\nconst isMockMode = !process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID;\nconst [user, setUser] = useState<MockUser | null>(\n  isMockMode ? mockUser : null\n);",
+    "learned": [
+      "Expo Router v4 file-based navigation with nested tab and stack layouts",
+      "NativeWind v4 integration with custom Tailwind theme tokens for luxury design",
+      "expo-blur BlurView for frosted glassmorphic floating tab bar",
+      "Appwrite SDK with React Native for auth, database, and file storage"
+    ],
+    "challenges": [
+      "BlurView rendering differences between iOS, Android, and web — used fallback solid bg for web",
+      "Custom font loading order caused FOUT on first launch — fixed with SplashScreen.preventAutoHideAsync",
+      "NativeWind dynamic class generation for active tab indicator — used inline style fallback",
+      "Mortgage calculator precision — used toFixed(2) and Math.pow for accurate amortization"
+    ],
+    "techEvolution": [
+      "Started with default Expo template teal theme — pivoted to Midnight & Amber Gold luxury design",
+      "Replaced all custom PNG icons with @expo/vector-icons for scalability and clarity",
+      "Switched from Rubik to Plus Jakarta Sans for a more premium geometric feel",
+      "Added full offline mock data layer after realizing portfolio reviewers won't have Appwrite credentials"
     ]
   },
   {
