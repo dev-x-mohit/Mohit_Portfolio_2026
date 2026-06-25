@@ -32,6 +32,58 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    "id": "feat-10",
+    "title": "Soloflow",
+    "year": "2026",
+    "category": "Web Platforms",
+    "summary": "Freelancer billing portal and client SaaS leveraging GPT-4o proposal generation, automated time tracking, and secure webhooks-driven Razorpay settlements.",
+    "description": "# Soloflow\n\n> **An AI-powered freelancer client portal and billing SaaS with Razorpay integration and GPT-4o proposal generation.**\n\nA production-ready SaaS application for freelancers to manage clients, projects, time logs, and invoices — with Razorpay payment integration and GPT-4o AI proposal generation.\n\n---\n\n## ✨ Key Highlights\n- **AI Proposal Generation**\n- **Razorpay Payments**\n- **Time Tracking**\n- **Client Portal**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **Next.js 15, Prisma, PostgreSQL, NextAuth, Razorpay, OpenAI API**, engineered for high performance and responsive user experience.\n",
+    "techStack": [
+      "Next.js 15",
+      "Prisma",
+      "PostgreSQL",
+      "NextAuth",
+      "Razorpay",
+      "OpenAI API"
+    ],
+    "accentColor": "#10B981",
+    "githubLink": "https://github.com/mohitlakhara-ind/soloflow",
+    "liveLink": "https://soloflow-invoice.vercel.app",
+    "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1781679012/portfolio_projects/soloflow/dashboard_dark.png",
+    "type": "web",
+    "stats": {
+      "commits": 85,
+      "stars": 0,
+      "topLanguage": "TypeScript",
+      "issues": 0
+    },
+    "features": [
+      "AI Proposal Generation",
+      "Razorpay Integration",
+      "Automated Time Logs",
+      "Client Collaboration"
+    ],
+    "codeSnippet": "// AI Proposal Generation\nconst response = await openai.chat.completions.create({\n  model: \"gpt-4o\",\n  messages: [{ role: \"user\", content: prompt }],\n  stream: true,\n});",
+    "learned": [
+      "Streaming AI responses with OpenAI SDK and handling partial JSON",
+      "Prisma ORM with PostgreSQL relations and optimistic UI updates",
+      "NextAuth session management with role-based access control",
+      "Razorpay webhook signature verification for secure payments"
+    ],
+    "challenges": [
+      "Razorpay webhook delivery failures in dev — solved with ngrok tunneling",
+      "Race condition in time-log auto-save — fixed with debounced mutation queuing",
+      "AI proposal sometimes hallucinated client names — added context clamping in prompt",
+      "PostgreSQL connection pool exhaustion under load — tuned Prisma pool config"
+    ],
+    "techEvolution": [
+      "Switched from tRPC to Next.js Server Actions for simpler data mutations",
+      "Moved from SQLite (dev) → PostgreSQL (prod) mid-project for scale",
+      "Replaced manual JWT auth with NextAuth to reduce boilerplate by 60%",
+      "Added streaming UI after initial batch-response felt too slow"
+    ]
+  },
+  {
     "id": "feat-11",
     "title": "Stitch",
     "year": "2026",
@@ -84,58 +136,6 @@ export const projects: Project[] = [
       "Replaced all custom PNG icons with @expo/vector-icons for scalability and clarity",
       "Switched from Rubik to Plus Jakarta Sans for a more premium geometric feel",
       "Added full offline mock data layer after realizing portfolio reviewers won't have Appwrite credentials"
-    ]
-  },
-  {
-    "id": "feat-10",
-    "title": "Soloflow",
-    "year": "2026",
-    "category": "Web Platforms",
-    "summary": "Freelancer billing portal and client SaaS leveraging GPT-4o proposal generation, automated time tracking, and secure webhooks-driven Razorpay settlements.",
-    "description": "# Soloflow\n\n> **An AI-powered freelancer client portal and billing SaaS with Razorpay integration and GPT-4o proposal generation.**\n\nA production-ready SaaS application for freelancers to manage clients, projects, time logs, and invoices — with Razorpay payment integration and GPT-4o AI proposal generation.\n\n---\n\n## ✨ Key Highlights\n- **AI Proposal Generation**\n- **Razorpay Payments**\n- **Time Tracking**\n- **Client Portal**\n\n### 🛠️ Architecture & Tech Stack\nBuilt leveraging **Next.js 15, Prisma, PostgreSQL, NextAuth, Razorpay, OpenAI API**, engineered for high performance and responsive user experience.\n",
-    "techStack": [
-      "Next.js 15",
-      "Prisma",
-      "PostgreSQL",
-      "NextAuth",
-      "Razorpay",
-      "OpenAI API"
-    ],
-    "accentColor": "#10B981",
-    "githubLink": "https://github.com/mohitlakhara-ind/soloflow",
-    "liveLink": "https://soloflow-invoice.vercel.app",
-    "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1781679012/portfolio_projects/soloflow/dashboard_dark.png",
-    "type": "web",
-    "stats": {
-      "commits": 85,
-      "stars": 0,
-      "topLanguage": "TypeScript",
-      "issues": 0
-    },
-    "features": [
-      "AI Proposal Generation",
-      "Razorpay Integration",
-      "Automated Time Logs",
-      "Client Collaboration"
-    ],
-    "codeSnippet": "// AI Proposal Generation\nconst response = await openai.chat.completions.create({\n  model: \"gpt-4o\",\n  messages: [{ role: \"user\", content: prompt }],\n  stream: true,\n});",
-    "learned": [
-      "Streaming AI responses with OpenAI SDK and handling partial JSON",
-      "Prisma ORM with PostgreSQL relations and optimistic UI updates",
-      "NextAuth session management with role-based access control",
-      "Razorpay webhook signature verification for secure payments"
-    ],
-    "challenges": [
-      "Razorpay webhook delivery failures in dev — solved with ngrok tunneling",
-      "Race condition in time-log auto-save — fixed with debounced mutation queuing",
-      "AI proposal sometimes hallucinated client names — added context clamping in prompt",
-      "PostgreSQL connection pool exhaustion under load — tuned Prisma pool config"
-    ],
-    "techEvolution": [
-      "Switched from tRPC to Next.js Server Actions for simpler data mutations",
-      "Moved from SQLite (dev) → PostgreSQL (prod) mid-project for scale",
-      "Replaced manual JWT auth with NextAuth to reduce boilerplate by 60%",
-      "Added streaming UI after initial batch-response felt too slow"
     ]
   },
   {

@@ -19,22 +19,6 @@ export interface FeaturedProject {
 
 export const featuredProjects: FeaturedProject[] = [
     {
-        "id": "feat-11",
-        "title": "Stitch",
-        "subtitle": "Luxury Real Estate App",
-        "description": "A premium real estate mobile app with offline demo mode, interactive FinTech mortgage calculator, glassmorphic UI, and curated Indian property listings across Jodhpur & Jaipur.",
-        "techStack": ["React Native", "Expo SDK 52", "NativeWind", "Appwrite"],
-        "category": "Mobile Apps",
-        "status": "Active",
-        "accentColor": "#D97706",
-        "parallaxStrength": 0.2,
-        "githubLink": "https://github.com/mohitlakhara-ind/stitch",
-        "liveLink": "",
-        "coverImage": "/portfolio_projects/stitch/banner.png",
-        "mobileImage": "/portfolio_projects/stitch/banner.png",
-        "mockupType": "Mobile Focused"
-    },
-    {
         "id": "feat-10",
         "title": "Soloflow",
         "subtitle": "AI Billing SaaS",
@@ -50,6 +34,22 @@ export const featuredProjects: FeaturedProject[] = [
         "mobileImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1782228407/portfolio_assets/mockup-soloflow-mobile.webp",
         "mockupType": "Desktop",
         "apkLink": "#"
+    },
+    {
+        "id": "feat-11",
+        "title": "Stitch",
+        "subtitle": "Luxury Real Estate App",
+        "description": "A premium real estate mobile app with offline demo mode, interactive FinTech mortgage calculator, glassmorphic UI, and curated Indian property listings across Jodhpur & Jaipur.",
+        "techStack": ["React Native", "Expo SDK 52", "NativeWind", "Appwrite"],
+        "category": "Mobile Apps",
+        "status": "Active",
+        "accentColor": "#D97706",
+        "parallaxStrength": 0.2,
+        "githubLink": "https://github.com/mohitlakhara-ind/stitch",
+        "liveLink": "",
+        "coverImage": "/portfolio_projects/stitch/banner.png",
+        "mobileImage": "/portfolio_projects/stitch/banner.png",
+        "mockupType": "Mobile Focused"
     },
     {
         "id": "feat-9",
