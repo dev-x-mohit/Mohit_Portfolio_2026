@@ -27,6 +27,10 @@ export default function ContactCTA() {
                         <span>LinkedIn</span>
                         <ArrowUpRight className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                     </a>
+                    <a href="https://x.com/dev_x_mohit" target="_blank" rel="noreferrer" className="group btn-tertiary flex items-center justify-center gap-2">
+                        <span>Twitter / X</span>
+                        <ArrowUpRight className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                    </a>
                 </div>
 
             </div>

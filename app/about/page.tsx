@@ -11,7 +11,7 @@ import BuildProcess from '@/components/BuildProcess';
 import ToolChest from '@/components/ToolChest';
 export const metadata: Metadata = {
     title: 'About Mohit Lakhara | Full-Stack Developer Story & Skills',
-    description: 'Learn about Mohit Lakhara — a MERN Stack Developer with a passion for crafting cinematic digital experiences. Explore his skills, philosophy, toolset, and development process.',
+    description: 'Learn about Mohit Lakhara — a Full Stack Developer with a passion for crafting cinematic digital experiences. Explore his skills, philosophy, toolset, and development process.',
     alternates: { canonical: '/about' },
     openGraph: {
         title: 'About Mohit Lakhara | Full-Stack Developer Story & Skills',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
                 url: 'https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio/og-about.webp',
                 width: 1200,
                 height: 630,
-                alt: 'About Mohit Lakhara — MERN Stack Developer',
+                alt: 'About Mohit Lakhara — Full Stack Developer',
             },
         ],
         locale: 'en_IN',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'About Mohit Lakhara | Full-Stack Developer',
-        description: 'Explore the background, skillset, and engineering philosophy of Mohit Lakhara — MERN Stack & UI/UX Developer.',
+        description: 'Explore the background, skillset, and engineering philosophy of Mohit Lakhara — Full Stack Developer & UI/UX Engineer.',
         images: ['https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio/og-about.webp'],
     },
 };

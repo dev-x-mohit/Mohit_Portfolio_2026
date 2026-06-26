@@ -75,6 +75,7 @@ export default function ContactPageClient() {
                         {[
                             { label: 'GitHub', href: 'https://github.com/mohitlakhara-ind' },
                             { label: 'LinkedIn', href: 'https://linkedin.com/in/mohitlakhara-ind' },
+                            { label: 'Twitter / X', href: 'https://x.com/dev_x_mohit' },
                             { label: 'Instagram', href: 'https://instagram.com/dev_x_mohit' },
                             { label: 'CodePen', href: 'https://codepen.io/mohitlakhara' }
                         ].map((social, i) => (
