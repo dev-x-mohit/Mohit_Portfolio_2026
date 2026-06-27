@@ -52,10 +52,10 @@ export const projects: Project[] = [
       "High Performance"
     ],
     "stats": {
-      "stars": 0,
+      "stars": 1,
       "issues": 0,
       "commits": 10,
-      "topLanguage": "TypeScript"
+      "topLanguage": "JavaScript"
     },
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1782228682/portfolio_assets/mockup-ekovym-desktop.png",
     "accentColor": "#A8791D",
@@ -629,7 +629,7 @@ export const projects: Project[] = [
     "stats": {
       "commits": 12,
       "stars": 1,
-      "topLanguage": "Unknown",
+      "topLanguage": "TypeScript",
       "issues": 0
     },
     "features": [
@@ -741,5 +741,5 @@ export const projects: Project[] = [
       "Added multiple difficulty levels after initial single-paragraph mode felt too limited",
       "Introduced custom themes after the default white background caused eye strain feedback"
     ]
-  },
+  }
 ];
