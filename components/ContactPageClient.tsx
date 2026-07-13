@@ -79,7 +79,7 @@ export default function ContactPageClient() {
                         <div className="flex flex-wrap gap-4">
                             {[
                                 { label: 'GitHub', href: 'https://github.com/dev-x-mohit' },
-                                { label: 'LinkedIn', href: 'https://linkedin.com/in/mohitlakhara-ind' },
+                                { label: 'LinkedIn', href: 'https://linkedin.com/in/dev-x-mohit' },
                                 { label: 'Twitter / X', href: 'https://x.com/dev_x_mohit' },
                                 { label: 'Instagram', href: 'https://instagram.com/dev_x_mohit' },
                                 { label: 'CodePen', href: 'https://codepen.io/mohitlakhara' }
@@ -93,8 +93,8 @@ export default function ContactPageClient() {
 
                         {/* LinkedIn Profile Badge */}
                         <div className="mt-2 scale-95 origin-left opacity-90 hover:opacity-100 transition-opacity">
-                            <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="mohitlakhara-ind" data-version="v1">
-                                <a className="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/mohitlakhara-ind?trk=profile-badge">
+                            <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="dev-x-mohit" data-version="v1">
+                                <a className="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/dev-x-mohit?trk=profile-badge">
                                     Mohit Lakhara
                                 </a>
                             </div>
