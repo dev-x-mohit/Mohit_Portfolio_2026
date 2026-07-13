@@ -82,7 +82,7 @@ export default function RootLayout({
     "url": "https://mohitlakhara.vercel.app/",
     "sameAs": [
       "https://github.com/dev-x-mohit",
-      "https://linkedin.com/in/dev-x-mohit"
+      "https://linkedin.com/in/mohitlakhara-ind"
     ],
     "jobTitle": "Full Stack Developer",
     "worksFor": {
