@@ -3,14 +3,10 @@
 import { motion } from 'framer-motion';
 import ContactForm from '@/components/ContactForm';
 import { Mail, MapPin, ArrowUpRight } from 'iconoir-react';
-import Script from 'next/script';
 
 export default function ContactPageClient() {
     return (
         <main className="relative min-h-screen w-full bg-background text-foreground overflow-hidden flex flex-col lg:flex-row selection:bg-[var(--gold-primary)]/30">
-            {/* LinkedIn Badge Script Loader */}
-            <Script src="https://platform.linkedin.com/badg/v1/badge.js" strategy="lazyOnload" />
-
             {/* Left Column: 40% Width - Dark / Abstract Sidebar */}
             <div className="w-full lg:w-[40%] bg-secondary-bg/50 relative flex flex-col justify-between p-8 md:p-16 lg:p-20 lg:min-h-screen border-b lg:border-b-0 lg:border-r border-border/10 overflow-hidden">
                 {/* Decorative Elements */}
@@ -74,31 +70,20 @@ export default function ContactPageClient() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                        className="flex flex-col gap-6 pt-8 border-t border-border/10"
+                        className="flex flex-wrap gap-4 pt-8 border-t border-border/10"
                     >
-                        <div className="flex flex-wrap gap-4">
-                            {[
-                                { label: 'GitHub', href: 'https://github.com/dev-x-mohit' },
-                                { label: 'LinkedIn', href: 'https://linkedin.com/in/dev-x-mohit' },
-                                { label: 'Twitter / X', href: 'https://x.com/dev_x_mohit' },
-                                { label: 'Instagram', href: 'https://instagram.com/dev_x_mohit' },
-                                { label: 'CodePen', href: 'https://codepen.io/mohitlakhara' }
-                            ].map((social, i) => (
-                                <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm font-bold uppercase tracking-wider text-text-secondary hover:text-[var(--gold-primary)] transition-colors group">
-                                    {social.label}
-                                    <ArrowUpRight width={14} height={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                                </a>
-                            ))}
-                        </div>
-
-                        {/* LinkedIn Profile Badge */}
-                        <div className="mt-2 scale-95 origin-left opacity-90 hover:opacity-100 transition-opacity">
-                            <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="dev-x-mohit" data-version="v1">
-                                <a className="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/dev-x-mohit?trk=profile-badge">
-                                    Mohit Lakhara
-                                </a>
-                            </div>
-                        </div>
+                        {[
+                            { label: 'GitHub', href: 'https://github.com/dev-x-mohit' },
+                            { label: 'LinkedIn', href: 'https://linkedin.com/in/dev-x-mohit' },
+                            { label: 'Twitter / X', href: 'https://x.com/dev_x_mohit' },
+                            { label: 'Instagram', href: 'https://instagram.com/dev_x_mohit' },
+                            { label: 'CodePen', href: 'https://codepen.io/mohitlakhara' }
+                        ].map((social, i) => (
+                            <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm font-bold uppercase tracking-wider text-text-secondary hover:text-[var(--gold-primary)] transition-colors group">
+                                {social.label}
+                                <ArrowUpRight width={14} height={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                            </a>
+                        ))}
                     </motion.div>
                 </div>
             </div>
