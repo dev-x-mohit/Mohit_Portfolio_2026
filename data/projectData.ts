@@ -44,7 +44,7 @@ export const projects: Project[] = [
     ],
     "category": "Web Platforms",
     "status": "In Progress",
-    "githubLink": "https://github.com/mohitlakhara-ind/ekovym",
+    "githubLink": "https://github.com/dev-x-mohit/ekovym",
     "liveLink": "https://ekovym.vercel.app/",
     "year": "2026",
     "features": [
@@ -92,7 +92,7 @@ export const projects: Project[] = [
       "OpenAI API"
     ],
     "accentColor": "#10B981",
-    "githubLink": "https://github.com/mohitlakhara-ind/soloflow",
+    "githubLink": "https://github.com/dev-x-mohit/soloflow",
     "liveLink": "https://soloflow-invoice.vercel.app",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1781679012/portfolio_projects/soloflow/dashboard_dark.png",
     "type": "web",
@@ -147,7 +147,7 @@ export const projects: Project[] = [
       "Splitwise API"
     ],
     "accentColor": "#7C3AED",
-    "githubLink": "https://github.com/mohitlakhara-ind/splitsmart",
+    "githubLink": "https://github.com/dev-x-mohit/splitsmart",
     "liveLink": "https://splitwiser-expense.vercel.app/",
     "coverImage": "/portfolio_projects/splitwiser/web_01_landing.png",
     "type": "both",
@@ -206,7 +206,7 @@ export const projects: Project[] = [
       "Gemini AI"
     ],
     "accentColor": "#8B5CF6",
-    "githubLink": "https://github.com/mohitlakhara-ind/nexus",
+    "githubLink": "https://github.com/dev-x-mohit/nexus",
     "liveLink": "https://nexus-visuals.vercel.app/",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1773763966/portfolio_projects/Nexus.png",
     "type": "web",
@@ -256,7 +256,7 @@ export const projects: Project[] = [
       "React Native Reanimated"
     ],
     "accentColor": "#D97706",
-    "githubLink": "https://github.com/mohitlakhara-ind/stitch",
+    "githubLink": "https://github.com/dev-x-mohit/stitch",
     "liveLink": "",
     "coverImage": "/portfolio_projects/stitch/banner.png",
     "type": "mobile",
@@ -308,8 +308,8 @@ export const projects: Project[] = [
       "JavaScript"
     ],
     "accentColor": "#3B82F6",
-    "githubLink": "https://github.com/mohitlakhara-ind/Cial-finance",
-    "liveLink": "https://mohitlakhara-ind.github.io/Cial-finance/",
+    "githubLink": "https://github.com/dev-x-mohit/Cial-finance",
+    "liveLink": "https://dev-x-mohit.github.io/Cial-finance/",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612445/portfolio_projects/cover_proj-9.png",
     "type": "web",
     "stats": {
@@ -350,8 +350,8 @@ export const projects: Project[] = [
       "CSS"
     ],
     "accentColor": "#3B82F6",
-    "githubLink": "https://github.com/mohitlakhara-ind/karl",
-    "liveLink": "https://mohitlakhara-ind.github.io/karl/",
+    "githubLink": "https://github.com/dev-x-mohit/karl",
+    "liveLink": "https://dev-x-mohit.github.io/karl/",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612513/portfolio_projects/cover_proj-17.png",
     "type": "web",
     "stats": {
@@ -393,8 +393,8 @@ export const projects: Project[] = [
       "JavaScript"
     ],
     "accentColor": "#3B82F6",
-    "githubLink": "https://github.com/mohitlakhara-ind/meranda-master",
-    "liveLink": "https://mohitlakhara-ind.github.io/meranda-master/",
+    "githubLink": "https://github.com/dev-x-mohit/meranda-master",
+    "liveLink": "https://dev-x-mohit.github.io/meranda-master/",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612519/portfolio_projects/cover_proj-18.png",
     "type": "web",
     "stats": {
@@ -437,7 +437,7 @@ export const projects: Project[] = [
       "Vercel"
     ],
     "accentColor": "#f59e0b",
-    "githubLink": "https://github.com/mohitlakhara-ind/notes-app",
+    "githubLink": "https://github.com/dev-x-mohit/notes-app",
     "liveLink": "https://notemenow.vercel.app",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612374/portfolio_projects/cover_feat-2.png",
     "type": "web",
@@ -484,8 +484,8 @@ export const projects: Project[] = [
       "JavaScript"
     ],
     "accentColor": "#3B82F6",
-    "githubLink": "https://github.com/mohitlakhara-ind/nubis",
-    "liveLink": "https://mohitlakhara-ind.github.io/nubis/",
+    "githubLink": "https://github.com/dev-x-mohit/nubis",
+    "liveLink": "https://dev-x-mohit.github.io/nubis/",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612559/portfolio_projects/cover_proj-22.png",
     "type": "web",
     "stats": {
@@ -527,7 +527,7 @@ export const projects: Project[] = [
       "Framer Motion"
     ],
     "accentColor": "#ef4444",
-    "githubLink": "https://github.com/mohitlakhara-ind/SnapNews",
+    "githubLink": "https://github.com/dev-x-mohit/SnapNews",
     "liveLink": "https://snap-news-phi.vercel.app/",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio_projects/cover_feat-3.png",
     "type": "web",
@@ -575,8 +575,8 @@ export const projects: Project[] = [
       "JS"
     ],
     "accentColor": "#8b5cf6",
-    "githubLink": "https://github.com/mohitlakhara-ind/CarBook",
-    "liveLink": "https://mohitlakhara-ind.github.io/CarBook/",
+    "githubLink": "https://github.com/dev-x-mohit/CarBook",
+    "liveLink": "https://dev-x-mohit.github.io/CarBook/",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612402/portfolio_projects/cover_feat-5.png",
     "type": "web",
     "stats": {
@@ -622,8 +622,8 @@ export const projects: Project[] = [
       "JavaScript"
     ],
     "accentColor": "#3B82F6",
-    "githubLink": "https://github.com/mohitlakhara-ind/QrGenie",
-    "liveLink": "https://codepen.io/mohitlakhara-ind/full/XWLLNgz",
+    "githubLink": "https://github.com/dev-x-mohit/QrGenie",
+    "liveLink": "https://codepen.io/dev-x-mohit/full/XWLLNgz",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612409/portfolio_projects/cover_proj-4.png",
     "type": "web",
     "stats": {
@@ -665,8 +665,8 @@ export const projects: Project[] = [
       "Regex"
     ],
     "accentColor": "#10b981",
-    "githubLink": "https://github.com/mohitlakhara-ind/Txt-Xpert",
-    "liveLink": "https://codepen.io/mohitlakhara-ind/full/mdNjKee",
+    "githubLink": "https://github.com/dev-x-mohit/Txt-Xpert",
+    "liveLink": "https://codepen.io/dev-x-mohit/full/mdNjKee",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio_projects/cover_feat-4.png",
     "type": "web",
     "stats": {
@@ -712,8 +712,8 @@ export const projects: Project[] = [
       "JavaScript"
     ],
     "accentColor": "#3B82F6",
-    "githubLink": "https://github.com/mohitlakhara-ind/Typecheckyy",
-    "liveLink": "https://codepen.io/mohitlakhara-ind/full/BagvRZx",
+    "githubLink": "https://github.com/dev-x-mohit/Typecheckyy",
+    "liveLink": "https://codepen.io/dev-x-mohit/full/BagvRZx",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1771612420/portfolio_projects/cover_proj-6.png",
     "type": "web",
     "stats": {

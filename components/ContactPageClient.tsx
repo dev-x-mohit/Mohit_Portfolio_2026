@@ -73,8 +73,8 @@ export default function ContactPageClient() {
                         className="flex flex-wrap gap-4 pt-8 border-t border-border/10"
                     >
                         {[
-                            { label: 'GitHub', href: 'https://github.com/mohitlakhara-ind' },
-                            { label: 'LinkedIn', href: 'https://linkedin.com/in/mohitlakhara-ind' },
+                            { label: 'GitHub', href: 'https://github.com/dev-x-mohit' },
+                            { label: 'LinkedIn', href: 'https://linkedin.com/in/dev-x-mohit' },
                             { label: 'Twitter / X', href: 'https://x.com/dev_x_mohit' },
                             { label: 'Instagram', href: 'https://instagram.com/dev_x_mohit' },
                             { label: 'CodePen', href: 'https://codepen.io/mohitlakhara' }

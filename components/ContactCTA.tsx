@@ -19,11 +19,11 @@ export default function ContactCTA() {
                         <span>mohitlakhara78500@gmail.com</span>
                         <ArrowUpRight className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                     </a>
-                    <a href="https://github.com/mohitlakhara-ind" target="_blank" rel="noreferrer" className="group btn-tertiary flex items-center justify-center gap-2">
+                    <a href="https://github.com/dev-x-mohit" target="_blank" rel="noreferrer" className="group btn-tertiary flex items-center justify-center gap-2">
                         <span>GitHub</span>
                         <ArrowUpRight className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                     </a>
-                    <a href="https://linkedin.com/in/mohitlakhara-ind" target="_blank" rel="noreferrer" className="group btn-tertiary flex items-center justify-center gap-2">
+                    <a href="https://linkedin.com/in/dev-x-mohit" target="_blank" rel="noreferrer" className="group btn-tertiary flex items-center justify-center gap-2">
                         <span>LinkedIn</span>
                         <ArrowUpRight className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                     </a>

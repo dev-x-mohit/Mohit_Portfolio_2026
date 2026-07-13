@@ -38,8 +38,8 @@ const Footer = () => {
                     <span className="flex items-center gap-2">
                         Built with Next.js & Tailwind
                     </span>
-                    <a href="https://github.com/mohitlakhara-ind" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
-                    <a href="https://linkedin.com/in/mohitlakhara-ind" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">LinkedIn</a>
+                    <a href="https://github.com/dev-x-mohit" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
+                    <a href="https://linkedin.com/in/dev-x-mohit" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">LinkedIn</a>
                     <a href="https://x.com/dev_x_mohit" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">Twitter / X</a>
                     <a href="https://instagram.com/dev_x_mohit" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">Instagram</a>
                     <a href="https://codepen.io/mohitlakhara" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">CodePen</a>
