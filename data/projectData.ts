@@ -758,7 +758,7 @@ export const projects: Project[] = [
     "accentColor": "#A855F7",
     "githubLink": "https://github.com/dev-x-mohit/opti-kit",
     "liveLink": "https://opti-kit-showcase.vercel.app",
-    "coverImage": "/portfolio_projects/optikit/banner.png",
+    "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1784563747/portfolio_projects/optikit/banner.png",
     "type": "web",
     "stats": {
       "commits": 12,
@@ -773,10 +773,10 @@ export const projects: Project[] = [
       "FNV-1a Hashing"
     ],
     "screenshots": [
-      "/portfolio_projects/optikit/banner.png",
-      "/portfolio_projects/optikit/modules_tab.png",
-      "/portfolio_projects/optikit/playground_tab.png",
-      "/portfolio_projects/optikit/overview_full.png"
+      "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1784563747/portfolio_projects/optikit/banner.png",
+      "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1784563748/portfolio_projects/optikit/modules_tab.png",
+      "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1784563749/portfolio_projects/optikit/playground_tab.png",
+      "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1784563750/portfolio_projects/optikit/overview_full.png"
     ],
     "codeSnippet": "// OptiKit: Custom Isomorphic safeStorage\nexport const safeStorage = {\n  getItem(key: string) {\n    if (typeof window === 'undefined') return null;\n    try {\n      const item = window.localStorage.getItem(key);\n      return item ? JSON.parse(item) : null;\n    } catch { return null; }\n  }\n};",
     "learned": [

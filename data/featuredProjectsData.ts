@@ -233,8 +233,8 @@ export const featuredProjects: FeaturedProject[] = [
     "parallaxStrength": 0.2,
     "githubLink": "https://github.com/dev-x-mohit/opti-kit",
     "liveLink": "https://opti-kit-showcase.vercel.app",
-    "coverImage": "/portfolio_projects/optikit/banner.png",
-    "mobileImage": "/portfolio_projects/optikit/banner.png",
+    "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1784563747/portfolio_projects/optikit/banner.png",
+    "mobileImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1784563747/portfolio_projects/optikit/banner.png",
     "mockupType": "Desktop",
     "year": "2026"
   }
