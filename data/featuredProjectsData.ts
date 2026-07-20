@@ -219,8 +219,8 @@ export const featuredProjects: FeaturedProject[] = [
   {
     "id": "feat-12",
     "title": "OptiKit",
-    "subtitle": "Tree-Shakeable Utility Package",
-    "description": "A zero-dependency, ultra-lightweight, and fully tree-shakeable JavaScript/TypeScript utility library featuring 17 hand-optimized core modules, complete CJS/ESM target compilation, and 100% test coverage.",
+    "subtitle": "Open-Source Utility Package",
+    "description": "An open-source, zero-dependency, ultra-lightweight, and fully tree-shakeable JavaScript/TypeScript utility library featuring 328+ functions across 17 hand-optimized core modules, CJS/ESM compilation, 100% test coverage, and 100/100 security score. Published on NPM as @dev_x_mohit/opti-kit.",
     "techStack": [
       "TypeScript",
       "TSup",
@@ -228,7 +228,7 @@ export const featuredProjects: FeaturedProject[] = [
       "NPM"
     ],
     "category": "Algorithms & Utilities",
-    "status": "Active",
+    "status": "Open Source",
     "accentColor": "#A855F7",
     "parallaxStrength": 0.2,
     "githubLink": "https://github.com/dev-x-mohit/opti-kit",

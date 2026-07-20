@@ -22,6 +22,7 @@ export interface Project {
   features: string[];
   screenshots?: string[];
   apkLink?: string;
+  npmLink?: string;
   status?: string;
 
   // Structured dev insight fields
@@ -747,8 +748,8 @@ export const projects: Project[] = [
     "title": "OptiKit",
     "year": "2026",
     "category": "Algorithms & Utilities",
-    "summary": "A zero-dependency, ultra-lightweight, and fully tree-shakeable JavaScript/TypeScript utility library featuring 17 hand-optimized core modules.",
-    "description": "# OptiKit\n\n> **A zero-dependency, ultra-lightweight, and fully tree-shakeable JavaScript/TypeScript utility library.**\n\nAn isomorphic utility package built with TypeScript, featuring 17 core modules, complete ES Module/CommonJS build pipelines, and 100% unit testing coverage.\n\n---\n\n## ✨ Key Highlights\n- **100% Tree-Shakeable** (Declared side-effects free)\n- **Zero External Dependencies**\n- **17 Core Utility Modules**\n- **Full CJS / ESM support**\n",
+    "summary": "An open-source, zero-dependency, ultra-lightweight, and fully tree-shakeable JavaScript/TypeScript utility library featuring 328+ functions across 17 hand-optimized core modules. Published on NPM with 100/100 security score.",
+    "description": "# OptiKit\n\n> **An open-source, zero-dependency, ultra-lightweight, and fully tree-shakeable JavaScript/TypeScript utility library.**\n\nAn isomorphic utility package built with TypeScript, featuring 17 core modules, 328+ pure utility functions, complete ES Module/CommonJS build pipelines, 100% unit testing coverage, and 100/100 Socket Security audit score. Published as `@dev_x_mohit/opti-kit` on NPM.\n\n---\n\n## ✨ Key Highlights\n- **Open Source** on GitHub & NPM\n- **100% Tree-Shakeable** (Declared side-effects free)\n- **Zero External Dependencies**\n- **328+ Utility Functions across 17 Core Modules**\n- **Full CJS / ESM support**\n- **14 KB Gzip • 100/100 Security Score**\n",
     "techStack": [
       "TypeScript",
       "TSup",
@@ -758,8 +759,10 @@ export const projects: Project[] = [
     "accentColor": "#A855F7",
     "githubLink": "https://github.com/dev-x-mohit/opti-kit",
     "liveLink": "https://opti-kit-showcase.vercel.app",
+    "npmLink": "https://www.npmjs.com/package/@dev_x_mohit/opti-kit",
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1784563747/portfolio_projects/optikit/banner.png",
     "type": "web",
+    "status": "Open Source",
     "stats": {
       "commits": 12,
       "stars": 3,
@@ -767,10 +770,10 @@ export const projects: Project[] = [
       "topLanguage": "TypeScript"
     },
     "features": [
-      "Tree-shaking",
-      "Isomorphic SafeStorage",
-      "Event Bus (EventEmitter)",
-      "FNV-1a Hashing"
+      "Open Source on NPM & GitHub",
+      "328+ Pure Utility Functions",
+      "100% Tree-Shakeable ESM/CJS",
+      "100/100 Socket Security Audit"
     ],
     "screenshots": [
       "https://res.cloudinary.com/dhjkbcdfm/image/upload/v1784563747/portfolio_projects/optikit/banner.png",

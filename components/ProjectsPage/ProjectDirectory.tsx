@@ -6,7 +6,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motio
 import { projects, Project } from '@/data/projectData';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Github, OpenNewWindow, Download, NavArrowDown, Filter, Code } from 'iconoir-react';
+import { Github, OpenNewWindow, Download, NavArrowDown, Filter, Code, Package as PackageIcon } from 'iconoir-react';
 import ReactMarkdown from 'react-markdown';
 import { SiNextdotjs, SiPrisma, SiPostgresql, SiRazorpay, SiOpenai, SiReact, SiTailwindcss, SiVite, SiNodedotjs, SiExpress, SiMongodb, SiFirebase, SiHtml5, SiCss3, SiJavascript, SiSocketdotio, SiTypescript } from 'react-icons/si';
 
@@ -89,6 +89,7 @@ const getProjectStatusBadge = (id: string) => {
     if (id === 'feat-10') return 'PRODUCTION • ACTIVE';
     if (id === 'feat-9') return 'PRODUCTION • ACTIVE';
     if (id === 'feat-6') return 'FEATURED • ACTIVE';
+    if (id === 'feat-12') return 'OPEN SOURCE • NPM';
     return 'ARCHIVED • COMPLETED';
 };
 
@@ -100,6 +101,7 @@ const getProjectScopeBadge = (id: string) => {
     if (id === 'feat-3') return 'SSR FRONTEND DESIGN';
     if (id === 'feat-4') return 'NLP UTILITY & WEB WORKERS';
     if (id === 'feat-5') return 'SASS VEHICLE DESIGN SYSTEM';
+    if (id === 'feat-12') return 'OPEN-SOURCE NPM PACKAGE';
     return 'FRONTEND WEB UTILITY';
 };
 
@@ -492,6 +494,11 @@ export default function ProjectDirectory() {
                                         {project.apkLink && project.apkLink !== '#' && (
                                             <Link href={project.apkLink} target="_blank" className="btn-android w-full flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold font-mono uppercase tracking-wider">
                                                 Download APK <Download width={16} height={16} />
+                                            </Link>
+                                        )}
+                                        {project.npmLink && (
+                                            <Link href={project.npmLink} target="_blank" className="w-full flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold font-mono uppercase tracking-wider bg-[#CB3837]/10 border border-[#CB3837]/30 text-[#CB3837] hover:bg-[#CB3837]/20 transition-all duration-300">
+                                                View on NPM <PackageIcon width={16} height={16} />
                                             </Link>
                                         )}
                                     </div>
