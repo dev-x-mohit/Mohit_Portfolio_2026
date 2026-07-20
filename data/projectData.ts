@@ -741,5 +741,50 @@ export const projects: Project[] = [
       "Added multiple difficulty levels after initial single-paragraph mode felt too limited",
       "Introduced custom themes after the default white background caused eye strain feedback"
     ]
+  },
+  {
+    "id": "feat-12",
+    "title": "OptiKit",
+    "year": "2026",
+    "category": "Algorithms & Utilities",
+    "summary": "A zero-dependency, ultra-lightweight, and fully tree-shakeable JavaScript/TypeScript utility library featuring 17 hand-optimized core modules.",
+    "description": "# OptiKit\n\n> **A zero-dependency, ultra-lightweight, and fully tree-shakeable JavaScript/TypeScript utility library.**\n\nAn isomorphic utility package built with TypeScript, featuring 17 core modules, complete ES Module/CommonJS build pipelines, and 100% unit testing coverage.\n\n---\n\n## ✨ Key Highlights\n- **100% Tree-Shakeable** (Declared side-effects free)\n- **Zero External Dependencies**\n- **17 Core Utility Modules**\n- **Full CJS / ESM support**\n",
+    "techStack": [
+      "TypeScript",
+      "TSup",
+      "Vitest",
+      "NPM"
+    ],
+    "accentColor": "#A855F7",
+    "githubLink": "https://github.com/dev-x-mohit/opti-kit",
+    "liveLink": "https://opti-kit-showcase.vercel.app",
+    "coverImage": "/portfolio_projects/optikit/banner.png",
+    "type": "web",
+    "stats": {
+      "commits": 12,
+      "stars": 3,
+      "issues": 0,
+      "topLanguage": "TypeScript"
+    },
+    "features": [
+      "Tree-shaking",
+      "Isomorphic SafeStorage",
+      "Event Bus (EventEmitter)",
+      "FNV-1a Hashing"
+    ],
+    "codeSnippet": "// OptiKit: Custom Isomorphic safeStorage\nexport const safeStorage = {\n  getItem(key: string) {\n    if (typeof window === 'undefined') return null;\n    try {\n      const item = window.localStorage.getItem(key);\n      return item ? JSON.parse(item) : null;\n    } catch { return null; }\n  }\n};",
+    "learned": [
+      "Designing clean API boundaries for standalone distribution",
+      "Optimizing bundler configurations for simultaneous CJS/ESM compilation",
+      "Setting up comprehensive unit test suites with Vitest"
+    ],
+    "challenges": [
+      "Ensuring isomorphic code compatibility preventing crash triggers under Server-Side Rendering (SSR) environments.",
+      "Configuring typing export condition precedence so consumers resolve typings first."
+    ],
+    "techEvolution": [
+      "Developed hand-crafted utilities to replace heavy lodash/ramda function bundles.",
+      "Used TSup (esbuild-based compiler) to optimize final bundle sizes down to 38KB."
+    ]
   }
 ];

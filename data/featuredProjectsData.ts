@@ -215,5 +215,27 @@ export const featuredProjects: FeaturedProject[] = [
     "coverImage": "https://res.cloudinary.com/dhjkbcdfm/image/upload/portfolio_projects/cover_feat-4.png",
     "mockupType": "Desktop",
     "year": "2025"
+  },
+  {
+    "id": "feat-12",
+    "title": "OptiKit",
+    "subtitle": "Tree-Shakeable Utility Package",
+    "description": "A zero-dependency, ultra-lightweight, and fully tree-shakeable JavaScript/TypeScript utility library featuring 17 hand-optimized core modules, complete CJS/ESM target compilation, and 100% test coverage.",
+    "techStack": [
+      "TypeScript",
+      "TSup",
+      "Vitest",
+      "NPM"
+    ],
+    "category": "Algorithms & Utilities",
+    "status": "Active",
+    "accentColor": "#A855F7",
+    "parallaxStrength": 0.2,
+    "githubLink": "https://github.com/dev-x-mohit/opti-kit",
+    "liveLink": "https://opti-kit-showcase.vercel.app",
+    "coverImage": "/portfolio_projects/optikit/banner.png",
+    "mobileImage": "/portfolio_projects/optikit/banner.png",
+    "mockupType": "Desktop",
+    "year": "2026"
   }
 ];
