@@ -772,6 +772,12 @@ export const projects: Project[] = [
       "Event Bus (EventEmitter)",
       "FNV-1a Hashing"
     ],
+    "screenshots": [
+      "/portfolio_projects/optikit/banner.png",
+      "/portfolio_projects/optikit/modules_tab.png",
+      "/portfolio_projects/optikit/playground_tab.png",
+      "/portfolio_projects/optikit/overview_full.png"
+    ],
     "codeSnippet": "// OptiKit: Custom Isomorphic safeStorage\nexport const safeStorage = {\n  getItem(key: string) {\n    if (typeof window === 'undefined') return null;\n    try {\n      const item = window.localStorage.getItem(key);\n      return item ? JSON.parse(item) : null;\n    } catch { return null; }\n  }\n};",
     "learned": [
       "Designing clean API boundaries for standalone distribution",
