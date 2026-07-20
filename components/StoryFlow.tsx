@@ -23,8 +23,8 @@ const storyChapters = [
     },
     {
         title: "The Evolution",
-        subtitle: "Freelance & MCA",
-        description: "Currently pursuing an MCA in Cloud Computing at JECRC University, Jaipur. I am now engineering high-performance SaaS solutions and cinematic user interfaces as a Freelance Developer.",
+        subtitle: "Freelance, Open Source & MCA",
+        description: "Currently pursuing an MCA in Cloud Computing at JECRC University, Jaipur. Building open-source tools like OptiKit (published on NPM), engineering high-performance SaaS solutions, and crafting cinematic user interfaces as a Freelance Developer.",
         year: "2026 - Ongoing",
         color: "#A8791D" // gold-dark
     }

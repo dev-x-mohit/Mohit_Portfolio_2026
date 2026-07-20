@@ -72,6 +72,8 @@ const Hero = () => {
                     <motion.div variants={itemVariants} className="flex items-center flex-wrap justify-center gap-2 sm:gap-3 text-[9px] sm:text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] sm:tracking-[0.3em] text-foreground/70 uppercase mt-4 mb-2">
                         <span>FULL STACK DEVELOPER</span>
                         <span className="text-[var(--gold-primary)]">•</span>
+                        <span>OPEN SOURCE</span>
+                        <span className="text-[var(--gold-primary)]">•</span>
                         <span>NEXT.JS</span>
                         <span className="text-[var(--gold-primary)]">•</span>
                         <span>REACT</span>
@@ -109,7 +111,7 @@ const Hero = () => {
                     {/* ─── Subtitles & Credibility ─── */}
                     <motion.div variants={itemVariants} className="flex flex-col items-center gap-5 mt-1 z-10">
                         <h2 className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans text-center max-w-2xl" >
-                            Building modern SaaS products, AI-powered tools,<br className="hidden sm:block" /> and high-performance web experiences.
+                            Building modern SaaS products, open-source tools,<br className="hidden sm:block" /> and high-performance web experiences.
                         </h2>
 
                         {/* Credibility Row */}

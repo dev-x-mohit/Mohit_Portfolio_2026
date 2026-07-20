@@ -60,7 +60,7 @@ const About = () => {
                         
                         <p className="text-text-secondary text-sm sm:text-base leading-relaxed mb-6 md:mb-8 max-w-xl font-sans">
                             I am a BCA graduate currently pursuing an MCA in Cloud Computing at JECRC University, Jaipur. 
-                            After 4 impactful months at Fudode, I am now engineering high-performance SaaS solutions and cinematic user interfaces as a Freelance Developer.
+                            After 4 impactful months at Fudode, I am now engineering high-performance SaaS solutions, contributing to open-source, and crafting cinematic user interfaces as a Freelance Developer. Creator of <span className="text-foreground font-medium">OptiKit</span> — an open-source utility library published on NPM.
                         </p>
 
                         <div className="flex flex-wrap gap-2 mb-8 md:mb-10">

@@ -11,7 +11,7 @@ export default function ContactCTA() {
                 </h2>
 
                 <p className="text-lg md:text-xl text-foreground/80 font-medium max-w-2xl leading-relaxed mb-12 drop-shadow-md">
-                    Have an idea, a project, or a role in mind? I'm always open to discussing new opportunities and bringing creative visions to life.
+                    Have an idea, a project, or an open-source collaboration in mind? I'm always open to discussing new opportunities and bringing creative visions to life.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-6 sm:gap-10 font-mono text-sm uppercase tracking-widest text-foreground/90 font-bold drop-shadow-md">

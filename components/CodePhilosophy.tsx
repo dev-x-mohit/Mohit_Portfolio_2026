@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring, useMotionTe
 const philosophyTerms = [
     "Clean Architecture", "Type Safe", "Event-Driven", "Zero Trust Security",
     "SOLID Principles", "Test-Driven", "Micro-Frontends", "Performance First",
-    "CI/CD Native", "Serverless", "Edge Computing", "A11y First"
+    "CI/CD Native", "Open Source", "Edge Computing", "A11y First"
 ];
 
 const CodePhilosophy = () => {

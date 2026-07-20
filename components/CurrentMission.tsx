@@ -145,7 +145,7 @@ const CurrentMission = () => {
                         </span>
                         ,{" "}
                         <span className="text-foreground font-semibold border-b border-[var(--gold-primary)]/30">
-                            AI-powered tools
+                            open-source developer tools
                         </span>
                         , and{" "}
                         <span className="text-foreground font-semibold border-b border-[var(--gold-primary)]/30">

@@ -24,8 +24,8 @@ const orbitron = Orbitron({
 });
 
 export const metadata: Metadata = {
-  title: "Mohit Lakhara | Full Stack Developer & UI/UX Engineer",
-  description: "Portfolio of Mohit Lakhara — Full Stack Developer specializing in React, Next.js, Node.js, and React Native. Building production-grade SaaS, mobile apps, and cinematic web experiences.",
+  title: "Mohit Lakhara | Full Stack Developer & Open Source Contributor",
+  description: "Portfolio of Mohit Lakhara — Full Stack Developer & Open Source Contributor specializing in React, Next.js, Node.js, and TypeScript. Building production-grade SaaS, open-source tools like OptiKit, and cinematic web experiences.",
   authors: [{ name: "Mohit Lakhara" }],
   creator: "Mohit Lakhara",
   metadataBase: new URL('https://mohitlakhara.vercel.app'),
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Mohit Lakhara | Full Stack Developer Portfolio",
-    description: "Explore Mohit Lakhara's portfolio — production-grade web & mobile apps built with React, Next.js, Node.js, PostgreSQL, and React Native.",
+    title: "Mohit Lakhara | Full Stack Developer & Open Source Contributor",
+    description: "Explore Mohit Lakhara's portfolio — production-grade web apps & open-source tools built with React, Next.js, Node.js, PostgreSQL, and TypeScript.",
     url: 'https://mohitlakhara.vercel.app/',
     siteName: 'Mohit Lakhara Portfolio',
     images: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
         url: 'https://res.cloudinary.com/dhjkbcdfm/image/upload/v1782579876/portfolio/og-home.webp',
         width: 1200,
         height: 630,
-        alt: 'Mohit Lakhara — Full Stack Developer Portfolio',
+        alt: 'Mohit Lakhara — Full Stack Developer & Open Source Contributor',
       },
     ],
     locale: 'en_IN',
@@ -50,8 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mohit Lakhara | Full Stack Developer Portfolio',
-    description: "Explore Mohit Lakhara's full-stack development work — SaaS apps, mobile apps, and cinematic UI/UX built with React, Next.js, and Node.js.",
+    title: 'Mohit Lakhara | Full Stack Developer & Open Source Contributor',
+    description: "Explore Mohit Lakhara's full-stack development work — SaaS apps, open-source tools, and cinematic UI/UX built with React, Next.js, and TypeScript.",
     images: ['https://res.cloudinary.com/dhjkbcdfm/image/upload/v1782579876/portfolio/og-home.webp'],
   },
 
@@ -84,12 +84,12 @@ export default function RootLayout({
       "https://github.com/dev-x-mohit",
       "https://linkedin.com/in/dev-x-mohit"
     ],
-    "jobTitle": "Full Stack Developer",
+    "jobTitle": "Full Stack Developer & Open Source Contributor",
     "worksFor": {
       "@type": "Organization",
-      "name": "Freelance & Personal Projects"
+      "name": "Freelance & Open Source"
     },
-    "description": "Mohit Lakhara is a Full Stack Developer building production-grade web and mobile applications with React, Next.js, Node.js, and React Native."
+    "description": "Mohit Lakhara is a Full Stack Developer & Open Source Contributor building production-grade web applications and open-source tools with React, Next.js, Node.js, and TypeScript. Creator of OptiKit, an open-source utility library on NPM."
   };
 
   return (

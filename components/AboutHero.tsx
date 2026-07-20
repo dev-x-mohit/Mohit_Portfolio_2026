@@ -190,7 +190,7 @@ const AboutHero = () => {
                     transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     className="mt-6 md:mt-8 text-sm sm:text-base text-text-secondary max-w-2xl font-sans tracking-wide px-4 leading-relaxed z-10 pointer-events-none"
                 >
-                    Crafting <span className="text-foreground font-medium italic font-sans">immersive digital experiences</span> through bleeding-edge technology and refined design.
+                    Crafting <span className="text-foreground font-medium italic font-sans">immersive digital experiences</span> and <span className="text-foreground font-medium italic font-sans">open-source tools</span> through bleeding-edge technology and refined design.
                 </motion.p>
             </div>
 
