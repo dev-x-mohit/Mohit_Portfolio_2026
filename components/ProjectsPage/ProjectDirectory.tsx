@@ -497,9 +497,16 @@ export default function ProjectDirectory() {
                                             </Link>
                                         )}
                                         {project.npmLink && (
-                                            <Link href={project.npmLink} target="_blank" className="w-full flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold font-mono uppercase tracking-wider bg-[#CB3837]/10 border border-[#CB3837]/30 text-[#CB3837] hover:bg-[#CB3837]/20 transition-all duration-300">
-                                                View on NPM <PackageIcon width={16} height={16} />
-                                            </Link>
+                                            <div className="w-full flex flex-col items-center gap-2">
+                                                <Link href={project.npmLink} target="_blank" className="w-full flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold font-mono uppercase tracking-wider bg-[#CB3837]/10 border border-[#CB3837]/30 text-[#CB3837] hover:bg-[#CB3837]/20 transition-all duration-300">
+                                                    View on NPM <PackageIcon width={16} height={16} />
+                                                </Link>
+                                                {/* Live NPM download stats badge */}
+                                                <Link href={project.npmLink} target="_blank" className="opacity-70 hover:opacity-100 transition-opacity">
+                                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                    <img src="https://img.shields.io/npm/dm/@dev_x_mohit/opti-kit?label=npm%20downloads&color=a855f7&style=flat-square" alt="npm downloads" height={20} />
+                                                </Link>
+                                            </div>
                                         )}
                                     </div>
                                 </div>
